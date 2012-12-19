@@ -24,6 +24,8 @@ Yeadon's Method
 ---------------
 
 Brief explanation
+FIGURE - measurements
+FIGURE - cfg
 
 Software Design
 ===============
@@ -55,13 +57,15 @@ How to install the software
 
 cross platform
 
-How to use the software
+How to use the software - chris
 =======================
 - Command line
 - UI
 - ??GUI!!
 - show basic usage then a bigger example
-- spinning ice skater example
+- FIGURE spinning ice skater example
+- input file format description
+- code snippets
 
 Example
 =======
@@ -72,5 +76,6 @@ Example
 - Show numerical numbers of benchamrk bicycle and then the examples after
 - can we show something that goes beyond just calculating the numbers and the images?
 - compare easy of generating inertia for different models (rigid rider vs multisegment rider)
+- FIGURE 
 
 crtl-v, select rows, ctrl-i to insert on each row, esc
