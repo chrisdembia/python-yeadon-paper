@@ -41,7 +41,7 @@ Software Design
 - how does this software make it easy to integrate with anaylysis
 - software license
 
-Validation
+Validation - chris
 ==========
 
 - demonstrate that it achvies purpose
