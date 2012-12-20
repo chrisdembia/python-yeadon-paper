@@ -79,3 +79,7 @@ Example
 - FIGURE 
 
 crtl-v, select rows, ctrl-i to insert on each row, esc
+
+Given measurements
+------------------
+talk about how the data for female1, male1, etc. was gathered.
