@@ -15,6 +15,7 @@ Introduction
 - Winter text book on biomechanics (compare height and mass)
 - Intro to Yeadon's model and citations to him.
 - Why we use Yeadon's model.
+  ** CHRIS: goal is also to clear up some of the implementation details of the method, that are not clear from the paper alone. therefore promoting consistent use of the method
 
 Find papers that use this model:
 - Alison Sheet's work
@@ -26,6 +27,8 @@ Yeadon's Method
 Brief explanation
 FIGURE - measurements
 FIGURE - cfg
+
+Since not all levels "lengths" are not measured, etc, we average some, the corresponding perimeter must be measured at the correct mid-arm point, etc.
 
 Software Design
 ===============
