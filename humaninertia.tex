@@ -24,6 +24,9 @@
 
 \usepackage{color}
 
+% TODO temporary
+\usepackage{todonotes}
+
 % Use doublespacing - comment out for single spacing
 %\usepackage{setspace}
 %\doublespacing
@@ -127,19 +130,86 @@ analtyical solutions for the center of mass and inertia of an individual
 stadium solid. The parrlalel axis thereom is then employed to compute the
 inertia properties of combinations of segments with the largest subset being
 the entire body.
-% Results and Discussion can be combined.
-\section*{Results}
 
-\subsection*{Subsection 1}
+\subsection*{Yeadon's method}
 
-\subsection*{Subsection 2}
+\todo{Talk about the number of measurements and the number of joint angles}
 
-\section*{Discussion}
+\section*{Software design}
 
-% You may title this section "Methods" or "Models".
-% "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
+The input to \verb+yeadon+ consists of (1) measurements of a subject, and (2)
+the joint configuration of the subject. With these two inputs, one is able to
+obtain the mass properties of the subject.
+The mass properties consist of the mass, center of mass, and moment of inertia
+tensor. These properties can be obtained for the entire subject, or for
+individual limbs of the subject. TODO any allowable configuration.
+
 % authors may use "Analysis"
 \section*{Materials and Methods}
+
+\section*{Usage}
+
+We demonstrate how one may use the \verb+yeadon+ package using the example of
+an ice skater performing a spin. As is commonly taught in high school physics
+classes when discussing the conservation of angular momentum, an ice skater
+extends her arms to spin slowly, and draws them proximally to increase her
+angular velocity. Since the product $I_{zz}\omega$ remains constant and $I_{zz}$
+decreases, then $\omega$ must increase (with the $z$ axis directed vertically).
+We can use this human inertia model to vary a model's configuration to quickly
+observe the effect on $I_{zz}$. Specifically, we want to know the factor by
+which an ice skater's angular velocity may increase when she draws her arms in
+from a directly outward position.
+
+We begin by describing how \verb+yeadon+ is obtained and installed, then
+discuss the two ways that \verb+yeadon+ can be used to approach this problem.
+
+\subsection*{Obtaining and installing the software}
+
+The package, along with its documentation, is distributed through the Python
+Package Index. Accordingly, the package can be downloaded and installed easily
+from the command line on a user's machine using the \verb+pip+ package:
+
+\begin{verbatim}
+$ pip install yeadon
+\end{verbatim}
+
+There are two ways to use the package: through methods of the \verb+Human+
+class, or through an interactive command-line user interface. We cover both.
+
+
+
+\subsection*{The Human class}
+
+\begin{verbatim}
+import yeadon as y
+h = y.Human('female1.txt')
+\end{verbatim}
+
+This constructs the \verb+Human+ with the segment dimensions as given in the
+\verb+female1.txt+ input file. This human has the default configuration, in
+which all joint angles are zero. This human can be visualized by executing the
+following:
+
+\begin{verbatim}
+h.draw()
+\end{verbatim}
+\todo{is draw() correct}
+
+Figure \ref{fig:femaledefault} shows this Human
+
+TODO show the use of some other methods, for instance averaging and scaling.
+
+\subsection*{The command-line user interface}
+
+
+-dev for python2.7
+-assume unix machine
+-dist through pip
+-how to install
+-two ways to use.
+
+
+\todo{Measurement figure}
 
 % Do NOT remove this, even if you are not including acknowledgments
 \section*{Acknowledgments}
@@ -161,6 +231,29 @@ TODO nsf disclaimer
 %\label{Figure_label}
 %\end{figure}
 
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=4in]{configuration.eps}
+\end{center}
+\caption{
+{\bf Bold the first sentence.}  Rest of figure 2  caption.  Caption 
+should be left justified, as specified by the options to the caption 
+package.
+}
+\label{fig:config}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=4in]{measurements.eps}
+\end{center}
+\caption{
+{\bf Bold the first sentence.}  Rest of figure 2  caption.  Caption 
+should be left justified, as specified by the options to the caption 
+package.
+}
+\label{fig:meas}
+\end{figure}
 
 \section*{Tables}
 %\begin{table}[!ht]
