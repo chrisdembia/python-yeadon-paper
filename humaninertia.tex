@@ -66,33 +66,67 @@
 % Title must be 150 characters or less
 \begin{flushleft}
 {\Large
-\textbf{Title}
+\textbf{Object oriented implementation of Yeadon's human inertial model}
 }
 % Insert Author names, affiliations and corresponding author email.
 \\
-Author1$^{1}$, 
-Author2$^{2}$, 
-Author3$^{3,\ast}$
+Christopher Dembia$^{1,\ast}$,
+Jason K. Moore$^{2}$,
+Mont Hubbard$^{2}$
 \\
-\bf{1} Author1 Dept/Program/Center, Institution Name, City, State, Country
+\bf{1} Mechanical Engineering, Stanford University, Palo Alto, California, USA
 \\
-\bf{2} Author2 Dept/Program/Center, Institution Name, City, State, Country
+\bf{2} Mechanical and Aerospace Engineering, University of California, Davis, California, USA
 \\
-\bf{3} Author3 Dept/Program/Center, Institution Name, City, State, Country
-\\
-$\ast$ E-mail: Corresponding author@institute.edu
+$\ast$ E-mail: Corresponding cld72@cornell.edu
 \end{flushleft}
 
 % Please keep the abstract between 250 and 300 words
 \section*{Abstract}
-
+Herein we present a modern open source software implementation of a popular
+mathematical method developed by M.R. Yeadon for estimating the body segment
+inertia of a human body.
 % Please keep the Author Summary between 150 and 200 words
-% Use first person. PLoS ONE authors please skip this step. 
-% Author Summary not valid for PLoS ONE submissions.   
-\section*{Author Summary}
+% Use first person. PLoS ONE authors please skip this step.
+% Author Summary not valid for PLoS ONE submissions.
+%\section*{Author Summary}
 
 \section*{Introduction}
+For dynamic analyses, it is typcial to treat the human body as a collection of
+linked rigid bodies. For accurate simulations and analysis the inertial
+properties (mass, center of mass, and moment of inertia) of the body segments
+must be estimated. Human mass, center of mass, and inertial properties have
+been measured and estimated in a multitude of ways. Each method has its
+advantages and disadvantages. Many methods exist including cadaver measurements
+(\cite{Dempster1955}, \cite{Clauser1969}, \cite{Chandler1975}), photogrammetry,
+ray scanning techniques (\cite{Zatsiorsky1983}, \cite{Zatsiorsky1990}), water
+displacement (\cite{Park1999}), rotating platforms (\cite{Griffiths2005}), and
+geometrical estimation of the body segments (\cite{Yeadon1990a}).
+\cite{Bjornstrup1995} gives a detailed overview of mostly invasive methods up
+to 1995.
 
+Yeadon's mathematical method is quite attractive as it requires only a set of
+simple measurements from a live human to give reasonable estimates of the
+person's body segment parameters. Furthermore, it is based off of simple
+computations and can easily be programmed to provide a quick estimates of body
+segment parameters. Yeadon himself developed a Fortran program called ISEG in
+his dissertation \cite{Yeadon1984} to rapidly compute his inertia model. The
+source code is available through the dissertation under the Creative Commons
+Attribution-NonCommercial-NoDerivs 2.5 license but is less that adpatable for
+inclusion in modern software packages for easy configuration and visualization.
+
+We make use of Yeadon's model extensively in our dynamics research and
+developed a modern object oriented program under a permissive license that
+allows for easy inclusion into software packages and includes a graphical user
+interface for ease of end user use.
+\subsection*{Yeadon's Method}
+Yeadon's mathematical model of the human body is developed by representing the
+human body by a number of stadium solids and a semi ellipsoid. The ratio of the
+body segment parameters are based on previous cadaver studies. He provides the
+analtyical solutions for the center of mass and inertia of an individual
+stadium solid. The parrlalel axis thereom is then employed to compute the
+inertia properties of combinations of segments with the largest subset being
+the entire body.
 % Results and Discussion can be combined.
 \section*{Results}
 
@@ -102,18 +136,17 @@ $\ast$ E-mail: Corresponding author@institute.edu
 
 \section*{Discussion}
 
-% You may title this section "Methods" or "Models". 
+% You may title this section "Methods" or "Models".
 % "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
-% authors may use "Analysis" 
+% authors may use "Analysis"
 \section*{Materials and Methods}
 
 % Do NOT remove this, even if you are not including acknowledgments
 \section*{Acknowledgments}
-
-
+TODO nsf disclaimer
 %\section*{References}
 % The bibtex filename
-\bibliography{template}
+\bibliography{humaninertia}
 
 \section*{Figure Legends}
 %\begin{figure}[!ht]
@@ -142,4 +175,3 @@ $\ast$ E-mail: Corresponding author@institute.edu
 % \end{table}
 
 \end{document}
-
