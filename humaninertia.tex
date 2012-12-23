@@ -123,7 +123,63 @@ developed a modern object oriented program under a permissive license that
 allows for easy inclusion into software packages and includes a graphical user
 interface for ease of end user use.
 
-\subsection*{Yeadon's method}
+\subsection*{Yeadon's model}
+
+Yeadon provides a lucid explanation of his human inertia model in
+\cite{Yeadon1990c}. Here, we merely seek to summarize it. The model is defined
+in terms of \emph{segments}, \emph{solids}, and \emph{levels}. These three
+elements of the model are all shown in Figure \ref{fig:meas}.
+
+\begin{description}
+    \item[Segments]
+        The human is composed of 11 segments. Each of these segments are rigid
+        bodies, but have at least one rotational degree of freedom with respect
+        to the segment to which they are attached. Each of the 4 limbs is
+        composed of 2 segments, and the remainder of the body is composed of 3
+        segments. The segments are labeled as \textbf{C}, \textbf{A1}, and so
+        forth.
+    \item[Solids]
+        Each segment is defined in terms of a few of solids, leading to a
+        total of 40 solids. All solids in a
+        segment share the same longitudinal axis. The solids are labeled as
+        \textbf{s0}, \textbf{a0}, and so forth. Note that we start numbering
+        the segments from 0, while Yeadon starts numbering the solids from 1.
+    \item[Levels]
+        The solids are lofts between two parallel cross sections.
+        These cross sections are referred to as levels, both in
+        Yeadon's work and in ours. There is a total of 45 levels in the model.
+        Each level is in the shape of a \emph{stadium} (see Figure
+        \ref{fig:stadium}). The only exception to this is \textbf{Ls7} in the
+        head, 
+        which is a circle. A stadium is defined uniquely by any 2 of the
+        following 4 attributes: its perimeter $p$, radius $r$, thickness $t$,
+        and width $w$.
+        The choice of which 2 attributes are used to define a given stadium
+        depends on the stadium's location in the body, as, for example, it is
+        impossible to measure a perimeter about the shoulders (\textbf{Ls4}) so
+        a depth is used instead.
+        Levels are labeled as \textbf{Ls0}, \textbf{La0}, and so forth.
+        \emph{stadium}.
+\end{description}
+
+The model is personalized to a given individual via 95 anthropometric
+measurements.
+Furthermore, the model can provide inertial parameters for a given
+configuration. The model allows for the specification of 21 joint angles that
+are used to specify the configuration of the personalized model.
+
+\textbf{Measurements}
+
+
+\subsection*{Exceptions}
+
+-talk about exceptions in measurements
+-talk about exceptions in how stadia are defined
+-talk about if t is very small
+-separate out exceptions in the model vs exceptions in the implementation.
+
+
+
 Yeadon's mathematical model of the human body is developed by representing the
 human body by a number of stadium solids and a semi ellipsoid. The ratio of the
 body segment parameters are based on previous cadaver studies. He provides the
@@ -242,6 +298,19 @@ using 95 measurements. These consist of measurements along the limbs/segments
 limbs/segments (perimeters) \cite{Yeadon1990c}.
 }
 \label{fig:meas}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+    \missingfigure{stadium}
+%\includegraphics[width=4in]{figure_name.2.eps}
+\end{center}
+\caption{
+{\bf Bold the first sentence.}  Rest of figure 2  caption.  Caption 
+should be left justified, as specified by the options to the caption 
+package.
+}
+\label{fig:stadium}
 \end{figure}
 
 \begin{figure}[!ht]

@@ -40,6 +40,14 @@ Location of hip joint centres with respect to pelvis: unspecified in yeadon pape
 
 segments are rigid bodies, composed of solids.
 
+see comment in yeadon-ii about trapezium when t = 0
+
+solids comprising a segment have coincident longitudinal axis.
+
+we also use dempster's densities.
+
+intended purpose was aerial movementSs: twisting somersalts on a trampoline.
+
 Software Design
 ===============
 
@@ -102,3 +110,7 @@ notes on measurementS:
 -reorder PTC to CTP
 -change lineweights or move labels of P T C on the actual guy
 - or make a note about what the colors mean
+
+Style
+-----
+Chris: I try to type numbers out as numerals rather than as words whenever possible; I think it's easier to read. However, I understand it's conventional to write out small numbers so I'm fine with us doing that.
