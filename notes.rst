@@ -36,6 +36,8 @@ There are x degrees of freedom: (1), (2)...etc.
 
 There are segments, composed of solids lofted between parallel stadia.
 
+Location of hip joint centres with respect to pelvis: unspecified in yeadon papers?
+
 Software Design
 ===============
 
