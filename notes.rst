@@ -114,3 +114,5 @@ notes on measurementS:
 Style
 -----
 Chris: I try to type numbers out as numerals rather than as words whenever possible; I think it's easier to read. However, I understand it's conventional to write out small numbers so I'm fine with us doing that.
+
+we vs passive
