@@ -38,6 +38,8 @@ There are segments, composed of solids lofted between parallel stadia.
 
 Location of hip joint centres with respect to pelvis: unspecified in yeadon papers?
 
+segments are rigid bodies, composed of solids.
+
 Software Design
 ===============
 

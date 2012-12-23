@@ -95,8 +95,8 @@ inertia of a human body.
 %\section*{Author Summary}
 
 \section*{Introduction}
-For dynamic analyses, it is typcial to treat the human body as a collection of
-linked rigid bodies. For accurate simulations and analysis the inertial
+For dynamic analyses, it is typical to treat the human body as a collection of
+linked rigid bodies. For accurate simulation and analysis the inertial
 properties (mass, center of mass, and moment of inertia) of the body segments
 must be estimated. Human mass, center of mass, and inertial properties have
 been measured and estimated in a multitude of ways. Each method has its
@@ -105,24 +105,25 @@ advantages and disadvantages. Many methods exist including cadaver measurements
 ray scanning techniques (\cite{Zatsiorsky1983}, \cite{Zatsiorsky1990}), water
 displacement (\cite{Park1999}), rotating platforms (\cite{Griffiths2005}), and
 geometrical estimation of the body segments (\cite{Yeadon1990c}).
-\cite{Bjornstrup1995} gives a detailed overview of mostly invasive methods up
-to 1995.
+Bjornstrup \cite{Bjornstrup1995} gives a detailed overview of mostly invasive
+methods up to 1995.
 
 Yeadon's mathematical method is quite attractive as it requires only a set of
-simple measurements from a live human to give reasonable estimates of the
-person's body segment parameters. Furthermore, it is based off of simple
-computations and can easily be programmed to provide a quick estimates of body
-segment parameters. Yeadon himself developed a Fortran program called ISEG in
-his dissertation \cite{Yeadon1984a} to rapidly compute his inertia model. The
+simple measurements from a live human and provides reasonable estimates of the
+human's body segment parameters. Furthermore, it is based off of simple
+computations and can easily be programmed to provide a quick estimate of body
+segment parameters. Yeadon himself developed a Fortran program called ISEG for
+his doctoral work \cite{Yeadon1984a} to rapidly compute his inertia model. The
 source code is available through the dissertation under the Creative Commons
-Attribution-NonCommercial-NoDerivs 2.5 license but is less that adpatable for
+Attribution-NonCommercial-NoDerivs 2.5 license but is less than adaptable for
 inclusion in modern software packages for easy configuration and visualization.
 
 We make use of Yeadon's model extensively in our dynamics research and
 developed a modern object oriented program under a permissive license that
 allows for easy inclusion into software packages and includes a graphical user
 interface for ease of end user use.
-\subsection*{Yeadon's Method}
+
+\subsection*{Yeadon's method}
 Yeadon's mathematical model of the human body is developed by representing the
 human body by a number of stadium solids and a semi ellipsoid. The ratio of the
 body segment parameters are based on previous cadaver studies. He provides the
@@ -131,7 +132,6 @@ stadium solid. The parrlalel axis thereom is then employed to compute the
 inertia properties of combinations of segments with the largest subset being
 the entire body.
 
-\subsection*{Yeadon's method}
 
 \todo{Talk about the number of measurements and the number of joint angles}
 
@@ -233,19 +233,6 @@ TODO nsf disclaimer
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=4in]{configuration.eps}
-\end{center}
-\caption{
-{\bf Configuration variables for the human inertia model.}  The configuration of
-the human is defined using 21 joint angles, represented by green arrows
-\cite{Yeadon1990e}. The labels are the names of the configuration variables in
-the code.
-}
-\label{fig:config}
-\end{figure}
-
-\begin{figure}[!ht]
-\begin{center}
 \includegraphics[width=4in]{measurements.eps}
 \end{center}
 \caption{
@@ -255,6 +242,20 @@ using 95 measurements. These consist of measurements along the limbs/segments
 limbs/segments (perimeters) \cite{Yeadon1990c}.
 }
 \label{fig:meas}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=4in]{configuration.eps}
+\end{center}
+\caption{
+{\bf Configuration variables for the human inertia model.}  The configuration of
+the human is defined using 21 joint angles, represented by green arrows
+\cite{Yeadon1990e}. The labels are the names of the configuration variables in
+the code. The origin of the global coordinate frame is at the bottom center of
+the pelvis segment.
+}
+\label{fig:config}
 \end{figure}
 
 \begin{figure}[!ht]
