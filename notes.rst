@@ -30,6 +30,12 @@ FIGURE - cfg
 
 Since not all levels "lengths" are not measured, etc, we average some, the corresponding perimeter must be measured at the correct mid-arm point, etc.
 
+There are x segments: (1).. (2) , (3)... say how many solids thye have each.
+
+There are x degrees of freedom: (1), (2)...etc.
+
+There are segments, composed of solids lofted between parallel stadia.
+
 Software Design
 ===============
 
@@ -86,3 +92,9 @@ crtl-v, select rows, ctrl-i to insert on each row, esc
 Given measurements
 ------------------
 talk about how the data for female1, male1, etc. was gathered.
+
+
+notes on measurementS:
+-reorder PTC to CTP
+-change lineweights or move labels of P T C on the actual guy
+- or make a note about what the colors mean
