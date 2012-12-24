@@ -126,32 +126,31 @@ interface for ease of end user use.
 \subsection*{Yeadon's model}
 
 Yeadon provides a lucid explanation of his human inertia model in
-\cite{Yeadon1990c}. Here, we merely seek to summarize it. The model is defined
-in terms of \emph{segments}, \emph{levels}, and \emph{solids}. These three
-elements of the model are all shown in Figure \ref{fig:meas}.
+\cite{Yeadon1990c}. In this section, we merely seek to summarize his work. The
+model is defined in terms of \emph{segments}, \emph{levels}, and \emph{solids}.
+These three elements of the model are all shown in Figure \ref{fig:meas}.
 
 \begin{description}
     \item[Segments]
-        The human is composed of 11 segments. Each of these segments are rigid
-        bodies, but have at least one rotational degree of freedom with respect
-        to the segment to which they are attached. Each of the 4 limbs is
+        The human is composed of 11 segments. Each of the 4 limbs is
         composed of 2 segments, and the remainder of the body is composed of 3
-        segments. The segments are labeled as \textbf{C}, \textbf{A1}, and so
-        forth.
+        segments. Each of these segments are rigid bodies, but have at least
+        one rotational degree of freedom with respect to the segment to which
+        they are attached.  The segments are labeled as \textbf{C},
+        \textbf{A1}, and so forth.
     \item[Levels]
         Each segment is defined by a series of parallel cross sections.
         These cross sections are referred to as levels, both in
         Yeadon's work and in ours. The model contains a toal of 45 levels.
-        Each level is in the shape of a \emph{stadium} (see Figure
+        Levels are labeled as \textbf{Ls0}, \textbf{La0}, and so forth.  Each
+        level is in the shape of a \emph{stadium} (see Figure
         \ref{fig:stadium}). The only exception to this is \textbf{Ls7} in the
-        head, which is necessarily a circle. We can define a stadium by
-        any 2 of the following 5 attributes: its perimeter $p$, radius $r$,
-        thickness $t$,  width $w$, and depth $d$.  The choice of which 2
-        attributes are used to define a given stadium depends on the stadium's
-        location in the body, as, for example, it is impossible to measure a
-        perimeter about the shoulders (\textbf{Ls4}) so a depth is used
-        instead.  Levels are labeled as \textbf{Ls0}, \textbf{La0}, and so
-        forth.  \emph{stadium}.
+        head, which is a circle. We can define a stadium by any 2 of the
+        following 5 attributes: its perimeter $p$, radius $r$, thickness $t$,
+        width $w$, and depth $d$.  The choice of which 2 attributes are used to
+        define a given stadium depends on the stadium's location in the body,
+        as, for example, it is difficult to measure a perimeter about the
+        shoulders (\textbf{Ls4}) so a depth is used instead.
     \item[Solids]
         The inertial properties of each segment are computed by viewing each
         segment as a solid lofted through all the levels in the segment. This
@@ -172,10 +171,47 @@ personalized via 95 anthropometric measurements. These measurements serve to
 define each stadium, and to provide the distance between the stadia (the
 heights of the stadium solids).
 
-Furthermore, the model can provide inertial
-parameters for a given configuration. The model allows for the specification of
-21 joint angles that are used to specify the configuration of the personalized
-model.
+Much of the utility of the model comes from being able to specify the
+configuration of the human for which one desires its inertial properties. This
+is done via 21 joint angles between the various segments, all of which are
+labeled in Figure \ref{fig:config}. Each segment is labeled with its joint
+center as a black dot. The black arrows on each segment indicate its local
+coordinate frame, whose origin is always at the joint center of the segment. The green arrows
+each represent a degree of freedom, and indicate the direction and sign of the
+corresponding joint angle via the right-hand rule. The configuration variables
+are named with the names of the two segments at the joint, and a physiological
+description of the joint angle (i.e. \verb+K1K2flexion+ is the right knee
+flexion). The exceptions to this naming convention are \verb+somersalt+,
+\verb+tilt+, and \verb+twist+, which specify the orientation of the whole body
+with respect to the fixed coordinate frame. Thus, right hip abduction is
+positive value of \verb+PK1abduction+, and so forth.
+
+\todo{what is the zoro-configuration variable state? talk about his first paper for as to how the shoulder joint works.}
+
+\todo{talk about how many dofs per joint}
+
+\subsection*{Inertial parameters}
+
+We provide inertial properties (mass, center of mass, and moments of inertia)
+for the whole human, for an individual segment, for an individual solid, or for
+any combination of segments and solids. In the first case of the whole human,
+ we provide the center of mass and moments of inertia in the global fixed coordinate frame. This frame has its
+ origin at the bottom middle of solid \textbf{s0}, and is aligned with the
+ local frame of segment \textbf{P} when \verb+somersalt+, \verb+tilt+, and
+ \verb+twist+ are zero.
+ In the case of individual segments or solids, we can provide the inertial
+ properties in either the local frame of the segment in inquiry, or in the
+ global fixed frame. We provide the inertial properties for any other
+ combination in terms of the global fixed frame.
+
+%Yeadon's human inertia model allows one to estimate the inertial properties of a particular individual through a standard and quick process.
+
+
+\todo{edit measurements figure so that we don't have <s> is hte name of the
+segment, since htis is not true for the torso!! or really for any part of the
+model.}
+
+
 
 \textbf{Measurements}
 
@@ -307,7 +343,7 @@ TODO nsf disclaimer
 \caption{
 {\bf Measurements required for the human inertia model.}  The human is defined
 using 95 measurements. These consist of measurements along the limbs/segments
-(lengths), transverse to the limbs/segments (widths/depths, or about the
+(lengths), transverse to the limbs/segments (widths/depths), or about the
 limbs/segments (perimeters) \cite{Yeadon1990c}.
 }
 \label{fig:meas}
