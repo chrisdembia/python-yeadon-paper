@@ -144,13 +144,14 @@ elements of the model are all shown in Figure \ref{fig:meas}.
         Yeadon's work and in ours. The model contains a toal of 45 levels.
         Each level is in the shape of a \emph{stadium} (see Figure
         \ref{fig:stadium}). The only exception to this is \textbf{Ls7} in the
-        head, which is necessarily a circle. A stadium is defined uniquely by
-        any 2 of the following 4 attributes: its perimeter $p$, radius $r$,
-        thickness $t$, and width $w$.  The choice of which 2 attributes are
-        used to define a given stadium depends on the stadium's location in the
-        body, as, for example, it is impossible to measure a perimeter about
-        the shoulders (\textbf{Ls4}) so a depth is used instead.  Levels are
-        labeled as \textbf{Ls0}, \textbf{La0}, and so forth.  \emph{stadium}.
+        head, which is necessarily a circle. We can define a stadium by
+        any 2 of the following 5 attributes: its perimeter $p$, radius $r$,
+        thickness $t$,  width $w$, and depth $d$.  The choice of which 2
+        attributes are used to define a given stadium depends on the stadium's
+        location in the body, as, for example, it is impossible to measure a
+        perimeter about the shoulders (\textbf{Ls4}) so a depth is used
+        instead.  Levels are labeled as \textbf{Ls0}, \textbf{La0}, and so
+        forth.  \emph{stadium}.
     \item[Solids]
         The inertial properties of each segment are computed by viewing each
         segment as a solid lofted through all the levels in the segment. This
@@ -159,18 +160,17 @@ elements of the model are all shown in Figure \ref{fig:meas}.
         segment share the same longitudinal axis. A given solid is
         defined by its two bounding stadia and the longitudinal distance
         between them (the solid's height). These stadium-bounded solids are
-        termed \emph{stadium
-        solids}. The only exception is \textbf{s7}, the solid above the ear,
-        which is a semi-ellipsoid. The model contains a total of 40 solids.
-        Note that in this formulation we start numbering the segments from 0,
-        while Yeadon starts numbering the solids from 1.
+        termed \emph{stadium solids}. The only exception is \textbf{s7}, the
+        solid above the ear, which is a semi-ellipsoid. The model contains a
+        total of 40 solids.  Note that in this formulation we start numbering
+        the segments from 0, while Yeadon starts numbering the solids from 1.
 \end{description}
 
-A key feature of this inertia model is that it can be personalized to a given individual, yet we have not
-discussed this feature yet. The model is personalized via
-95 anthropometric measurements. These measurements serve to define each
-stadium, and to provide the distance between the stadia (the heights of the
-stadium solids).
+A key feature of this inertia model is that it can be personalized to a given
+individual, yet we have not discussed this feature yet. The model is
+personalized via 95 anthropometric measurements. These measurements serve to
+define each stadium, and to provide the distance between the stadia (the
+heights of the stadium solids).
 
 Furthermore, the model can provide inertial
 parameters for a given configuration. The model allows for the specification of
@@ -315,12 +315,13 @@ limbs/segments (perimeters) \cite{Yeadon1990c}.
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=4in]{stadium.eps}
+\includegraphics{stadium.eps}
 \end{center}
 \caption{
-{\bf Bold the first sentence.}  Rest of figure 2  caption.  Caption 
-should be left justified, as specified by the options to the caption 
-package.
+{\bf Stadium cross section shape.}  The levels that define the segments are all
+in the shape of a stadium, with one exception. We can define a stadium by
+by any two of its attributes: perimeter $p$, radius $r$, thickness $t$,  width
+$w$, and depth $d$.
 }
 \label{fig:stadium}
 \end{figure}
