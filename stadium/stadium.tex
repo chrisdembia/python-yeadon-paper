@@ -1,0 +1,47 @@
+\documentclass{standalone}
+\usepackage{tikz}
+%\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{calc}
+
+\begin{document}
+
+\def\rad{1}
+\def\thick{1}
+\def\tick{.15}
+
+\definecolor{forceful}{rgb}{.7,0,0}
+\definecolor{body}{rgb}{.9,.9,.9}
+
+\begin{tikzpicture}[
+    scale=1,
+    dimen/.style={<->,>=latex,thin,every rectangle node/.style={midway}}
+    ]
+
+\draw[thick] (\rad, 0) arc (0:90:\rad) --++ (-2*\thick, 0) arc (90:270:\rad) --++
+    (2*\thick, 0) arc (-90:0:\rad);
+
+
+\draw[lightgray] (0, -\rad) -- (0, \rad);
+\draw[lightgray] (-2*\rad, -\rad) -- (-2*\rad, \rad);
+
+\draw (-\tick, 0) -- (\tick, 0);
+\draw (0, -\tick) -- (0, \tick);
+
+\draw[>=latex,->] (0, 0) -- (30:\rad) node[midway, below] {$r$};
+
+\def\be{.2}
+\draw (-3*\rad, 0) --++(0, -1.5*\rad) coordinate(D1) --+(0, \be);
+\draw (\rad, 0) --++(0, -1.5*\rad) coordinate(D2) --+(0, \be);
+\draw[dimen] (D1) -- (D2) node[below] {$w$};
+
+\def\xpos{-.3}
+\draw[dimen] (\xpos, \rad) --++ (0, -2*\rad) node[left] {$d$};
+
+\def\ypos{-.7}
+\draw[dimen] (-2*\rad, \ypos) -- (0, \ypos) node[above] {$2t$};
+
+\draw[->, >=latex] (70:1.4*\rad) node[above right] {$p$} -- (70:\rad);
+
+\end{tikzpicture}
+\end{document}
+
