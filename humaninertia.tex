@@ -166,17 +166,18 @@ These three elements of the model are all shown in Figure \ref{fig:meas}.
 \end{description}
 
 A key feature of this inertia model is that it can be personalized to a given
-individual, yet we have not discussed this feature yet. The model is
+individual, though we have not yet discussed this feature. The model is
 personalized via 95 anthropometric measurements. These measurements serve to
 define each stadium, and to provide the distance between the stadia (the
 heights of the stadium solids).
 
 Much of the utility of the model comes from being able to specify the
-configuration of the human for which one desires its inertial properties. This
-is done via 21 joint angles between the various segments, all of which are
-labeled in Figure \ref{fig:config}. Each segment is labeled with its joint
-center as a black dot. The black arrows on each segment indicate its local
-coordinate frame, whose origin is always at the joint center of the segment. The green arrows
+configuration of the human in which one desires its inertial properties. The configuration is specified via 21 joint angles between the various segments, all of which are
+labeled in Figure \ref{fig:config}. The joint center of each segment is located
+with a black dot: it is always located at the center of the base stadium of the
+segment. The black arrows on each
+segment indicate its local coordinate frame, whose origin is always at the
+joint center of the segment. For each segment, the local $z$-axis is the longitudinal axis of the segment. The green arrows
 each represent a degree of freedom, and indicate the direction and sign of the
 corresponding joint angle via the right-hand rule. The configuration variables
 are named with the names of the two segments at the joint, and a physiological
@@ -186,9 +187,25 @@ flexion). The exceptions to this naming convention are \verb+somersalt+,
 with respect to the fixed coordinate frame. Thus, right hip abduction is
 positive value of \verb+PK1abduction+, and so forth.
 
+Most joints have more than one degree of freedom, but only 4 have the maximum
+number of 3 rotational degrees of freedom. Since rotations are not commutative,
+we explain here the order in which we perform rotations at multi-degree of
+freedom joints.
+
+
 \todo{what is the zoro-configuration variable state? talk about his first paper for as to how the shoulder joint works.}
 
-\todo{talk about how many dofs per joint}
+The default configuration is for all configuration variables to have a value of
+zero. In this configuration, the joint centers of all
+segments lie in a coronal
+plane. Thus, in the default configuration, the local $x$-axis lies in a coronal
+plane and the local $y$-axis is directed posteriorly. Furthermore, the
+corresponding coordinate basis unit vectors for the torso segments \textbf{P},
+\textbf{T}, and \textbf{C} are all coincident. For the limbs (all other
+segments), the $z$-axis is parallel to the global $z$-axis but points in the
+opposite direction, and so the $x$ axis points rightward but the $y$-axis still
+points posteriorly. It is assumed that in the default configuration,
+the palms of the hands face the anterior direction.
 
 \subsection*{Inertial parameters}
 
@@ -203,6 +220,7 @@ any combination of segments and solids. In the first case of the whole human,
  properties in either the local frame of the segment in inquiry, or in the
  global fixed frame. We provide the inertial properties for any other
  combination in terms of the global fixed frame.
+
 
 %Yeadon's human inertia model allows one to estimate the inertial properties of a particular individual through a standard and quick process.
 
@@ -400,5 +418,25 @@ package.
 %\end{flushleft}
 %\label{tab:label}
 % \end{table}
+
+\begin{table}[!ht]
+\caption{
+\bf{Rotation order for multi-degree of freedom joints}}
+\begin{tabular}{|c|c|}
+    joint & order \\
+    P & somersalt, tilt, twist \\
+    PT & frontal flexion, sagittal flexion \\
+    TC & TODO \\
+    CA1 & elevation, abduction, rotation \\
+    CB1 & elevation, abduction, rotation \\
+    PJ1 & TODO \\
+    PK1 & TODO \\
+
+\end{tabular}
+\begin{flushleft}Table caption
+\end{flushleft}
+\label{tab:dof}
+ \end{table}
+
 
 \end{document}
