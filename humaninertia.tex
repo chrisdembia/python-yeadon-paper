@@ -198,7 +198,7 @@ all segments align with the global coordinate basis vectors. In the default
 configuration, the limbs (segments \textbf{A1}, \textbf{A2}, \textbf{B1},
 \textbf{B2}, \textbf{J1}, \textbf{J2}, \textbf{K1}, \textbf{K2}) are rotated
 $-\pi$ radians about the global $y$-axis
-so that the fingers and toes point downward.
+so that fingers and toes point downward.
 
 This means that for each segment, in the default configuration, the local
 $x$-axis lies in a coronal plane and the local $y$-axis is directed
@@ -421,12 +421,19 @@ package.
 \caption{
 \bf{Rotation order for multi-degree of freedom joints}}
 \begin{tabular}{|c|c|}
-    joint(s) & order of rotations\\
+    \hline
+    \textbf{joint(s)} & \textbf{order of rotations}\\
+    \hline
     P & somersalt, tilt, twist \\
+    \hline
     PT & frontal flexion, sagittal flexion \\
+    \hline
     TC & torsion, lateral spinal flexion \\
+    \hline
     CA1, CB1 & elevation, abduction, rotation \\
+    \hline
     PJ1, PK1 & abduction, flexion \\
+    \hline
 \end{tabular}
 \begin{flushleft}Since rotations are not commutative, we must specify the order
     in which we perform rotations at multi-degree of freedom joints. For each
