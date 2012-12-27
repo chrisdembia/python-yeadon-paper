@@ -125,10 +125,24 @@ interface for ease of end user use.
 
 \section*{Yeadon's model}
 
+In 1990 Yeadon published a four-paper series on the subject of simulating
+human aerial movement, particularly somersalts. His first paper
+\cite{Yeadon1990c} describes a method for obtaining joint angles from film
+data, and accordingly delves into how he defines the orientation of the whole
+body and the relative orientation of parts of the body. His second paper
+\cite{Yeadon1990f} describes in detail the geometry of his human model. He
+leaves the description of the model's configuration to his third paper
+\cite{Yeadon1990e}, which also details the analytical calculation of the
+model's angular momentum. The last paper in the series \cite{Yeadon1990d}
+compares the trajectory of a double somersalt between a film recording and a
+computer simulation using the model developed in the first 3 papers as a way
+to assess the success of the model.
+
 Yeadon provides a lucid explanation of his human inertia model in
-\cite{Yeadon1990c}. In this section, we merely seek to summarize his work. The
-model is defined in terms of \emph{segments}, \emph{levels}, and \emph{solids}.
-These three elements of the model are all shown in Figure \ref{fig:meas}.
+the series described above. In this section, we merely seek to summarize his
+work.  The model is defined in terms of \emph{segments}, \emph{levels}, and
+\emph{solids}.  These three elements of the model are all shown in Figure
+\ref{fig:meas}.
 
 \begin{description}
     \item[Segments]
@@ -248,7 +262,9 @@ forth.
 Most joints have more than one degree of freedom, but only 4 have the maximum
 number of 3 rotational degrees of freedom. Since rotations are not commutative,
 we must specify the order in which we perform rotations at multi-degree of
-freedom joints. We provide this information in Table \ref{tab:dof}.
+freedom joints. We provide this information in Table \ref{tab:dof}. For these
+joints, subsequent rotations are relative to the new local coordinate frame
+obtained by preceding rotations at this joint.
 
 The default configuration is for all configuration variables to have a value of
 zero. This, however, does not mean that the local coordinate basis vectors of
@@ -304,6 +320,7 @@ used in a more general set of investigations. \todo[inline]{remove last 2 senten
 \end{description}
 
 \todo{is location of hip joint centre a departure?}
+\todo{symmetry of left and right limbs}
 
 
 

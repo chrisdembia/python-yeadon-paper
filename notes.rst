@@ -143,3 +143,16 @@ usage
 
 Chris decided to use joint centre but center of mass in some attempt to be
 consistent with Yeadon's naming.
+
+
+Departures
+----------
+
+yeadon - i
+    concerned with using cinematography to back out orientation angles
+        external somersalt, tilt, twist
+        internal angles as well
+
+        we are not concerned with this
+
+yeadon - iv
