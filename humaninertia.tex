@@ -189,7 +189,6 @@ the model, and the way the configuration is defined.
 
 \section*{Implementation of Yeadon's model}
 
-
 The previous section makes no departures from Yeadon's work. In the next
 section, however, we make some departures that become important when his model
 is implemented and that serve to generalize his work. These departures are
@@ -197,31 +196,54 @@ summarized at the end of this section.
 
 \subsection*{Measurements}
 
--It is possible that certain stadia degenerate into circles for the measurements
-of a given human subject. 2 < p/w < pi
--why sometimes perimeter can't be used, etc.
--depth vs width
--all of the notes in the measurement slide.
--ease of mesaurement: relative mesaurements: not measuring individual stadium solid hiehgts. for consistency with yeadon's work.
--indexing from 0 or 1
+Although we require the heights of the individual stadium solids, the
+experimentalist does not measure these independently. Instead, the
+experimentalist measures the longitudinal distance across multiple stadium
+solids. For example, the \textbf{Ls2L} measurement is not the distance between
+the \textbf{Ls1} and \textbf{Ls2} levels. Instead, \textbf{Ls2L} is measured
+from \textbf{Ls0}. To learn the levels from which one measures the various
+lengths, see the top of Figure \ref{fig:meas}.
+
+Since the densities for the model are provided, we readily provide an estimate
+of the human's total mass. However, if the experimentalist also measures the
+weight of the subject, it can be used to scale the densities provided in the
+model so that the model's mass matches the measured mass of the subject.
+
+There are a few exceptions to the general measurement scheme we have described
+so far.
+
+While most of the lengths are directly measured, some are determined by other
+lengths. For example, we set \textbf{La1L} to be half of \textbf{La2L}, and so
+the experimentalist does not measure \textbf{La1L}. This means, however, that
+\textbf{La1p} must be measured halfway down segment \textbf{A1}. This scenario
+arises in each limb.
+
+All stadia are oriented medio-laterally except for the heel (levels
+\textbf{Lj6} and \textbf{Lk6}). These stadia are oriented anteroposteriorly.
+Note from Figure \ref{fig:meas} that one measures a depth at these levels
+instead of a width. This depth is in fact the width of a stadium rotated
+through a right angle.
+
+One can find any other necessary information about exceptions from the
+measurement scheme in the notes of Figure \ref{fig:meas}.
 
 \subsection*{Configuration}
 
- In this section we describe, relying heavily on Figure \ref{fig:config}, how
- we implement the configuration of Yeadon's model. The joint centre of each
- segment is located with a black dot: it is always located at the center of the
- base stadium of the segment. The black arrows on each segment indicate its
- local coordinate frame, whose origin is always at the joint centre of the
- segment. For each segment, the local $z$-axis is the longitudinal axis of the
- segment. The green arrows each represent a degree of freedom, and indicate the
- direction and sign of the corresponding joint angle via the right-hand rule.
- The configuration variables are named with the names of the two segments at
- the joint, and a physiological description of the joint angle (i.e.
- \verb+K1K2flexion+ is the right knee flexion). The exceptions to this naming
- convention are \verb+somersalt+, \verb+tilt+, and \verb+twist+, which specify
- the orientation of the whole body with respect to the fixed coordinate frame.
- Thus, right hip abduction is positive value of \verb+PK1abduction+, and so
- forth.
+In this section we describe, relying heavily on Figure \ref{fig:config}, how
+we implement the configuration of Yeadon's model. The joint centre of each
+segment is located with a black dot: it is always located at the center of the
+base stadium of the segment. The black arrows on each segment indicate its
+local coordinate frame, whose origin is always at the joint centre of the
+segment. For each segment, the local $z$-axis is the longitudinal axis of the
+segment. The green arrows each represent a degree of freedom, and indicate the
+direction and sign of the corresponding joint angle via the right-hand rule.
+The configuration variables are named with the names of the two segments at
+the joint, and a physiological description of the joint angle (i.e.
+\verb+K1K2flexion+ is the right knee flexion). The exceptions to this naming
+convention are \verb+somersalt+, \verb+tilt+, and \verb+twist+, which specify
+the orientation of the whole body with respect to the fixed coordinate frame.
+Thus, right hip abduction is positive value of \verb+PK1abduction+, and so
+forth.
 
 Most joints have more than one degree of freedom, but only 4 have the maximum
 number of 3 rotational degrees of freedom. Since rotations are not commutative,
@@ -257,39 +279,6 @@ $t_{Ls0}$ is the thickness of the stadium at level \textbf{Ls0} and $r_{Ls0}$
 is its radius. The location of the joint centre in all other segments is at
 the center of the last stadium in the preceding segment.
 
-\subsection*{Inertial properties}
-\todo[inline]{does this go in the verification?}
-
-We provide inertial properties (mass, center of mass, and moments of inertia)
-for the whole human, for an individual segment, for an individual solid, or for
-any combination of segments and solids. In the first case of the whole human,
- we provide the center of mass and moments of inertia in the global fixed coordinate frame. This frame has its
- origin at the bottom middle of solid \textbf{s0}, and is aligned with the
- local frame of segment \textbf{P} when \verb+somersalt+, \verb+tilt+, and
- \verb+twist+ are zero.
- In the case of individual segments or solids, we can provide the inertial
- properties in either the local frame of the segment in inquiry, or in the
- global fixed frame. We provide the inertial properties for any other
- combination in terms of the global fixed frame.
-
-
-%Yeadon's human inertia model allows one to estimate the inertial properties of a particular individual through a standard and quick process.
-
-
-\todo{edit measurements figure so that we don't have <s> is hte name of the
-segment, since htis is not true for the torso!! or really for any part of the
-model.}
-
-
-
-\subsection*{Exceptions}
-
--talk about exceptions in measurements
--talk about exceptions in how stadia are defined
--talk about if t is very small
--separate out exceptions in the model vs exceptions in the implementation.
--talk about negative thickness or radius.
-
 \subsection*{Departures from Yeadon's work}
 
 There are a few ways in which our implementation of the human inertia model
@@ -297,13 +286,21 @@ differs from that which Yeadon presented in \cite{Yeadon1990c, Yeadon1990f,
 Yeadon1990e, Yeadon1990d}. Some of these differences arise from the fact that
 his work was tailored for aerial movement, more specifically for twisting
 somersalts. We expect, however, that our implementation of the model can be
-used in a more general set of investigations.
+used in a more general set of investigations. \todo[inline]{remove last 2 sentences?}
 
 \begin{description}
     \item[Relationships between configuration variables] Yeadon enforced
         relationships between certain configuration variables, such as
         symmetric movement of the legs with respect to the pelvis. We impose no
         relationships between the 21 configuration variables.
+    \item[Degenerate stadia] In the case where stadia have essentially zero
+        thickness (a circle), Yeadon still employs the formulae for stadium
+        solids by setting the thickness to be very small \cite{Yeadon1990f}. We
+        instead set TODO.
+    \item[Inconsistent measurements] The ratio of a stadium's perimeter to its
+        width must be greater than 2 but must be less than $\pi$. If this
+        restriction does not hold, then we set the stadium to be a circle. This
+        scenario is not discussed by Yeadon.
 \end{description}
 
 \todo{is location of hip joint centre a departure?}
@@ -328,8 +325,48 @@ The mass properties consist of the mass, center of mass, and moment of inertia
 tensor. These properties can be obtained for the entire subject, or for
 individual limbs of the subject. TODO any allowable configuration.
 
-% authors may use "Analysis"
-\section*{Materials and Methods}
+The software is written in the Python language. The advantages of this language
+are its ease of use and that there exists infrastructure that greatly
+facilitates the sharing of open-source packages written in the language. The
+software is distributed as the \verb+yeadon+ package on the Python Package
+Index TODO.
+
+The \verb+yeadon+ package contains 5 modules: \verb+human+, \verb+segment+,
+\verb+solid+, \verb+ui+, and \verb+gui+. The \verb+human+ module contains the
+public interface of the package, and the \verb+segment+ and \verb+solid+
+modules are used internally to the \verb+human+ module. The user interacts
+either directly with the \verb+yeadon+ module, or via the \verb+ui+ or
+\verb+gui+ modules, both of which are clients to the \verb+human+ module. The
+\verb+human+ module contains only the \verb+Human+ class, the \verb+segment+
+module contains only the \verb+Segment+ class, and the \verb+solid+ module
+contains the \verb+Stadium+, \verb+Solid+, \verb+StadiumSolid+, and
+\verb+Semiellipsoid+ classes.
+
+The package relies heavily on composition TODO.
+
+\missingfigure{uml diagram}
+
+\section*{Verification}
+
+\subsection*{Inertial properties}
+\todo[inline]{does this go in the verification?}
+
+We provide inertial properties (mass, center of mass, and moments of inertia)
+for the whole human, for an individual segment, for an individual solid, or for
+any combination of segments and solids. In the first case of the whole human,
+ we provide the center of mass and moments of inertia in the global fixed coordinate frame. This frame has its
+ origin at the bottom middle of solid \textbf{s0}, and is aligned with the
+local frame of segment \textbf{P} when \verb+somersalt+, \verb+tilt+, and
+\verb+twist+ are zero.
+In the case of individual segments or solids, we can provide the inertial
+properties in either the local frame of the segment in inquiry, or in the
+global fixed frame. We provide the inertial properties for any other
+combination in terms of the global fixed frame.
+
+
+%Yeadon's human inertia model allows one to estimate the inertial properties of a particular individual through a standard and quick process.
+
+
 
 \section*{Usage}
 

@@ -125,6 +125,13 @@ Chris todo 121226
     <s> is not the name of the segment, more just a body part.
 -write about measurements
 -write about object model
+    finish with validation.
+
+    -departures (read papers over again)
+    -software design
+    -verification: outline the section
+    -finish writing tests
+    -write usage
 
 
 yeadon's model
