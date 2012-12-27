@@ -126,10 +126,24 @@ interface for ease of end user use.
 
 \section*{Yeadon's model}
 
+In 1990 Yeadon published a four-paper series on the subject of simulating
+human aerial movement, particularly twisting somersalts. His first paper
+\cite{Yeadon1990c} describes a method for obtaining joint angles from film
+data, and accordingly delves into how he defines the orientation of the whole
+body and the relative orientation of parts of the body. His second paper
+\cite{Yeadon1990f} describes in detail the geometry of his human model. He
+leaves the description of the model's configuration to his third paper
+\cite{Yeadon1990e}, which also details the analytical calculation of the
+model's angular momentum. The last paper in the series \cite{Yeadon1990d}
+compares the trajectory of an aerial flight between a film recording and a
+computer simulation using the model developed in the first 3 papers.
+
 Yeadon provides a lucid explanation of his human inertia model in
-\cite{Yeadon1990c}. In this section, we merely seek to summarize his work. The
-model is defined in terms of \emph{segments}, \emph{levels}, and \emph{solids}.
-These three elements of the model are all shown in Figure \ref{fig:meas}.
+the series described above. In this section, we merely seek to summarize his
+work.  The model is defined in terms of \emph{segments}, \emph{levels}, and
+\emph{solids}.  These three elements of the model are all shown in Figure
+\ref{fig:meas}. Note that we are not concerned with the angular momentum of the
+model; we are solely interested in the model's inertial properties.
 
 \begin{description}
     \item[Segments]
@@ -249,7 +263,9 @@ forth.
 Most joints have more than one degree of freedom, but only 4 have the maximum
 number of 3 rotational degrees of freedom. Since rotations are not commutative,
 we must specify the order in which we perform rotations at multi-degree of
-freedom joints. We provide this information in Table \ref{tab:dof}.
+freedom joints. We provide this information in Table \ref{tab:dof}. For these
+joints, subsequent rotations are relative to the new local coordinate frame
+obtained by preceding rotations at this joint.
 
 The default configuration is for all configuration variables to have a value of
 zero. This, however, does not mean that the local coordinate basis vectors of
@@ -264,11 +280,14 @@ $x$-axis lies in a coronal plane and the local $y$-axis is directed
 posteriorly. Furthermore, it is assumed that in this configuration, the palms
 of the hands face the anterior direction.
 
-The location of the joint centres of segments \textbf{A1} and \textbf{B1} are
-at the most distal points of level \textbf{Ls4}. We can express the locations of the joint
-centres for segments \textbf{J1} and \textbf{K1}, respectively denoted as
-$\mathbf{p_J}$ and $\mathbf{p_K}$ the local coordinate
-frame of the pelvis \textbf{P}:
+We now address the location of the joint centres in our implementation of
+Yeadon's model. Such information is not provided in the papers he had published
+in 1990. The location of the joint centres of segments \textbf{A1} and
+\textbf{B1} are at the most distal points of level \textbf{Ls4} on the
+respective side of the body. We can express the locations of the joint centres
+for segments \textbf{J1} and \textbf{K1}, respectively denoted as
+$\mathbf{p_J}$ and $\mathbf{p_K}$ the local coordinate frame of the pelvis
+\textbf{P}:
 
 \begin{align}
     \mathbf{p_J} &= \frac{1}{2} (t_{Ls0} + r_{Ls0})\mathbf{\hat{i}} \\
@@ -277,8 +296,9 @@ frame of the pelvis \textbf{P}:
 
 where $\mathbf{\hat{i}}$ is the unit vector along the $x$-axis of the pelvis,
 $t_{Ls0}$ is the thickness of the stadium at level \textbf{Ls0} and $r_{Ls0}$
-is its radius. The location of the joint centre in all other segments is at
-the center of the last stadium in the preceding segment.
+is its radius. This choice is informed by calculations present in the ISEG code
+published in \cite{Yeadon1984a}. The location of the joint centre in all other
+segments is at the center of the last stadium in the preceding segment.
 
 \subsection*{Departures from Yeadon's work}
 
@@ -287,26 +307,55 @@ differs from that which Yeadon presented in \cite{Yeadon1990c, Yeadon1990f,
 Yeadon1990e, Yeadon1990d}. Some of these differences arise from the fact that
 his work was tailored for aerial movement, more specifically for twisting
 somersalts. We expect, however, that our implementation of the model can be
-used in a more general set of investigations. \todo[inline]{remove last 2 sentences?}
+used in a more general set of investigations.
 
 \begin{description}
+    \item[Number of segments] Yeadon expresses that it is simple to extend the
+        model to contain 20 segments, rather than 11 \cite{Yeadon1990f}. This
+        implementation has not made this extension, but since the code is
+        available, any body is free to extend the code in this way.
+    \item[Symmetry of limbs] Yeadon averages the measurements for the left and
+        right limbs so that the model is symmetric. We provide the user with
+        the option of imposing this symmetry, but do not perform the averaging
+        by default (see section \ref{sec:usage}).
     \item[Relationships between configuration variables] Yeadon enforced
         relationships between certain configuration variables, such as
         symmetric movement of the legs with respect to the pelvis. We impose no
         relationships between the 21 configuration variables.
-    \item[Degenerate stadia] In the case where stadia have essentially zero
-        thickness (a circle), Yeadon still employs the formulae for stadium
-        solids by setting the thickness to be very small \cite{Yeadon1990f}. We
-        instead set TODO.
     \item[Inconsistent measurements] The ratio of a stadium's perimeter to its
         width must be greater than 2 but must be less than $\pi$. If this
         restriction does not hold, then we set the stadium to be a circle. This
         scenario is not discussed by Yeadon.
+    \item[Degenerate stadia] In the case where stadia have essentially zero
+        thickness (a circle), Yeadon still employs the formulae for stadium
+        solids by setting the thickness to be very small \cite{Yeadon1990f}. We
+        instead make an appropriate modification to the formulae for the
+        inertial properties of a stadium solid. TODO.
+    \item[Local frame of upper arm] Yeadon defines the local coordinate frame
+        of the \textbf{A1} segment differently than we do. That is, the default
+        configuration of the arms in our work is that they are rotated $-\pi$
+        radians about an axis perpendicular to a coronal plane that is directed
+        anteriorly. Yeadon, however, defines the local frame of the arm to be
+        coincident with the local frame of the chest segment \textbf{C}. More
+        specifically, he defines the coordinate frame in terms of the unit
+        vectors $\mathbf{a}_1$, $\mathbf{a}_2$$\mathbf{a}_3$. If
+        $\mathbf{\hat{i}}$, $\mathbf{\hat{j}}$, $\mathbf{\hat{k}}$ are the unit
+        vectors for the local $x$, $y$, and $z$ axes of segment \textbf{A1},
+        respectively, then the two coordinate frames are related by
+        $\mathbf{\hat{i}} = -\mathbf{a}_1$, $\mathbf{\hat{j}} = \mathbf{a}_2$,
+        -$\mathbf{\hat{k}} = \mathbf{a}_3$. Rotations are performed in the same
+        order, though, namely elevation, abduction, then rotation.
+    \item[Whole body orientation frame] Yeadon defines a system frame $f$
+        with respect to a non-rotating frame that is defined in terms of the
+        configuration of the model. We do not make use of such a frame; our
+        system frame is the local frame of segment \textbf{P}.
+    \item[Joint centre of chest-head segment] We locate the joint centre
+        between the torso \textbf{T} and the chest-head \textbf{C} at the
+        center of level \textbf{Ls3}. This is in accordance with Figure 1 of
+        \ref{Yeadon1990e}. However, this is a departure from Yeadon's
+        dissertation \cite{Yeadon1984a}, in which he places the joint centre of
+        the chest-head at the midpoint of the shoulder joint centres.
 \end{description}
-
-\todo{is location of hip joint centre a departure?}
-
-
 
 Yeadon's mathematical model of the human body is developed by representing the
 human body by a number of stadium solids and a semi ellipsoid. The ratio of the
@@ -316,17 +365,14 @@ stadium solid. The parrlalel axis thereom is then employed to compute the
 inertia properties of combinations of segments with the largest subset being
 the entire body.
 
-
-\todo{Talk about the number of measurements and the number of joint angles}
-
 \section*{Software design}
 
 The input to \verb+yeadon+ consists of (1) measurements of a subject, and (2)
 the joint configuration of the subject. With these two inputs, one is able to
-obtain the mass properties of the subject.
-The mass properties consist of the mass, center of mass, and moment of inertia
-tensor. These properties can be obtained for the entire subject, or for
-individual limbs of the subject. TODO any allowable configuration.
+obtain the mass properties of the subject.  The mass properties consist of the
+mass, center of mass, and moment of inertia tensor. These properties can be
+obtained for the entire subject, or for individual limbs of the subject. TODO
+any allowable configuration.
 
 The software is written in the Python language. The advantages of this language
 are its ease of use and that there exists infrastructure that greatly
@@ -372,6 +418,7 @@ combination in terms of the global fixed frame.
 
 
 \section*{Usage}
+\label{sec:usage}
 
 We demonstrate how one may use the \verb+yeadon+ package using the example of
 an ice skater performing a spin. As is commonly taught in high school physics
@@ -423,7 +470,9 @@ Figure \ref{fig:femaledefault} shows this Human
 
 TODO show the use of some other methods, for instance averaging and scaling.
 
-\subsection*{The command-line user interface}
+how to impose symmetry
+
+\subsection*{The interactive command-line user interface}
 
 
 -dev for python2.7
