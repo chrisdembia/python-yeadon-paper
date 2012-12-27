@@ -123,7 +123,7 @@ developed a modern object oriented program under a permissive license that
 allows for easy inclusion into software packages and includes a graphical user
 interface for ease of end user use.
 
-\subsection*{Yeadon's model}
+\section*{Yeadon's model}
 
 Yeadon provides a lucid explanation of his human inertia model in
 \cite{Yeadon1990c}. In this section, we merely seek to summarize his work. The
@@ -166,30 +166,62 @@ These three elements of the model are all shown in Figure \ref{fig:meas}.
 \end{description}
 
 A key feature of this inertia model is that it can be personalized to a given
-individual, though we have not yet discussed this feature. The model is
+individual, though we have not yet discussed this. The model is
 personalized via 95 anthropometric measurements. These measurements serve to
 define each stadium, and to provide the distance between the stadia (the
 heights of the stadium solids).
 
-\subsection*{Configuration}
-
 Much of the utility of the model comes from being able to specify the
 configuration of the human in which one desires its inertial properties. The
 configuration is specified via 21 joint angles between the various segments,
-all of which are
-labeled in Figure \ref{fig:config}. The joint center of each segment is located
-with a black dot: it is always located at the center of the base stadium of the
-segment. The black arrows on each
-segment indicate its local coordinate frame, whose origin is always at the
-joint center of the segment. For each segment, the local $z$-axis is the longitudinal axis of the segment. The green arrows
-each represent a degree of freedom, and indicate the direction and sign of the
-corresponding joint angle via the right-hand rule. The configuration variables
-are named with the names of the two segments at the joint, and a physiological
-description of the joint angle (i.e. \verb+K1K2flexion+ is the right knee
-flexion). The exceptions to this naming convention are \verb+somersalt+,
-\verb+tilt+, and \verb+twist+, which specify the orientation of the whole body
-with respect to the fixed coordinate frame. Thus, right hip abduction is
-positive value of \verb+PK1abduction+, and so forth.
+all of which are labeled in Figure \ref{fig:config}.
+
+Thus, Yeadon's model is defined via segments, levels, solids. One can
+personalize the model to an individual via measurements, and obtain inertial
+parameters for a desired configuration of the model. The only data that we need
+to provide to the user are the densities of the solids. We use Dempster's
+segmental density values \cite{Dempster1955}, as does Yeadon. The model is then
+mostly complete with the analytical expressions for a stadium solid's (and semiellipsoid's) center of
+mass and moments of inertia, and a way to combine the inertial properties of
+multiple stadium solids. Yeadon provides these formulae in \cite{Yeadon1990f}.
+In the next section, we describe with more detail the measurements required for
+the model, and the way the configuration is defined.
+
+\section*{Implementation of Yeadon's model}
+
+
+The previous section makes no departures from Yeadon's work. In the next
+section, however, we make some departures that become important when his model
+is implemented and that serve to generalize his work. These departures are
+summarized at the end of this section.
+
+\subsection*{Measurements}
+
+-It is possible that certain stadia degenerate into circles for the measurements
+of a given human subject. 2 < p/w < pi
+-why sometimes perimeter can't be used, etc.
+-depth vs width
+-all of the notes in the measurement slide.
+-ease of mesaurement: relative mesaurements: not measuring individual stadium solid hiehgts. for consistency with yeadon's work.
+-indexing from 0 or 1
+
+\subsection*{Configuration}
+
+ In this section we describe, relying heavily on Figure \ref{fig:config}, how
+ we implement the configuration of Yeadon's model. The joint centre of each
+ segment is located with a black dot: it is always located at the center of the
+ base stadium of the segment. The black arrows on each segment indicate its
+ local coordinate frame, whose origin is always at the joint centre of the
+ segment. For each segment, the local $z$-axis is the longitudinal axis of the
+ segment. The green arrows each represent a degree of freedom, and indicate the
+ direction and sign of the corresponding joint angle via the right-hand rule.
+ The configuration variables are named with the names of the two segments at
+ the joint, and a physiological description of the joint angle (i.e.
+ \verb+K1K2flexion+ is the right knee flexion). The exceptions to this naming
+ convention are \verb+somersalt+, \verb+tilt+, and \verb+twist+, which specify
+ the orientation of the whole body with respect to the fixed coordinate frame.
+ Thus, right hip abduction is positive value of \verb+PK1abduction+, and so
+ forth.
 
 Most joints have more than one degree of freedom, but only 4 have the maximum
 number of 3 rotational degrees of freedom. Since rotations are not commutative,
@@ -209,7 +241,24 @@ $x$-axis lies in a coronal plane and the local $y$-axis is directed
 posteriorly. Furthermore, it is assumed that in this configuration, the palms
 of the hands face the anterior direction.
 
-\subsection*{Inertial parameters}
+The location of the joint centres of segments \textbf{A1} and \textbf{B1} are
+at the most distal points of level \textbf{Ls4}. We can express the locations of the joint
+centres for segments \textbf{J1} and \textbf{K1}, respectively denoted as
+$\mathbf{p_J}$ and $\mathbf{p_K}$ the local coordinate
+frame of the pelvis \textbf{P}:
+
+\begin{align}
+    \mathbf{p_J} &= \frac{1}{2} (t_{Ls0} + r_{Ls0})\mathbf{\hat{i}} \\
+    \mathbf{p_K} &= -\frac{1}{2} (t_{Ls0} + r_{Ls0})\mathbf{\hat{i}},
+\end{align}
+
+where $\mathbf{\hat{i}}$ is the unit vector along the $x$-axis of the pelvis,
+$t_{Ls0}$ is the thickness of the stadium at level \textbf{Ls0} and $r_{Ls0}$
+is its radius. The location of the joint centre in all other segments is at
+the center of the last stadium in the preceding segment.
+
+\subsection*{Inertial properties}
+\todo[inline]{does this go in the verification?}
 
 We provide inertial properties (mass, center of mass, and moments of inertia)
 for the whole human, for an individual segment, for an individual solid, or for
@@ -231,12 +280,6 @@ any combination of segments and solids. In the first case of the whole human,
 segment, since htis is not true for the torso!! or really for any part of the
 model.}
 
-
-
-\textbf{Measurements}
-
-It is possible that certain stadia degenerate into circles for the measurements
-of a given human subject.
 
 
 \subsection*{Exceptions}
@@ -263,6 +306,8 @@ used in a more general set of investigations.
         relationships between the 21 configuration variables.
 \end{description}
 
+\todo{is location of hip joint centre a departure?}
+
 
 
 Yeadon's mathematical model of the human body is developed by representing the
@@ -273,8 +318,6 @@ stadium solid. The parrlalel axis thereom is then employed to compute the
 inertia properties of combinations of segments with the largest subset being
 the entire body.
 
-
-\todo{Talk about the number of measurements and the number of joint angles}
 
 \section*{Software design}
 
@@ -347,10 +390,9 @@ TODO show the use of some other methods, for instance averaging and scaling.
 -assume unix machine
 -dist through pip
 -how to install
--two ways to use.
+-two ways to use. three ways?
 
 
-\todo{Measurement figure}
 
 % Do NOT remove this, even if you are not including acknowledgments
 \section*{Acknowledgments}

@@ -62,8 +62,8 @@ Software Design
 - how does this software make it easy to integrate with anaylysis
 - software license
 
-Validation - chris
-==========
+Verification - chris
+============
 
 - demonstrate that it achvies purpose
 - prove improvement over existing
@@ -106,13 +106,33 @@ Given measurements
 talk about how the data for female1, male1, etc. was gathered.
 
 
+ *** DONE
 notes on measurementS:
 -reorder PTC to CTP
 -change lineweights or move labels of P T C on the actual guy
 - or make a note about what the colors mean
+  ^^^ DONE
 
 Style
 -----
 Chris: I try to type numbers out as numerals rather than as words whenever possible; I think it's easier to read. However, I understand it's conventional to write out small numbers so I'm fine with us doing that.
 
 we vs passive
+
+Chris todo 121226
+-clean up figures again
+    centre
+    <s> is not the name of the segment, more just a body part.
+-write about measurements
+-write about object model
+
+
+yeadon's model
+implementation
+software design
+validation
+usage
+
+
+Chris decided to use joint centre but center of mass in some attempt to be
+consistent with Yeadon's naming.
