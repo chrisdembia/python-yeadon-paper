@@ -171,8 +171,12 @@ personalized via 95 anthropometric measurements. These measurements serve to
 define each stadium, and to provide the distance between the stadia (the
 heights of the stadium solids).
 
+\subsection*{Configuration}
+
 Much of the utility of the model comes from being able to specify the
-configuration of the human in which one desires its inertial properties. The configuration is specified via 21 joint angles between the various segments, all of which are
+configuration of the human in which one desires its inertial properties. The
+configuration is specified via 21 joint angles between the various segments,
+all of which are
 labeled in Figure \ref{fig:config}. The joint center of each segment is located
 with a black dot: it is always located at the center of the base stadium of the
 segment. The black arrows on each
@@ -242,6 +246,22 @@ of a given human subject.
 -talk about if t is very small
 -separate out exceptions in the model vs exceptions in the implementation.
 -talk about negative thickness or radius.
+
+\subsection*{Departures from Yeadon's work}
+
+There are a few ways in which our implementation of the human inertia model
+differs from that which Yeadon presented in \cite{Yeadon1990c, Yeadon1990f,
+Yeadon1990e, Yeadon1990d}. Some of these differences arise from the fact that
+his work was tailored for aerial movement, more specifically for twisting
+somersalts. We expect, however, that our implementation of the model can be
+used in a more general set of investigations.
+
+\begin{description}
+    \item[Relationships between configuration variables] Yeadon enforced
+        relationships between certain configuration variables, such as
+        symmetric movement of the legs with respect to the pelvis. We impose no
+        relationships between the 21 configuration variables.
+\end{description}
 
 
 
