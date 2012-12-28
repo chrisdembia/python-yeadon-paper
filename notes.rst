@@ -158,3 +158,9 @@ yeadon - i
 yeadon - iv
 
 Chris says: I'm starting to come off as Yeadon's only academic contribution is his 1990 ii paper. I want to be careful that we don't have that tone.
+
+add language about body fixed vs space fixed.
+
+Figures
+-------
+convert stadium figure to TIFF.
