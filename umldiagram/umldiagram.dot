@@ -3,23 +3,14 @@ digraph "classes_No_Name" {
     edge [fontname=Arial];
 charset="utf-8"
 rankdir=BT
-"14" [shape="record", label="{Segment|rel_center_of_mass\lcolor\lnSolids\lpos\llabel\lrel_inertia : matrix\lsolids\lrot_mat\lmass : float\lendpos\llength\lcenter_of_mass\linertia\l|print_solid_properties()\ldraw()\lcalc_rel_properties()\lprint_properties()\ldraw_mayavi()\ldraw_visual()\lset_orientations()\lcalc_properties()\l}"];
-"16" [shape="record", label="{Human|isSymmetrc : bool\lSegments : list\lJ1\lA1\lA2\lcenter_of_mass\lC\lcoord_sys_pos\lmeasurementconversionfactor : int, float\lcoord_sys_orient : matrix\lP\lT\linertia : matrix\lmeas : dict\lK2\lCFG : dict, NoneType\lK1\lJ2\lmeas_mass : int, float\lmass : float\lB1\lB2\lisSymmetric : bool\lmeasnames : tuple\lCFGbounds : list\lCFGnames : tuple\l|write_meas_for_ISEG()\lupdate_solids()\lset_CFG()\lscale_human_by_mass()\lwrite_measurements()\lset_CFG_dict()\ldraw_mayavi()\laverage_limbs()\lupdate_segments()\lcombine_inertia()\lrotate_coord_sys()\lvalidate_CFG()\ldraw()\ltranslate_coord_sys()\lprint_properties()\lwrite_CFG()\ltransform_coord_sys()\lread_CFG()\lcalc_properties()\l}"];
-"20" [shape="record", label="{StadiumSolid|stads : list\lmass : float\lalignment : str\lrel_center_of_mass\lrel_inertia : matrix\l|draw()\lcalc_rel_properties()\ldraw_mayavi()\l}"];
-"21" [shape="record", label="{Solid|rel_center_of_mass\ldensity\lpos\lheight\lrel_inertia\lrot_mat\lmass : float\lendpos\lcenter_of_mass\llabel\linertia\lalpha : float\l|draw()\lprint_properties()\lset_orientation()\lcalc_properties()\l}"];
-"22" [shape="record", label="{Stadium|perimeter\llabel\lwidth : NoneType\lradius : NoneType\lthickness : float\lalignment : str\lvalidStadiaLabels : dict\l|plot()\l}"];
-"23" [shape="record", label="{Semiellipsoid|baseperimeter\lradius\lmass\lrel_center_of_mass\lrel_inertia : matrix\l|draw_mayavi()\lcalc_rel_properties()\ldraw()\l}"];
+"14" [shape="record", label="{Segment|rel_center_of_mass\lpos\llabel\lrel_inertia\lsolids\lrot_mat\lmass\lendpos\llength\lcenter_of_mass\linertia\l|print_solid_properties()\ldraw()\lcalc_rel_properties()\lprint_properties()\ldraw_mayavi()\lset_orientations()\lcalc_properties()\l}"];
+"16" [shape="record", label="{Human|Segments\lcenter_of_mass\linertia\lmeas\lCFG\lmass\l|set_CFG()\lscale_human_by_mass()\lwrite_measurements()\laverage_limbs()\lcombine_inertia()\ldraw()\lprint_properties()\lwrite_CFG()\ltransform_coord_sys()\lread_CFG()\l}"];
+"20" [shape="record", label="{StadiumSolid|stads\lmass\lalignment\lrel_center_of_mass\lrel_inertia\l|draw()\lcalc_rel_properties()\ldraw_mayavi()\l}"];
+"21" [shape="record", label="{Solid|rel_center_of_mass\ldensity\lpos\lheight\lrel_inertia\lrot_mat\lmass\lendpos\lcenter_of_mass\llabel\linertia\l|draw()\lprint_properties()\lset_orientation()\lcalc_properties()\l}"];
+"22" [shape="record", label="{Stadium|perimeter\llabel\lwidth\lradius\lthickness\lalignment\lvalidStadiaLabels\l|plot()\l}"];
+"23" [shape="record", label="{Semiellipsoid|baseperimeter\lradius\lmass\lrel_center_of_mass\lrel_inertia\l|draw_mayavi()\lcalc_rel_properties()\ldraw()\l}"];
 "20" -> "21" [arrowtail="none", arrowhead="empty"];
 "23" -> "21" [arrowtail="none", arrowhead="empty"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="J1"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="A1"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="A2"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="C"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="P"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="T"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="K2"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="K1"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="J2"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="B1"];
-"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="B2"];
+"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="Segments"];
+"22" -> "20" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label="stads"];
 }
