@@ -235,7 +235,7 @@ the experimentalist does not measure \textbf{La1L}. This means, however, that
 \textbf{La1p} must be measured halfway down segment \textbf{A1}. This scenario
 arises in each limb.
 
-All stadia are oriented medio-laterally except for the heel (levels
+All stadia are oriented mediolaterally except for the heel (levels
 \textbf{Lj6} and \textbf{Lk6}). These stadia are oriented anteroposteriorly.
 Note from Figure \ref{fig:meas} that one measures a depth at these levels
 instead of a width. This depth is in fact the width of a stadium rotated
@@ -485,8 +485,7 @@ how to impose symmetry
 -how to install
 -two ways to use. three ways?
 
-
-\todo{Measurement figure}
+\todo{rot\_mat is in relation to the previous segment, body fixed}
 
 \section*{Advanced Example}
 We originally developed the software to easily compute the inertial properties
@@ -570,9 +569,15 @@ not necessarily reflect the views of the National Science Foundation.
 \end{center}
 \caption{
 {\bf Measurements required for the human inertia model.}  The human is defined
-using 95 measurements. These consist of measurements along the limbs/segments
-(lengths), transverse to the limbs/segments (widths/depths), or about the
-limbs/segments (perimeters) \cite{Yeadon1990c}.
+in terms of segments, levels, and solids. Segments are separated by alternating colors, and are denoted as \textbf{P},
+\textbf{A1}, etc. Levels are denoted as ``\textbf{L$<$s$>$\#}'', where \textbf{$<$s$>$}
+denotes a part of the body (e.g. \textbf{j} for the left leg) and \textbf{\#}
+denotes the index of the level in the part of the body. The solid ``above''
+level \textbf{L$<$s$>$\#} is denoted as ``\textbf{$<$s$>$\#}''. The model is
+personalized via 95 measurements, of which there are 4 types: lengths
+\textbf{L} along the longitudinal axis of the segments, perimeters \textbf{p}
+about the segments, mediolateral widths \textbf{w}, and anteroposterior depths
+\textbf{d}. Black dots denote joint centres \cite{Yeadon1990c}.
 }
 \label{fig:meas}
 \end{figure}
@@ -595,11 +600,17 @@ $w$, and depth $d$.
 %\includegraphics{configuration.eps}
 \end{center}
 \caption{
-{\bf Configuration variables for the human inertia model.}  The configuration of
-the human is defined using 21 joint angles, represented by green arrows
-\cite{Yeadon1990e}. The labels are the names of the configuration variables in
-the code. The origin of the global coordinate frame is at the bottom center of
-the pelvis segment.
+{\bf Configuration variables for the human inertia model.}  The configuration
+of the human is defined using 21 joint angles, represented by green vectors. A
+green cross represents a vector into the page, and a
+green circle represents a vector out of the page. The direction of rotation for
+a joint angle is given by the right-hand rule about its vector. The labels
+beside the vectors are the names of the configuration variables in the code.
+The origin of the global fixed coordinate frame is at the bottom center of the
+pelvis segment. The local coordinate frame of each segment is specified by the
+pair of perpendicular black vectors in or next to the segments. Despite the
+locations of these black vectors, the origin of a segment's local coordinate
+system is always at its joint centre \cite{Yeadon1990e}.
 }
 \label{fig:config}
 \end{figure}
