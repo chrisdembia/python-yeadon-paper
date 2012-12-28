@@ -1,6 +1,6 @@
 digraph "Yeadon" {
-    node [fontname=Arial];
-    edge [fontname=Arial];
+    node [fontname=Arial, fontsize=10];
+    edge [fontname=Arial, fontsize=10];
 charset="utf-8"
 rankdir=BT
 "14" [shape="record", label="{Segment|center_of_mass\linertia\lmass\lrel_center_of_mass\lrel_inertia\lrot_mat\lsolids\l|draw()\lprint_properties()\lprint_solid_properties()\l}"];
@@ -14,4 +14,5 @@ rankdir=BT
 "14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label=" segments"];
 "20" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black"];
 "23" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black"];
+"22" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black"];
 }

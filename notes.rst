@@ -164,3 +164,16 @@ add language about body fixed vs space fixed.
 Figures
 -------
 convert stadium figure to TIFF.
+
+Chris 121228
+    -measurements: Ls4
+    -measurements: write down all info not given in meas figure anymore.
+    -umldiagram include
+    -explain the object model, etc.
+
+
+    -if Jason doesn't get to it first, take care of coordinate transformation
+    stuff.
+
+    -finish writing human tests so i can write the verification portion of the
+    paper.
