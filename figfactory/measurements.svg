@@ -368,7 +368,7 @@
    id="tspan3097"
    style="font-size:12px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeSans;-inkscape-font-specification:FreeSans">Ls4<tspan
    style="font-size:9px;baseline-shift:super;font-family:FreeSans;-inkscape-font-specification:FreeSans"
-   id="tspan7586">3</tspan></tspan> shoulder joint centre <tspan
+   id="tspan7586">3</tspan></tspan> shoulder joint center <tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
    id="tspan7614">L,w,d</tspan></tspan></text>
     <text
@@ -432,7 +432,7 @@
          id="tspan4140-7-6-5-5"
          sodipodi:role="line"><tspan
    id="tspan3105"
-   style="font-size:12px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeSans;-inkscape-font-specification:FreeSans">Ls0</tspan> hip joint centre <tspan
+   style="font-size:12px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeSans;-inkscape-font-specification:FreeSans">Ls0</tspan> hip joint center <tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
    id="tspan7622">L,p,w</tspan></tspan></text>
     <text
@@ -500,7 +500,7 @@
          id="tspan4140-7-6-5-5-1-7-4"
          sodipodi:role="line"><tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
-   id="tspan5619">Lj3</tspan> knee joint centre <tspan
+   id="tspan5619">Lj3</tspan> knee joint center <tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
    id="tspan7683">L,p</tspan></tspan></text>
     <text
@@ -532,7 +532,7 @@
          id="tspan4140-7-6-5-5-1-7-4-6-5"
          sodipodi:role="line"><tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
-   id="tspan5623">Lj5 </tspan>ankle joint centre <tspan
+   id="tspan5623">Lj5 </tspan>ankle joint center <tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
    id="tspan7687">L,p</tspan></tspan></text>
     <text
@@ -638,7 +638,7 @@
        sodipodi:end="5.7746284"
        sodipodi:start="3.5914855"
        transform="matrix(0.2992646,0,0,0.2992646,182.70165,303.79982)"
-       d="M 165.62014,263.16283 A 90.913727,77.276672 0 0 1 326.8958,259.14072"
+       d="m 165.62014,263.16283 c 21.83489,-38.43192 76.18878,-54.54158 121.40281,-35.98192 16.84215,6.91344 30.76592,18.07395 39.87285,31.95981"
        sodipodi:ry="77.276672"
        sodipodi:rx="90.913727"
        sodipodi:cy="296.76807"
@@ -1042,7 +1042,7 @@
          id="tspan4140-7-6-5-5-1-5"
          sodipodi:role="line"><tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
-   id="tspan7404">La0</tspan> shoulder joint centre <tspan
+   id="tspan7404">La0</tspan> shoulder joint center <tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
    id="tspan7711">p</tspan></tspan></text>
     <path
@@ -1288,7 +1288,7 @@
          id="tspan4140-7-6-5-5-1-5-4"
          sodipodi:role="line"><tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
-   id="tspan7414">La2</tspan> elbow-joint centre <tspan
+   id="tspan7414">La2</tspan> elbow-joint center <tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
    id="tspan7707">L,p</tspan></tspan></text>
     <text
@@ -1320,7 +1320,7 @@
          id="tspan4140-7-6-5-5-1-5-9"
          sodipodi:role="line"><tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
-   id="tspan7416">La4</tspan> wrist joint centre <tspan
+   id="tspan7416">La4</tspan> wrist joint center <tspan
    style="font-size:12px;font-weight:bold;font-family:FreeSans;-inkscape-font-specification:FreeSans"
    id="tspan7703">L,p,w</tspan></tspan></text>
     <text
@@ -1430,7 +1430,7 @@
        sodipodi:cy="802.00507"
        sodipodi:rx="6.7857141"
        sodipodi:ry="6.7857141"
-       d="m 880.7143,802.00507 a 6.7857141,6.7857141 0 1 1 -13.57143,0 6.7857141,6.7857141 0 1 1 13.57143,0 z" />
+       d="m 880.7143,802.00507 c 0,3.74764 -3.03806,6.78571 -6.78571,6.78571 -3.74765,0 -6.78572,-3.03807 -6.78572,-6.78571 0,-3.74765 3.03807,-6.78572 6.78572,-6.78572 3.74765,0 6.78571,3.03807 6.78571,6.78572 z" />
     <path
        transform="matrix(0.63856757,0,0,0.63856757,-288.21096,60.889447)"
        sodipodi:type="arc"
@@ -1440,7 +1440,7 @@
        sodipodi:cy="802.00507"
        sodipodi:rx="6.7857141"
        sodipodi:ry="6.7857141"
-       d="m 880.7143,802.00507 a 6.7857141,6.7857141 0 1 1 -13.57143,0 6.7857141,6.7857141 0 1 1 13.57143,0 z" />
+       d="m 880.7143,802.00507 c 0,3.74764 -3.03806,6.78571 -6.78571,6.78571 -3.74765,0 -6.78572,-3.03807 -6.78572,-6.78571 0,-3.74765 3.03807,-6.78572 6.78572,-6.78572 3.74765,0 6.78571,3.03807 6.78571,6.78572 z" />
     <path
        transform="matrix(0.63856757,0,0,0.63856757,-313.75365,61.80168)"
        sodipodi:type="arc"
@@ -1450,7 +1450,7 @@
        sodipodi:cy="802.00507"
        sodipodi:rx="6.7857141"
        sodipodi:ry="6.7857141"
-       d="m 880.7143,802.00507 a 6.7857141,6.7857141 0 1 1 -13.57143,0 6.7857141,6.7857141 0 1 1 13.57143,0 z" />
+       d="m 880.7143,802.00507 c 0,3.74764 -3.03806,6.78571 -6.78571,6.78571 -3.74765,0 -6.78572,-3.03807 -6.78572,-6.78571 0,-3.74765 3.03807,-6.78572 6.78572,-6.78572 3.74765,0 6.78571,3.03807 6.78571,6.78572 z" />
     <path
        transform="matrix(0.63856757,0,0,0.63856757,-366.66353,160.32353)"
        sodipodi:type="arc"
@@ -1460,7 +1460,7 @@
        sodipodi:cy="802.00507"
        sodipodi:rx="6.7857141"
        sodipodi:ry="6.7857141"
-       d="m 880.7143,802.00507 a 6.7857141,6.7857141 0 1 1 -13.57143,0 6.7857141,6.7857141 0 1 1 13.57143,0 z" />
+       d="m 880.7143,802.00507 c 0,3.74764 -3.03806,6.78571 -6.78571,6.78571 -3.74765,0 -6.78572,-3.03807 -6.78572,-6.78571 0,-3.74765 3.03807,-6.78572 6.78572,-6.78572 3.74765,0 6.78571,3.03807 6.78571,6.78572 z" />
     <path
        transform="matrix(0.63856757,0,0,0.63856757,-258.10704,-64.08736)"
        sodipodi:type="arc"
@@ -1470,7 +1470,7 @@
        sodipodi:cy="802.00507"
        sodipodi:rx="6.7857141"
        sodipodi:ry="6.7857141"
-       d="m 880.7143,802.00507 a 6.7857141,6.7857141 0 1 1 -13.57143,0 6.7857141,6.7857141 0 1 1 13.57143,0 z" />
+       d="m 880.7143,802.00507 c 0,3.74764 -3.03806,6.78571 -6.78571,6.78571 -3.74765,0 -6.78572,-3.03807 -6.78572,-6.78571 0,-3.74765 3.03807,-6.78572 6.78572,-6.78572 3.74765,0 6.78571,3.03807 6.78571,6.78572 z" />
     <path
        transform="matrix(0.63856757,0,0,0.63856757,-192.42582,-23.948822)"
        sodipodi:type="arc"
@@ -1480,7 +1480,7 @@
        sodipodi:cy="802.00507"
        sodipodi:rx="6.7857141"
        sodipodi:ry="6.7857141"
-       d="m 880.7143,802.00507 a 6.7857141,6.7857141 0 1 1 -13.57143,0 6.7857141,6.7857141 0 1 1 13.57143,0 z" />
+       d="m 880.7143,802.00507 c 0,3.74764 -3.03806,6.78571 -6.78571,6.78571 -3.74765,0 -6.78572,-3.03807 -6.78572,-6.78571 0,-3.74765 3.03807,-6.78572 6.78572,-6.78572 3.74765,0 6.78571,3.03807 6.78571,6.78572 z" />
     <path
        transform="matrix(0.63856757,0,0,0.63856757,-408.62655,-23.948822)"
        sodipodi:type="arc"
@@ -1490,7 +1490,7 @@
        sodipodi:cy="802.00507"
        sodipodi:rx="6.7857141"
        sodipodi:ry="6.7857141"
-       d="m 880.7143,802.00507 a 6.7857141,6.7857141 0 1 1 -13.57143,0 6.7857141,6.7857141 0 1 1 13.57143,0 z" />
+       d="m 880.7143,802.00507 c 0,3.74764 -3.03806,6.78571 -6.78571,6.78571 -3.74765,0 -6.78572,-3.03807 -6.78572,-6.78571 0,-3.74765 3.03807,-6.78572 6.78572,-6.78572 3.74765,0 6.78571,3.03807 6.78571,6.78572 z" />
     <path
        transform="matrix(0.63856757,0,0,0.63856757,-344.76979,-61.350628)"
        sodipodi:type="arc"
@@ -1500,7 +1500,7 @@
        sodipodi:cy="802.00507"
        sodipodi:rx="6.7857141"
        sodipodi:ry="6.7857141"
-       d="m 880.7143,802.00507 a 6.7857141,6.7857141 0 1 1 -13.57143,0 6.7857141,6.7857141 0 1 1 13.57143,0 z" />
+       d="m 880.7143,802.00507 c 0,3.74764 -3.03806,6.78571 -6.78571,6.78571 -3.74765,0 -6.78572,-3.03807 -6.78572,-6.78571 0,-3.74765 3.03807,-6.78572 6.78572,-6.78572 3.74765,0 6.78571,3.03807 6.78571,6.78572 z" />
     <path
        transform="matrix(0.63856757,0,0,0.63856757,-301.89453,-8.440751)"
        sodipodi:type="arc"
@@ -1510,7 +1510,7 @@
        sodipodi:cy="802.00507"
        sodipodi:rx="6.7857141"
        sodipodi:ry="6.7857141"
-       d="m 880.7143,802.00507 a 6.7857141,6.7857141 0 1 1 -13.57143,0 6.7857141,6.7857141 0 1 1 13.57143,0 z" />
+       d="m 880.7143,802.00507 c 0,3.74764 -3.03806,6.78571 -6.78571,6.78571 -3.74765,0 -6.78572,-3.03807 -6.78572,-6.78571 0,-3.74765 3.03807,-6.78572 6.78572,-6.78572 3.74765,0 6.78571,3.03807 6.78571,6.78572 z" />
     <path
        transform="matrix(0.63856757,0,0,0.63856757,-302.80678,-36.355278)"
        sodipodi:type="arc"
@@ -1520,7 +1520,7 @@
        sodipodi:cy="802.00507"
        sodipodi:rx="6.7857141"
        sodipodi:ry="6.7857141"
-       d="m 880.7143,802.00507 a 6.7857141,6.7857141 0 1 1 -13.57143,0 6.7857141,6.7857141 0 1 1 13.57143,0 z" />
+       d="m 880.7143,802.00507 c 0,3.74764 -3.03806,6.78571 -6.78571,6.78571 -3.74765,0 -6.78572,-3.03807 -6.78572,-6.78571 0,-3.74765 3.03807,-6.78572 6.78572,-6.78572 3.74765,0 6.78571,3.03807 6.78571,6.78572 z" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.63856751px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 232.90581,382.82196 -36.9457,11.40298 -75.71586,0"

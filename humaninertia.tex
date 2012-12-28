@@ -247,10 +247,10 @@ measurement scheme in the notes of Figure \ref{fig:meas}.
 \subsection*{Configuration}
 
 In this section we describe, relying heavily on Figure \ref{fig:config}, how
-we implement the configuration of Yeadon's model. The joint centre of each
+we implement the configuration of Yeadon's model. The joint center of each
 segment is located with a black dot: it is always located at the center of the
 base stadium of the segment. The black arrows on each segment indicate its
-local coordinate frame, whose origin is always at the joint centre of the
+local coordinate frame, whose origin is always at the joint center of the
 segment. For each segment, the local $z$-axis is the longitudinal axis of the
 segment. The green arrows each represent a degree of freedom, and indicate the
 direction and sign of the corresponding joint angle via the right-hand rule.
@@ -282,11 +282,11 @@ $x$-axis lies in a coronal plane and the local $y$-axis is directed
 posteriorly. Furthermore, it is assumed that in this configuration, the palms
 of the hands face the anterior direction.
 
-We now address the location of the joint centres in our implementation of
+We now address the location of the joint centers in our implementation of
 Yeadon's model. Such information is not provided in the papers he had published
-in 1990. The location of the joint centres of segments \textbf{A1} and
+in 1990. The location of the joint centers of segments \textbf{A1} and
 \textbf{B1} are at the most distal points of level \textbf{Ls4} on the
-respective side of the body. We can express the locations of the joint centres
+respective side of the body. We can express the locations of the joint centers
 for segments \textbf{J1} and \textbf{K1}, respectively denoted as
 $\mathbf{p_J}$ and $\mathbf{p_K}$ the local coordinate frame of the pelvis
 \textbf{P}:
@@ -299,7 +299,7 @@ $\mathbf{p_J}$ and $\mathbf{p_K}$ the local coordinate frame of the pelvis
 where $\mathbf{\hat{i}}$ is the unit vector along the $x$-axis of the pelvis,
 $t_{Ls0}$ is the thickness of the stadium at level \textbf{Ls0} and $r_{Ls0}$
 is its radius. This choice is informed by calculations present in the ISEG code
-published in \cite{Yeadon1984a}. The location of the joint centre in all other
+published in \cite{Yeadon1984a}. The location of the joint center in all other
 segments is at the center of the last stadium in the preceding segment.
 
 \subsection*{Departures from Yeadon's work}
@@ -351,12 +351,12 @@ used in a more general set of investigations.
         with respect to a non-rotating frame that is defined in terms of the
         configuration of the model. We do not make use of such a frame; our
         system frame is the local frame of segment \textbf{P}.
-    \item[Joint centre of chest-head segment] We locate the joint centre
+    \item[Joint center of chest-head segment] We locate the joint center
         between the torso \textbf{T} and the chest-head \textbf{C} at the
         center of level \textbf{Ls3}. This is in accordance with Figure 1 of
         \cite{Yeadon1990e}. However, this is a departure from Yeadon's
-        dissertation \cite{Yeadon1984a}, in which he places the joint centre of
-        the chest-head at the midpoint of the shoulder joint centres.
+        dissertation \cite{Yeadon1984a}, in which he places the joint center of
+        the chest-head at the midpoint of the shoulder joint centers.
 \end{description}
 
 \todo[inline]{Lj0p (human line 840) calculation as geometric average}.
@@ -577,7 +577,7 @@ level \textbf{L$<$s$>$\#} is denoted as ``\textbf{$<$s$>$\#}''. The model is
 personalized via 95 measurements, of which there are 4 types: lengths
 \textbf{L} along the longitudinal axis of the segments, perimeters \textbf{p}
 about the segments, mediolateral widths \textbf{w}, and anteroposterior depths
-\textbf{d}. Black dots denote joint centres \cite{Yeadon1990c}.
+\textbf{d}. Black dots denote joint centers \cite{Yeadon1990c}.
 }
 \label{fig:meas}
 \end{figure}
@@ -610,7 +610,7 @@ The origin of the global fixed coordinate frame is at the bottom center of the
 pelvis segment. The local coordinate frame of each segment is specified by the
 pair of perpendicular black vectors in or next to the segments. Despite the
 locations of these black vectors, the origin of a segment's local coordinate
-system is always at its joint centre \cite{Yeadon1990e}.
+system is always at its joint center \cite{Yeadon1990e}.
 }
 \label{fig:config}
 \end{figure}

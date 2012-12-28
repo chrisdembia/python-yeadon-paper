@@ -167,6 +167,7 @@ convert stadium figure to TIFF.
 
 Chris 121228
     -measurements: Ls4
+        \todo[inline]{Lj0p (human line 840) calculation as geometric average}.
     -measurements: write down all info not given in meas figure anymore.
     -umldiagram include
     -explain the object model, etc.
