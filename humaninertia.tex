@@ -219,7 +219,7 @@ experimentalist measures the longitudinal distance across multiple stadium
 solids. For example, the \textbf{Ls2L} measurement is not the distance between
 the \textbf{Ls1} and \textbf{Ls2} levels. Instead, \textbf{Ls2L} is measured
 from \textbf{Ls0}. To learn the levels from which one measures the various
-lengths, see the top of Figure \ref{fig:meas}.
+lengths, see Table \ref{tab:length}.
 
 Since the densities for the model are provided, we readily provide an estimate
 of the human's total mass. However, if the experimentalist also measures the
@@ -320,6 +320,43 @@ used in a more general set of investigations.
         right limbs so that the model is symmetric. We provide the user with
         the option of imposing this symmetry, but do not perform the averaging
         by default (see section \ref{sec:usage}).
+    \item[Acromion stadia] One can see that there are actually two different
+        cross sections at the acromion level \textbf{Ls5}: we use the wider one
+        for solid \textbf{s4} in the chest and use the thinner one (actually, a
+        circle) for solid \textbf{s5} in the head. The perimeter measurement at
+        \textbf{Ls5} is used for the bottom of \textbf{s5}. In our
+        implementation, the stadium used at the top of \textbf{s4} is
+        determined internally by the \textbf{Ls4} stadium by the following
+        equations:
+        \begin{align}
+            r &= 0.57 r_{Ls4} \\
+            t &= \frac{1}{2}w_{Ls4} - r
+        \end{align}
+        where $r$ and $t$ are the radius and thickness for the top stadium of
+        \textbf{s4}, respectively, and $r_{Ls4}$ and $w_{Ls4}$ are the radius
+        and width of the stadium at level \textbf{Ls4}, respectively.
+        This issue is not addressed in Yeadon's 1990 papers, and our
+        implementation disagrees with the ISEG code found in Yeadon's
+        dissertation (see page 358 line 251) \cite{Yeadon1984a}. The
+        justification for doing this is
+        that this is exactly what Yeadon does in a more recent version of his
+        code, provided to us in a personal communication \todo[inline]{cite
+        personal communication. get permission to publish this bit}.
+        \todo[inline]{Does this belong up in the measurements section?}
+    \item[Hip joint center stadia in the thigh] The experimentalist makes no
+        measurements at the \textbf{Lj0} or \textbf{Lk0} stadia, though the
+        these stadia must be defined to define solids \textbf{j0} and
+        \textbf{k0}.  In our implementation, these stadia are circles with the
+        same radius $r$:
+        \begin{equation}
+            r = \frac{1}{2}\sqrt{r_{Ls0} w_{Ls0}}
+        \end{equation}
+        where $r_{Ls0}$ and $w_{Ls0}$ are the radius and width of the
+        \textbf{Ls0} stadium, respectively. As with the acromion stadia just
+        mentioned above, the justification for this is not found in either
+        Yeadon's 1990 papers or in his dissertation (see page 361 line 403 in
+        \cite{Yeadon1984a}). Again, the justification is that this is what
+        Yeadon does in a more recent version of the code he shared with us.
     \item[Relationships between configuration variables] Yeadon enforced
         relationships between certain configuration variables, such as
         symmetric movement of the legs with respect to the pelvis. We impose no
@@ -345,7 +382,7 @@ used in a more general set of investigations.
         vectors for the local $x$, $y$, and $z$ axes of segment \textbf{A1},
         respectively, then the two coordinate frames are related by
         $\mathbf{\hat{i}} = -\mathbf{a}_1$, $\mathbf{\hat{j}} = \mathbf{a}_2$,
-        -$\mathbf{\hat{k}} = \mathbf{a}_3$. Rotations are performed in the same
+        $\mathbf{\hat{k}} = -\mathbf{a}_3$. Rotations are performed in the same
         order, though, namely elevation, abduction, then rotation.
     \item[Whole body orientation frame] Yeadon defines a system frame $f$
         with respect to a non-rotating frame that is defined in terms of the
@@ -606,7 +643,8 @@ green cross represents a vector into the page, and a
 green circle represents a vector out of the page. The direction of rotation for
 a joint angle is given by the right-hand rule about its vector. The labels
 beside the vectors are the names of the configuration variables in the code.
-The origin of the global fixed coordinate frame is at the bottom center of the
+The black dot on each segment denotes its joint center. The origin of the
+global fixed coordinate frame is at the bottom center of the
 pelvis segment. The local coordinate frame of each segment is specified by the
 pair of perpendicular black vectors in or next to the segments. Despite the
 locations of these black vectors, the origin of a segment's local coordinate
@@ -657,6 +695,41 @@ package.
 
 \begin{table}[!ht]
 \caption{
+\bf{Length measurements}}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{length for these levels} & \textbf{are measured from this level}\\
+    \hline
+    Ls1 - Ls5 & Ls0 \\
+    \hline
+    Ls6 - Ls8 & Ls5 \\
+    \hline
+    La2 - La4 & La0 \\
+    \hline
+    La5 - La7 & La4 \\
+    \hline
+    Lb2 - Lb4 & Lb0 \\
+    \hline
+    Lb5 - Lb7 & Lb4 \\
+    \hline
+    Lj1, Lj3 - Lj5 & Lj0 \\
+    \hline
+    Lj8 - Lj9 & Lj5  \\
+    \hline
+    Lk1, Lk3 - Lk5 & Lk0 \\
+    \hline
+    Lk8 - Lk9 & Lk5  \\
+    \hline
+\end{tabular}
+\begin{flushleft}The length measurements are not simply the heights of the
+    stadium solids. They are defined relative to a certain preceding level in
+    their segment.
+\end{flushleft}
+\label{tab:length}
+\end{table}
+
+\begin{table}[!ht]
+\caption{
 \bf{Rotation order for multi-degree of freedom joints}}
 \begin{tabular}{|c|c|}
     \hline
@@ -680,7 +753,7 @@ package.
     preceding segment.
 \end{flushleft}
 \label{tab:dof}
- \end{table}
+\end{table}
 
 
 \end{document}
