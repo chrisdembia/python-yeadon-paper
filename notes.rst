@@ -169,12 +169,16 @@ Chris 121228
     -measurements: Ls4
         \todo[inline]{Lj0p (human line 840) calculation as geometric average}.
     -measurements: write down all info not given in meas figure anymore.
+
+
+
+
     -umldiagram include
     -explain the object model, etc.
 
 
-    -if Jason doesn't get to it first, take care of coordinate transformation
-    stuff.
-
     -finish writing human tests so i can write the verification portion of the
     paper.
+
+    -if Jason doesn't get to it first, take care of coordinate transformation
+    stuff.
