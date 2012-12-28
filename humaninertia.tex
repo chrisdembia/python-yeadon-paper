@@ -217,7 +217,7 @@ experimentalist measures the longitudinal distance across multiple stadium
 solids. For example, the \textbf{Ls2L} measurement is not the distance between
 the \textbf{Ls1} and \textbf{Ls2} levels. Instead, \textbf{Ls2L} is measured
 from \textbf{Ls0}. To learn the levels from which one measures the various
-lengths, see the top of Figure \ref{fig:meas}.
+lengths, see Table \ref{tab:length}.
 
 Since the densities for the model are provided, we readily provide an estimate
 of the human's total mass. However, if the experimentalist also measures the
@@ -233,7 +233,7 @@ the experimentalist does not measure \textbf{La1L}. This means, however, that
 \textbf{La1p} must be measured halfway down segment \textbf{A1}. This scenario
 arises in each limb.
 
-All stadia are oriented medio-laterally except for the heel (levels
+All stadia are oriented mediolaterally except for the heel (levels
 \textbf{Lj6} and \textbf{Lk6}). These stadia are oriented anteroposteriorly.
 Note from Figure \ref{fig:meas} that one measures a depth at these levels
 instead of a width. This depth is in fact the width of a stadium rotated
@@ -245,10 +245,10 @@ measurement scheme in the notes of Figure \ref{fig:meas}.
 \subsection*{Configuration}
 
 In this section we describe, relying heavily on Figure \ref{fig:config}, how
-we implement the configuration of Yeadon's model. The joint centre of each
+we implement the configuration of Yeadon's model. The joint center of each
 segment is located with a black dot: it is always located at the center of the
 base stadium of the segment. The black arrows on each segment indicate its
-local coordinate frame, whose origin is always at the joint centre of the
+local coordinate frame, whose origin is always at the joint center of the
 segment. For each segment, the local $z$-axis is the longitudinal axis of the
 segment. The green arrows each represent a degree of freedom, and indicate the
 direction and sign of the corresponding joint angle via the right-hand rule.
@@ -280,11 +280,11 @@ $x$-axis lies in a coronal plane and the local $y$-axis is directed
 posteriorly. Furthermore, it is assumed that in this configuration, the palms
 of the hands face the anterior direction.
 
-We now address the location of the joint centres in our implementation of
+We now address the location of the joint centers in our implementation of
 Yeadon's model. Such information is not provided in the papers he had published
-in 1990. The location of the joint centres of segments \textbf{A1} and
+in 1990. The location of the joint centers of segments \textbf{A1} and
 \textbf{B1} are at the most distal points of level \textbf{Ls4} on the
-respective side of the body. We can express the locations of the joint centres
+respective side of the body. We can express the locations of the joint centers
 for segments \textbf{J1} and \textbf{K1}, respectively denoted as
 $\mathbf{p_J}$ and $\mathbf{p_K}$ the local coordinate frame of the pelvis
 \textbf{P}:
@@ -297,7 +297,7 @@ $\mathbf{p_J}$ and $\mathbf{p_K}$ the local coordinate frame of the pelvis
 where $\mathbf{\hat{i}}$ is the unit vector along the $x$-axis of the pelvis,
 $t_{Ls0}$ is the thickness of the stadium at level \textbf{Ls0} and $r_{Ls0}$
 is its radius. This choice is informed by calculations present in the ISEG code
-published in \cite{Yeadon1984a}. The location of the joint centre in all other
+published in \cite{Yeadon1984a}. The location of the joint center in all other
 segments is at the center of the last stadium in the preceding segment.
 
 \subsection*{Departures from Yeadon's work}
@@ -318,6 +318,43 @@ used in a more general set of investigations.
         right limbs so that the model is symmetric. We provide the user with
         the option of imposing this symmetry, but do not perform the averaging
         by default (see section \ref{sec:usage}).
+    \item[Acromion stadia] One can see that there are actually two different
+        cross sections at the acromion level \textbf{Ls5}: we use the wider one
+        for solid \textbf{s4} in the chest and use the thinner one (actually, a
+        circle) for solid \textbf{s5} in the head. The perimeter measurement at
+        \textbf{Ls5} is used for the bottom of \textbf{s5}. In our
+        implementation, the stadium used at the top of \textbf{s4} is
+        determined internally by the \textbf{Ls4} stadium by the following
+        equations:
+        \begin{align}
+            r &= 0.57 r_{Ls4} \\
+            t &= \frac{1}{2}w_{Ls4} - r
+        \end{align}
+        where $r$ and $t$ are the radius and thickness for the top stadium of
+        \textbf{s4}, respectively, and $r_{Ls4}$ and $w_{Ls4}$ are the radius
+        and width of the stadium at level \textbf{Ls4}, respectively.
+        This issue is not addressed in Yeadon's 1990 papers, and our
+        implementation disagrees with the ISEG code found in Yeadon's
+        dissertation (see page 358 line 251) \cite{Yeadon1984a}. The
+        justification for doing this is
+        that this is exactly what Yeadon does in a more recent version of his
+        code, provided to us in a personal communication \todo[inline]{cite
+        personal communication. get permission to publish this bit}.
+        \todo[inline]{Does this belong up in the measurements section?}
+    \item[Hip joint center stadia in the thigh] The experimentalist makes no
+        measurements at the \textbf{Lj0} or \textbf{Lk0} stadia, though the
+        these stadia must be defined to define solids \textbf{j0} and
+        \textbf{k0}.  In our implementation, these stadia are circles with the
+        same radius $r$:
+        \begin{equation}
+            r = \frac{1}{2}\sqrt{r_{Ls0} w_{Ls0}}
+        \end{equation}
+        where $r_{Ls0}$ and $w_{Ls0}$ are the radius and width of the
+        \textbf{Ls0} stadium, respectively. As with the acromion stadia just
+        mentioned above, the justification for this is not found in either
+        Yeadon's 1990 papers or in his dissertation (see page 361 line 403 in
+        \cite{Yeadon1984a}). Again, the justification is that this is what
+        Yeadon does in a more recent version of the code he shared with us.
     \item[Relationships between configuration variables] Yeadon enforced
         relationships between certain configuration variables, such as
         symmetric movement of the legs with respect to the pelvis. We impose no
@@ -343,18 +380,18 @@ used in a more general set of investigations.
         vectors for the local $x$, $y$, and $z$ axes of segment \textbf{A1},
         respectively, then the two coordinate frames are related by
         $\mathbf{\hat{i}} = -\mathbf{a}_1$, $\mathbf{\hat{j}} = \mathbf{a}_2$,
-        -$\mathbf{\hat{k}} = \mathbf{a}_3$. Rotations are performed in the same
+        $\mathbf{\hat{k}} = -\mathbf{a}_3$. Rotations are performed in the same
         order, though, namely elevation, abduction, then rotation.
     \item[Whole body orientation frame] Yeadon defines a system frame $f$
         with respect to a non-rotating frame that is defined in terms of the
         configuration of the model. We do not make use of such a frame; our
         system frame is the local frame of segment \textbf{P}.
-    \item[Joint centre of chest-head segment] We locate the joint centre
+    \item[Joint center of chest-head segment] We locate the joint center
         between the torso \textbf{T} and the chest-head \textbf{C} at the
         center of level \textbf{Ls3}. This is in accordance with Figure 1 of
-        \ref{Yeadon1990e}. However, this is a departure from Yeadon's
-        dissertation \cite{Yeadon1984a}, in which he places the joint centre of
-        the chest-head at the midpoint of the shoulder joint centres.
+        \cite{Yeadon1990e}. However, this is a departure from Yeadon's
+        dissertation \cite{Yeadon1984a}, in which he places the joint center of
+        the chest-head at the midpoint of the shoulder joint centers.
 \end{description}
 
 Yeadon's mathematical model of the human body is developed by representing the
@@ -481,8 +518,7 @@ how to impose symmetry
 -how to install
 -two ways to use. three ways?
 
-
-\todo{Measurement figure}
+\todo{rot\_mat is in relation to the previous segment, body fixed}
 
 \section*{Advanced Example}
 We originally developed the software to easily compute the inertial properties
@@ -562,20 +598,26 @@ not necessarily reflect the views of the National Science Foundation.
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=4in]{measurements.eps}
+%\includegraphics{measurements.eps}
 \end{center}
 \caption{
 {\bf Measurements required for the human inertia model.}  The human is defined
-using 95 measurements. These consist of measurements along the limbs/segments
-(lengths), transverse to the limbs/segments (widths/depths), or about the
-limbs/segments (perimeters) \cite{Yeadon1990c}.
+in terms of segments, levels, and solids. Segments are separated by alternating colors, and are denoted as \textbf{P},
+\textbf{A1}, etc. Levels are denoted as ``\textbf{L$<$s$>$\#}'', where \textbf{$<$s$>$}
+denotes a part of the body (e.g. \textbf{j} for the left leg) and \textbf{\#}
+denotes the index of the level in the part of the body. The solid ``above''
+level \textbf{L$<$s$>$\#} is denoted as ``\textbf{$<$s$>$\#}''. The model is
+personalized via 95 measurements, of which there are 4 types: lengths
+\textbf{L} along the longitudinal axis of the segments, perimeters \textbf{p}
+about the segments, mediolateral widths \textbf{w}, and anteroposterior depths
+\textbf{d}. Black dots denote joint centers \cite{Yeadon1990c}.
 }
 \label{fig:meas}
 \end{figure}
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics{stadium.eps}
+%\includegraphics[width=3.27in]{stadium.tiff}
 \end{center}
 \caption{
 {\bf Stadium cross section shape.}  The levels that define the segments are all
@@ -588,16 +630,38 @@ $w$, and depth $d$.
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=4in]{configuration.eps}
+%\includegraphics{configuration.eps}
 \end{center}
 \caption{
-{\bf Configuration variables for the human inertia model.}  The configuration of
-the human is defined using 21 joint angles, represented by green arrows
-\cite{Yeadon1990e}. The labels are the names of the configuration variables in
-the code. The origin of the global coordinate frame is at the bottom center of
-the pelvis segment.
+{\bf Configuration variables for the human inertia model.}  The configuration
+of the human is defined using 21 joint angles, represented by green vectors. A
+green cross represents a vector into the page, and a
+green circle represents a vector out of the page. The direction of rotation for
+a joint angle is given by the right-hand rule about its vector. The labels
+beside the vectors are the names of the configuration variables in the code.
+The black dot on each segment denotes its joint center. The origin of the
+global fixed coordinate frame is at the bottom center of the
+pelvis segment. The local coordinate frame of each segment is specified by the
+pair of perpendicular black vectors in or next to the segments. Despite the
+locations of these black vectors, the origin of a segment's local coordinate
+system is always at its joint center \cite{Yeadon1990e}.
 }
 \label{fig:config}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+%\includegraphics{umldiagram.eps}
+\end{center}
+\caption{
+{\bf UML diagram of Yeadon package.}  The Human class constructs all
+Segment's, Solid's, and Stadium's, and assembles them
+appropriately. The classes StadiumSolid and Semiellipsoid inherit
+from Solid. This diagram does not reveal the entire public interface of
+the classes shown. The user interacts with module through the attributes or
+methods of the Human class, or via the ui or gui modules.
+}
+\label{fig:umldiagram}
 \end{figure}
 
 \begin{figure}[!ht]
@@ -627,6 +691,41 @@ package.
 
 \begin{table}[!ht]
 \caption{
+\bf{Length measurements}}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{length for these levels} & \textbf{are measured from this level}\\
+    \hline
+    Ls1 - Ls5 & Ls0 \\
+    \hline
+    Ls6 - Ls8 & Ls5 \\
+    \hline
+    La2 - La4 & La0 \\
+    \hline
+    La5 - La7 & La4 \\
+    \hline
+    Lb2 - Lb4 & Lb0 \\
+    \hline
+    Lb5 - Lb7 & Lb4 \\
+    \hline
+    Lj1, Lj3 - Lj5 & Lj0 \\
+    \hline
+    Lj8 - Lj9 & Lj5  \\
+    \hline
+    Lk1, Lk3 - Lk5 & Lk0 \\
+    \hline
+    Lk8 - Lk9 & Lk5  \\
+    \hline
+\end{tabular}
+\begin{flushleft}The length measurements are not simply the heights of the
+    stadium solids. They are defined relative to a certain preceding level in
+    their segment.
+\end{flushleft}
+\label{tab:length}
+\end{table}
+
+\begin{table}[!ht]
+\caption{
 \bf{Rotation order for multi-degree of freedom joints}}
 \begin{tabular}{|c|c|}
     \hline
@@ -650,7 +749,7 @@ package.
     preceding segment.
 \end{flushleft}
 \label{tab:dof}
- \end{table}
+\end{table}
 
 
 \end{document}

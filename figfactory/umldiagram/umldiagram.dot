@@ -1,0 +1,18 @@
+digraph "Yeadon" {
+    node [fontname=Arial, fontsize=10];
+    edge [fontname=Arial, fontsize=10];
+charset="utf-8"
+rankdir=BT
+"14" [shape="record", label="{Segment|center_of_mass\linertia\lmass\lrel_center_of_mass\lrel_inertia\lrot_mat\lsolids\l|draw()\lprint_properties()\lprint_solid_properties()\l}"];
+"16" [shape="record", label="{Human|segments\lcenter_of_mass\linertia\lmeas\lCFG\lmass\l|average_limbs()\lcombine_inertia()\ldraw()\lprint_properties()\lset_CFG()\lscale_human_by_mass()\ltransform_coord_sys()\l}"];
+"20" [shape="record", label="{StadiumSolid|stads\lmass\lrel_center_of_mass\lrel_inertia\l|calc_rel_properties()\ldraw()\l}"];
+"21" [shape="record", label="{Solid|rel_center_of_mass\ldensity\lpos\lheight\lrel_inertia\lrot_mat\lmass\lendpos\lcenter_of_mass\linertia\l|calc_properties()\ldraw()\lprint_properties()\lset_orientation()\l}"];
+"22" [shape="record", label="{Stadium|perimeter\lwidth\lradius\lthickness\l}"];
+"23" [shape="record", label="{Semiellipsoid|baseperimeter\lradius\lmass\lrel_center_of_mass\lrel_inertia\l|calc_rel_properties()\ldraw()\l}"];
+"20" -> "21" [arrowtail="none", arrowhead="empty"];
+"23" -> "21" [arrowtail="none", arrowhead="empty"];
+"14" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black", label=" segments"];
+"20" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black"];
+"23" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black"];
+"22" -> "16" [arrowhead="diamond", style="solid", arrowtail="none", fontcolor="black"];
+}
