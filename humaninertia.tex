@@ -529,18 +529,18 @@ rigid with respect to the bicycle frame and ones that assumed the rider moved
 in various ways with respect to the bicycle bodies.
 
 \subsection*{Rigid Rider}
-For the first advanced example, we will configure the Yeadon model using the
-Yeadon software such that a general human will be seated on the bicycle, feet
-at the bottom bracket axis, hands on the handlebars and arms hanging down. The
-inertia of the human will be computed with respect to their center of mass and
-combined with that of the rear frame of the bicycle using the parallel axis
-thereom to give the total inertia of the human riding a bicycle.
+For an advanced example, we will configure the Yeadon model using the Yeadon
+software such that the human will be seated on the bicycle, feet at the bottom
+bracket axis, hands on the handlebars and arms hanging down. The inertia of the
+human will be computed with respect to their center of mass and combined with
+that of the rear frame of the bicycle using the parallel axis thereom to give
+the total inertia of the human rigidly affixed to the bicycle rear frame.
 
 Define the bicycle coordinate system and parameters.
 
 The rear frame of the bicycle  and the location of the handlebars is defined by
 several geometric and inertial parameters. A single measurement of the rider
-was taken.
+was taken (hunch angle).
 
 First, the origin of the Yeadon model is located at the top of the seat post.
 Secondly, the sommersault angle is set to the hunch angle. The legs are assumed
@@ -572,6 +572,130 @@ located at the bottom bracket center and is the same lateral distance from the
 sagittal plane as the hip centers. The knee and thigh elevation angles are then
 found in the same fashion as the elbow and shoulder angles, which the lesser
 restriction that the thigh abduction angle is zero.
+
+Rotate the sommersault angle such that the human is leaning forward.
+
+Position the origin of the Yeadon model such that it as at the top of the
+biycle seat.
+
+\begin{equation}
+  \bar{r}^{seat/o} = \sqrt{l_{cs}^2 - (r_R - h_{bb})^2} \hat{x} - (l_{st} + l_{sp})
+  \operatorname{cos}\lambda_{st} \hat{z}
+\end{equation}
+
+Rotate the human such that its base coordinate system is aligned with the
+bicycle's coordinate system.
+
+\begin{equation}
+  \bar{r}^{h/o} = a \hat{x} + b \hat{y} + c \hat{z}
+\end{equation}
+
+Now, we will align the legs and then the arms. Only one side as it is a mirror
+solution for the oposite side.
+
+The thighs will be elevated only (i.e. they will stay alighed with the hips)
+and the knees flexed such that the center of the heel level is aligned with the
+bottom bracket axis.
+
+The distance from the top of the seat to the center of the bottom bracket.
+
+The elevation angle and flexion angles can then be solved for with a simple
+non-linear triangle equality. There are two solutions, so the solution in which
+the thigh elevation angle is always positive and the knee flexion is always
+negative will work for most normal bicycle configurations.
+
+The law of cosines gives the thigh elevation angle if the rider's torso was
+aligned with the seat post
+
+\begin{equation}
+	\alpha = \operatorname{arccos}\left(\frac{x^2 + (Lj3 - Lj0)^2 - z^2}{2x(Lj3 -
+	Lj0}\right)
+\end{equation}
+
+The true thigh elevation angle is then computed knowing the seat post angle and
+the rider's forward lean angle.
+
+\begin{equation}
+	\beta = \pi - \lambda_{fl} - \lambda_{sp} + \alpha
+\end{equation}
+
+where $0<\beta<\pi$. The law of sines then gives the knee flexion
+
+\begin{equation}
+	\theta = \operatorname{arcsin}\left(\frac{x}{z} \operatorname{sin}\alpha\right)
+\end{equation}
+
+where \(-\pi<\theta<0\).
+
+The hands can be located on the handlebars by enforcing the vector from the
+shoulder to the hand being equal to the shoulder to the handlebar and adding
+a constraint such that the arm plane is always normal to the ground plane.
+
+The arm is rotated relative to the chest through body fixed 1-2-3 rotations
+(i.e. Euler 1-2-3, X-Y-Z, elevation-abduction-rotation). This is the notation
+for the Euler angles between two different bodies: \({}^C\theta^{A1}_x\),
+\({}^C\theta^{A1}_y\), \({}^C\theta^{A1}_z\).
+
+\begin{equation}
+	{}^CR^{A1} =
+	\begin{bmatrix}
+		c_yc_z & -c_ys_z & s_y\\
+		s_xs_yc_z+s_zc_x & -s_xs_ys_z+c_zc_x & -s_xc_y\\
+		-c_xs_yc_z+s_zs_x & c_xs_ys_z+c_zs_x & c_xc_y
+	\end{bmatrix}
+\end{equation}
+
+where \(c_{xyz}=\operatorname{cos}\left({}^C\theta^{A1}_{xyz}\right)\) and
+\(s_{xyz}=\operatorname{sin}\left({}^C\theta^{A1}_{xyz}\right)\). A vector express in the C
+frame can be express in the A1 frame with
+
+\begin{equation}
+	v_C={}^CR^{A1} v_{A1}
+\end{equation}
+
+The forearm (A2) has a simple rotation with respect to the mid-arm (A1) about
+the body fixed Y axis.
+
+\begin{equation}
+  {}^{A1}R^{A2} =
+  \begin{bmatrix}
+    c_\theta & 0 & s_\theta\\
+    0 & 1 & 0\\
+    -s_\theta & 0 & c_\theta
+  \end{bmatrix}
+\end{equation}
+
+So a the rotation matrix from C to A2 is then
+
+\begin{equation}
+	{}^CR^{A2} = {}^CR^{A1}{}^{A1}R^{A2}
+\end{equation}
+
+To ensure that the hands lie on the handlebars the vector to the end of the
+hand must equate to the vector from the shoulder to the handlebar. There are
+two solutions to this but due to the symmetry of the arm, it doesn't matter.
+We can ensure that
+
+\begin{equation}
+	r^{La6/La0} = r^{h/La0}
+\end{equation}
+
+This constrains three of the four degrees of freedom. To get the last (i.e.
+rotation about the line from the shoulder to the handlebar) we set the axis of
+the elbow joint to be parallel to the ground plane. There are  
+
+\begin{equation}
+  \hat{y}_{A2}\dot\hat{z} = 0
+\end{equation}
+
+The elbow should always be below the shoulder. Equations blank and blank fully
+constrain the system and give a set of 4 non-linear equations.
+
+\begin{verbatim}
+	h = human(measuredtxt, configtxt)
+	h.translate_coord_sys(pos_seat)
+	h.rotate_coord_sys((pi, 0., -pi / 2.0))
+\end{verbatim}
 
 % Do NOT remove this, even if you are not including acknowledgments
 \section*{Acknowledgments}
