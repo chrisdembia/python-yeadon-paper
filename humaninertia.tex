@@ -411,26 +411,42 @@ mass, center of mass, and moment of inertia tensor. These properties can be
 obtained for the entire subject, or for individual limbs of the subject. TODO
 any allowable configuration.
 
-The software is written in the Python language. The advantages of this language
-are its ease of use and that there exists infrastructure that greatly
-facilitates the sharing of open-source packages written in the language. The
+We implemented the inertial model using Python language. The advantages of this
+language
+are its ease of use and that there exists stable infrastructure that
+facilitates the sharing of open-source packages written in the language. Our
 software is distributed as the \verb+yeadon+ package on the Python Package
-Index TODO.
+Index at http://pypi.python.org/pypi/yeadon/.
+
+\todo[inline]{Jason, I'm thinking some mention of why Python is a good choice
+could go here, and I think you know more about this.}
+
+\todo[inline]{license, open source}
 
 The \verb+yeadon+ package contains 5 modules: \verb+human+, \verb+segment+,
 \verb+solid+, \verb+ui+, and \verb+gui+. The \verb+human+ module contains the
 public interface of the package, and the \verb+segment+ and \verb+solid+
 modules are used internally to the \verb+human+ module. The user interacts
-either directly with the \verb+yeadon+ module, or via the \verb+ui+ or
+either directly with the \verb+human+ module, or via the \verb+ui+ or
 \verb+gui+ modules, both of which are clients to the \verb+human+ module. The
 \verb+human+ module contains only the \verb+Human+ class, the \verb+segment+
 module contains only the \verb+Segment+ class, and the \verb+solid+ module
 contains the \verb+Stadium+, \verb+Solid+, \verb+StadiumSolid+, and
-\verb+Semiellipsoid+ classes.
+\verb+Semiellipsoid+ classes. 
 
-The package relies heavily on composition TODO.
+Figure \ref{fig:umldiagram} is a diagram of the
+relationships between the classes in the package, using the Unified Modeling
+Language (UML). The diagram shows all relevant classes, as well as all relevant
+attributes and methods. The package relies heavily on composition. The
+\verb+Human+ constructor constructs all \verb+Stadium+'s, \verb+Solid+'s, and
+\verb+Segment+'s, and ties together these objects appropriately.
 
-\missingfigure{uml diagram}
+\todo[inline]{relative vs not relative inertial properties.}
+
+It is simple to integrate \verb+yeadon+ into existing Python code. This is
+demonstrated in \ref{sec:advanced}.
+
+\todo[inline]{easy to integrate in an analysis}
 
 \section*{Verification}
 
@@ -521,6 +537,8 @@ how to impose symmetry
 \todo{rot\_mat is in relation to the previous segment, body fixed}
 
 \section*{Advanced Example}
+\label{sec:advanced}
+
 We originally developed the software to easily compute the inertial properties
 of a human rider seated on a bicycle. Depending on the system model fidelity
 various various body segmentization can be used. Yeadon's model allowed us to
