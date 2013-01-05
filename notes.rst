@@ -88,6 +88,8 @@ How to use the software - chris
 - input file format description
 - code snippets
 
+SYMMETRY IS ON BY DEFAULT
+
 Example
 =======
 
