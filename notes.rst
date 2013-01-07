@@ -178,3 +178,14 @@ Chris 121228
     stuff.
 
     add language about body fixed vs space fixed.
+
+
+    ISEG does nothing with configuration
+
+    when describing what inertia for human, segment,solid is: make sure i specify what it is with respect to: that a segment's inertia is with respect to its own com, not the human's, but is in the human's frame.
+
+    give an example of the usage of translate coord system, since the language is confusing.
+
+    translate coordiante system does not affect the inertia tensor since it's still about the center of mass.
+
+    line 313 of test_solid, says we found a minor erro rin yeadon's paper, make sure we mention this in our paper.
