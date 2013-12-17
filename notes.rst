@@ -178,3 +178,63 @@ Chris 121228
     stuff.
 
     add language about body fixed vs space fixed.
+
+
+    ISEG does nothing with configuration
+
+    when describing what inertia for human, segment,solid is: make sure i specify what it is with respect to: that a segment's inertia is with respect to its own com, not the human's, but is in the human's frame.
+
+    give an example of the usage of translate coord system, since the language is confusing.
+
+    translate coordiante system does not affect the inertia tensor since it's still about the center of mass.
+
+    line 313 of test_solid, says we found a minor erro rin yeadon's paper, make sure we mention this in our paper.
+
+    - explain how we fixed the formulae for a truncated cone, etc. choosing b = 0.
+
+    (1) finish testing truncated solid assumption. DONE
+    (1.5) figure out the difference between ISEG computations and ours.
+        The difference is mostly in the densities (10%), though there's still error in total mass after using Chandler's density in yeadon (1%)
+    (2) finish testing human: transformations, etc.
+        1- ISEG comparison
+        2- translate
+        3- rotate
+        4- combine
+    (5) new interface for rotating, translating the system.
+    (3) finish GUI.
+    (4) write paper.
+
+    do an internal write-up of the issue i hit: degenerate if t0 = 0, so swap the situation. put this in the source code.
+    say in the paper that we do not do the thin trapezium thing.
+
+    130209
+        Just realized that for symmetry, we average the measurements. ISEG averages the inertial properties after they're calculated.
+        used a precise PI everywhere in ISEG
+        changed thicknesses to be 0.00000001 * r or something: made the discrepancy worse
+            the issue is with the limbs, across multiple segments. the way i do symmetry is NOT an issue
+                i'll just go solid by solid in the arms...
+
+        the meas 's i give to yeadon are already averaged. so that's why yeadon gives the same results...for the symmetry...
+
+        ADD TO THE DOCUMENTATION that the inertia tensor is about the center of mass.
+        INTRODUCE REFERENCE FRAMES INTO EVERYTHING.
+
+        ah so i'm not sure it makes sense to have the
+        translate/rotate/transform functions, since translate is trivial, and
+        rotate can be done by altering the somersalt, twist, etc. though that's
+        not quite as simple. alternatively, the user can apply their own
+        rotation afterwards.
+
+
+                    ****
+        130320: Jason said that we should at least compare our masses/
+        inertias***/ ("can just measure the masses of a person), and list what
+        Yeadon returns, and explain away any discrepancies.
+
+            make a table that compares our output to HIS output, don't fit his
+            to ours, just calculate results using ours that match his.
+
+            there was a difference of default density set.
+
+                    ****
+
