@@ -546,16 +546,19 @@ column on page 74, for $I_z^0$.
 \todo{rot\_mat is in relation to the previous segment, body fixed}
 
 \section*{Advanced Example}
-\label{sec:advanced}
+\label{sec:advanced-example}
 
-We originally developed the software to easily compute the inertial properties
-of a human rider seated on a bicycle. Depending on the system model fidelity
-various various body segmentization can be used. Yeadon's model allowed us to
-map the segment inertial propoerties to models which assumed the rider was
-rigid with respect to the bicycle frame and ones that assumed the rider moved
-in various ways with respect to the bicycle bodies.
+We originally developed the software as part of an effort to easily compute the
+inertial properties of a human rider seated on a bicycle. When modeling the
+dynamics of the bicycle/rider system, various body segmentizations can be used,
+from fully rigid to full human body model segmentation. Yeadon's model allowed
+us to map the segment inertial propoerties to models which assumed the rider
+was rigid with respect to the bicycle frame and ones that assumed the rider
+moved in various ways with respect to the bicycle bodies.
 
 \subsection*{Rigid Rider}
+\label{sec:rigid-rider}
+
 For an advanced example, we will configure the Yeadon model using the Yeadon
 software such that the human will be seated on the bicycle, feet at the bottom
 bracket axis, hands on the handlebars and arms hanging down. The inertia of the
@@ -565,8 +568,12 @@ the total inertia of the human rigidly affixed to the bicycle rear frame.
 
 Define the bicycle coordinate system and parameters.
 
-The rear frame of the bicycle  and the location of the handlebars is defined by
-several geometric and inertial parameters. A single measurement of the rider
+The typical bicycle model is defined within the standard SAE coordinate system
+for vehicles, we use defintion and the parameters in of the benchmark bicycle
+model, \cite{Meijaard2007}. In addition to the geometrical parameters in the
+benchmark bicycle, the rear frame of the bicycle and the location of the
+handlebars is defined by several geometric and inertial parameters.
+Furthermore, a single measurement of the rider relative to the bicycle frame
 was taken (hunch angle).
 
 First, the origin of the Yeadon model is located at the top of the seat post.
