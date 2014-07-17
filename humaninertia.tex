@@ -463,16 +463,27 @@ combination in terms of the global fixed frame.
 \section*{Usage}
 \label{sec:usage}
 
-We demonstrate how one may use the \verb+yeadon+ package using the example of
-an ice skater performing a spin. As is commonly taught in high school physics
-classes when discussing the conservation of angular momentum, an ice skater
-extends her arms to spin slowly, and draws them proximally to increase her
-angular velocity. Since the product $I_{zz}\omega$ remains constant and $I_{zz}$
-decreases, then $\omega$ must increase (with the $z$ axis directed vertically).
-We can use this human inertia model to vary a model's configuration to quickly
-observe the effect on $I_{zz}$. Specifically, we want to know the factor by
-which an ice skater's angular velocity may increase when she draws her arms in
-from a directly outward position.
+We begin our description of how one uses \verb+yeadon+ with an example of an
+ice skater performing a spin. As is commonly taught in high school physics, an
+ice skater can change their angular momentum by altering their moment of
+inertia. By what factor can an ice skater increase his angular velocity
+bringing his arms in?
+
+\begin{verbatim}
+>>> import yeadon
+>>> pi = 3.14159
+>>> h = yeadon.Human('male1.txt')
+>>> h.draw()
+>>> print('arms down: %.2f kg-m^2' % h.inertia[2, 2])
+arms down: 0.55 kg-m^2
+>>> h.set_CFG('CA1adduction', -0.5 * pi)
+>>> h.set_CFG('CB1abduction', 0.5 * pi)
+print('arms out: %.2f kg-m^2' % h.inertia[2, 2])
+arms out: 1.58 kg-m^2
+\end{verbatim}
+
+The subject represented by the measurements in \verb+male1.txt+ can increase
+their angular velocity (about the vertical axis) by a factor of 2.9.
 
 We begin by describing how \verb+yeadon+ is obtained and installed, then
 discuss the two ways that \verb+yeadon+ can be used to approach this problem.
