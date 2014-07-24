@@ -24,6 +24,8 @@
 
 \usepackage{color}
 
+\usepackage{hyperref}
+
 % TODO temporary
 \usepackage{todonotes}
 
@@ -114,11 +116,6 @@ displacement (\cite{Park1999}), rotating platforms (\cite{Griffiths2005}), and
 geometrical estimation of the body segments (\cite{Yeadon1990c}).
 Bjornstrup \cite{Bjornstrup1995} gives a detailed overview of mostly invasive
 methods up to 1995.
-
-\todo[inline]{ Maybe cite de Leva 1999 as a popular one. These citations are
-endless though...}
-
-\todo[inline]{Need to cite ``reasonable estimates'' below. Who says this?}
 
 Yeadon's mathematical method is quite attractive as it requires only a set of
 simple measurements from a human and provides reasonable estimates of the
@@ -423,17 +420,13 @@ contains the \verb+Stadium+, \verb+Solid+, \verb+StadiumSolid+, and
 The GUI is built using MayaVi which is a high level Python interface to the
 Visualization Tool Kit. We utilized MayaVi's ability to rapidly create cross
 platform graphical interfaces to expose the underlying \verb+yeadon+ classes
-through interactive widgets. The graphical use interface \figure{fig:gui}
+through interactive widgets. The graphical use interface \ref{fig:gui}
 allows the use to load measurement data files, adjust configuration variables,
 view the body's mass center location, visualize the inertia ellipsoid, and view
 the resulting total inertial properties.
 
-\todo[inline]{relative vs not relative inertial properties.}
-
 It is simple to integrate \verb+yeadon+ into existing Python code. This is
 demonstrated in \ref{sec:advanced}.
-
-\todo[inline]{easy to integrate in an analysis}
 
 \section*{Verification}
 
