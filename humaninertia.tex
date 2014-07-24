@@ -75,20 +75,27 @@
 \\
 Christopher Dembia$^{1,\ast}$,
 Jason K. Moore$^{2}$,
-Mont Hubbard$^{2}$
+Mont Hubbard$^{3}$
 \\
 \bf{1} Mechanical Engineering, Stanford University, Palo Alto, California, USA
 \\
-\bf{2} Mechanical and Aerospace Engineering, University of California, Davis, California, USA
+\bf{2} Mechanical Engineering, Cleveland State Universit, Cleveland, Ohio, USA
+\\
+\bf{3} Mechanical and Aerospace Engineering, University of California, Davis, California, USA
 \\
 $\ast$ E-mail: Corresponding cld72@cornell.edu
 \end{flushleft}
 
 % Please keep the abstract between 250 and 300 words
 \section*{Abstract}
-Herein we present a modern open source software implementation of a popular
+Herein we present an open source software implementation of a popular
 mathematical method developed by M.R. Yeadon for estimating the body segment
-inertia of a human body.
+parameters of a human body~\cite{Yeadon1990f}. The software is written in a
+high level open source language and provides three interfaces for manipulating
+the data and the model including a Python API, text user interface, and a
+graphical user interface. Once the human subject measurement data is collected
+and provided as an input the software can fit into various data processing
+pipelines.
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLoS ONE authors please skip this step.
 % Author Summary not valid for PLoS ONE submissions.
@@ -108,8 +115,13 @@ geometrical estimation of the body segments (\cite{Yeadon1990c}).
 Bjornstrup \cite{Bjornstrup1995} gives a detailed overview of mostly invasive
 methods up to 1995.
 
+% TODO : Maybe cite de Leva 1999 as a popular one. These citations are endless
+% though...
+
+% TODO : Need to cite ``reasonable estimates'' below. Who says this?
+
 Yeadon's mathematical method is quite attractive as it requires only a set of
-simple measurements from a live human and provides reasonable estimates of the
+simple measurements from a human and provides reasonable estimates of the
 individual human's body segment parameters. Furthermore, it is based off of
 simple computations and can easily be programmed to provide a quick estimate of
 body segment parameters. Yeadon himself developed a Fortran program called ISEG
@@ -138,23 +150,23 @@ model's angular momentum. The last paper in the series \cite{Yeadon1990d}
 compares the trajectory of an aerial flight between a film recording and a
 computer simulation using the model developed in the first 3 papers.
 
-Yeadon provides a lucid explanation of his human inertia model in
-the series described above. In this section, we merely seek to summarize his
-work.  The model is defined in terms of \emph{segments}, \emph{levels}, and
-\emph{solids}.  These three elements of the model are all shown in Figure
-\ref{fig:meas}. Note that we are not concerned with the angular momentum of the
-model; we are solely interested in the model's inertial properties.
+Yeadon provides a lucid explanation of his human inertia model in the series
+described above. In this section, we merely seek to summarize his work. The
+model is defined in terms of \emph{segments}, \emph{levels}, and \emph{solids}.
+These three elements of the model are all shown in Figure \ref{fig:meas}. Note
+that we are not concerned with the angular momentum of the model; we are solely
+interested in the model's inertial properties.
 
 \begin{description}
     \item[Segments]
-        The human is composed of 11 segments. Each of the 4 limbs is
-        composed of 2 segments, and the remainder of the body is composed of 3
-        segments. Each of these segments are rigid bodies, but have at least
-        one rotational degree of freedom with respect to the segment to which
-        they are attached.  The segments are labeled as \textbf{C},
-        \textbf{A1}, and so forth.
+        The human is composed of 11 segments. Each of the 4 limbs is composed
+        of 2 segments, and the remainder of the body is composed of 3 segments.
+        Each of these segments are rigid bodies, but have at least one
+        rotational degree of freedom with respect to the segment to which they
+        are attached. The segments are labeled as \textbf{C}, \textbf{A1}, and
+        so forth.
     \item[Levels]
-        Each segment is defined by a series of parallel cross sections.
+        Each segment is defined by a series of parallel transverse cross sections.
         These cross sections are referred to as levels, both in
         Yeadon's work and in ours. The model contains a toal of 45 levels.
         Levels are labeled as \textbf{Ls0}, \textbf{La0}, and so forth.  Each
@@ -162,7 +174,7 @@ model; we are solely interested in the model's inertial properties.
         \ref{fig:stadium}). There are a number of exceptions in which the
         stadium degenerates into a circle. We can define a stadium by any 2 of
         the following 5 attributes: its perimeter $p$, radius $r$, thickness
-        $t$, width $w$, and depth $d$.  The choice of which 2 attributes are
+        $t$, width $w$, and depth $d$. The choice of which 2 attributes are
         used to define a given stadium depends on the stadium's location in the
         body, as, for example, it is difficult to measure a perimeter about the
         shoulders (\textbf{Ls4}) so a depth is used instead.
@@ -177,14 +189,15 @@ model; we are solely interested in the model's inertial properties.
         termed \emph{stadium solids}. The only exception is \textbf{s7}, the
         solid above the ear, which is a semi-ellipsoid. The model contains a
         total of 40 solids.  Note that in this formulation we start numbering
-        the segments from 0, while Yeadon starts numbering the solids from 1.
+        the segments from 0 \footnote{This is to match the Python 0 based
+        indexing patterns}, while Yeadon starts numbering the solids from 1.
 \end{description}
 
 A key feature of this inertia model is that it can be personalized to a given
-individual, though we have not yet discussed this. The model is
-personalized via 95 anthropometric measurements. These measurements serve to
-define each stadium, and to provide the distance between the stadia (the
-heights of the stadium solids).
+individual for subject specifity, though we have not yet discussed this. The
+model is personalized via 95 anthropometric measurements. These measurements
+serve to define each stadium, and to provide the distance between the stadia
+(the heights of the stadium solids).
 
 Much of the utility of the model comes from being able to specify the
 configuration of the human in which one desires its inertial properties. The
@@ -219,10 +232,13 @@ the \textbf{Ls1} and \textbf{Ls2} levels. Instead, \textbf{Ls2L} is measured
 from \textbf{Ls0}. To learn the levels from which one measures the various
 lengths, see Table \ref{tab:length}.
 
+% TODO : Is this length table done?
+
 Since the densities for the model are provided, we readily provide an estimate
 of the human's total mass. However, if the experimentalist also measures the
-weight of the subject, it can be used to scale the densities provided in the
-model so that the model's mass matches the measured mass of the subject.
+weight of the subject, it can be used to proportionally scale the densities
+provided in the model so that the model's mass matches the measured mass of the
+subject.
 
 There are a few exceptions to the general measurement scheme we have described
 so far.
@@ -244,8 +260,8 @@ measurement scheme in the notes of Figure \ref{fig:meas}.
 
 \subsection*{Configuration}
 
-In this section we describe, relying heavily on Figure \ref{fig:config}, how
-we implement the configuration of Yeadon's model. The joint center of each
+In this section we describe, relying heavily on Figure \ref{fig:config}, how we
+implement the configuration of Yeadon's model. The joint center of each
 segment is located with a black dot: it is always located at the center of the
 base stadium of the segment. The black arrows on each segment indicate its
 local coordinate frame, whose origin is always at the joint center of the
@@ -260,25 +276,20 @@ the orientation of the whole body with respect to the fixed coordinate frame.
 Thus, right hip abduction is positive value of \verb+PK1abduction+, and so
 forth.
 
-Most joints have more than one degree of freedom, but only 4 have the maximum
-number of 3 rotational degrees of freedom. Since rotations are not commutative,
-we must specify the order in which we perform rotations at multi-degree of
-freedom joints. We provide this information in Table \ref{tab:dof}. For these
-joints, subsequent rotations are relative to the new local coordinate frame
-obtained by preceding rotations at this joint.
+Most joints have more than one degree of freedom, but only four have the
+maximum number of three rotational degrees of freedom. Since rotations are not
+commutative, we must specify the order in which we perform rotations at
+multi-degree of freedom joints. We provide this information in Table
+\ref{tab:dof}. For these joints, subsequent rotations are relative to the new
+local coordinate frame obtained by preceding rotations at this joint.
 
 The default configuration is for all configuration variables to have a value of
-zero. This, however, does not mean that the local coordinate basis vectors of
-all segments align with the global coordinate basis vectors. In the default
-configuration, the limbs (segments \textbf{A1}, \textbf{A2}, \textbf{B1},
-\textbf{B2}, \textbf{J1}, \textbf{J2}, \textbf{K1}, \textbf{K2}) are rotated
-$-\pi$ radians about the global $y$-axis
-so that fingers and toes point downward.
-
-This means that for each segment, in the default configuration, the local
-$x$-axis lies in a coronal plane and the local $y$-axis is directed
-posteriorly. Furthermore, it is assumed that in this configuration, the palms
-of the hands face the anterior direction.
+zero. In the default configuration the local coordinate basis vectors of all
+segments align with the global coordinate basis vectors. This means that for
+each segment, in the default configuration, the local $x$-axis lies in a
+coronal plane and the local $y$-axis is directed posteriorly. Furthermore, it
+is assumed that in this configuration, the palms of the hands face the anterior
+direction.
 
 We now address the location of the joint centers in our implementation of
 Yeadon's model. Such information is not provided in the papers he had published
