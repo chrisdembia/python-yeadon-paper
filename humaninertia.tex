@@ -395,22 +395,17 @@ the entire body.
 
 The input to \verb+yeadon+ consists of (1) measurements of a subject, and (2)
 the joint configuration of the subject. With these two inputs, one is able to
-obtain the mass properties of the subject.  The mass properties consist of the
-mass, center of mass, and moment of inertia tensor. These properties can be
-obtained for the entire subject, or for individual limbs of the subject. TODO
-any allowable configuration.
+obtain the inertial properties of the subject. These properties can be obtained
+for the entire body, for individual limbs of the subject, or for various
+combinations of the body segments.
 
-We implemented the inertial model using Python language. The advantages of this
-language
-are its ease of use and that there exists stable infrastructure that
-facilitates the sharing of open-source packages written in the language. Our
-software is distributed as the \verb+yeadon+ package on the Python Package
-Index at http://pypi.python.org/pypi/yeadon/.
-
-\todo[inline]{Jason, I'm thinking some mention of why Python is a good choice
-could go here, and I think you know more about this.}
-
-\todo[inline]{license, open source}
+We implemented the mathematical inertial model using the Python language.
+Python was chosen due to its ease of use, wide adoption, it's stable
+infrastructure distributing open-source packages, and its strong support for
+scientific software~\cite{SciPy2014}. Our software is distributed as the
+\verb+yeadon+ package on the Python Package Index at
+\url{http://pypi.python.org/pypi/yeadon/} under the 3 clause BSD
+license~\cite{BSD2014}.
 
 The \verb+yeadon+ package contains 5 modules: \verb+human+, \verb+segment+,
 \verb+solid+, \verb+ui+, and \verb+gui+. The \verb+human+ module contains the
@@ -421,14 +416,17 @@ either directly with the \verb+human+ module, or via the \verb+ui+ or
 \verb+human+ module contains only the \verb+Human+ class, the \verb+segment+
 module contains only the \verb+Segment+ class, and the \verb+solid+ module
 contains the \verb+Stadium+, \verb+Solid+, \verb+StadiumSolid+, and
-\verb+Semiellipsoid+ classes. 
-
-Figure \ref{fig:umldiagram} is a diagram of the
-relationships between the classes in the package, using the Unified Modeling
-Language (UML). The diagram shows all relevant classes, as well as all relevant
-attributes and methods. The package relies heavily on composition. The
+\verb+Semiellipsoid+ classes. The package relies heavily on composition. The
 \verb+Human+ constructor constructs all \verb+Stadium+'s, \verb+Solid+'s, and
 \verb+Segment+'s, and ties together these objects appropriately.
+
+The GUI is built using MayaVi which is a high level Python interface to the
+Visualization Tool Kit. We utilized MayaVi's ability to rapidly create cross
+platform graphical interfaces to expose the underlying \verb+yeadon+ classes
+through interactive widgets. The graphical use interface \figure{fig:gui}
+allows the use to load measurement data files, adjust configuration variables,
+view the body's mass center location, visualize the inertia ellipsoid, and view
+the resulting total inertial properties.
 
 \todo[inline]{relative vs not relative inertial properties.}
 
