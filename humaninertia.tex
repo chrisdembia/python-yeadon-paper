@@ -115,10 +115,10 @@ geometrical estimation of the body segments (\cite{Yeadon1990c}).
 Bjornstrup \cite{Bjornstrup1995} gives a detailed overview of mostly invasive
 methods up to 1995.
 
-% TODO : Maybe cite de Leva 1999 as a popular one. These citations are endless
-% though...
+\todo[inline]{ Maybe cite de Leva 1999 as a popular one. These citations are
+endless though...}
 
-% TODO : Need to cite ``reasonable estimates'' below. Who says this?
+\todo[inline]{Need to cite ``reasonable estimates'' below. Who says this?}
 
 Yeadon's mathematical method is quite attractive as it requires only a set of
 simple measurements from a human and provides reasonable estimates of the
@@ -321,10 +321,6 @@ somersalts. We expect, however, that our implementation of the model can be
 used in a more general set of investigations.
 
 \begin{description}
-    \item[Number of segments] Yeadon expresses that it is simple to extend the
-        model to contain 20 segments, rather than 11 \cite{Yeadon1990f}. This
-        implementation has not made this extension, but since the code is
-        available, any body is free to extend the code in this way.
     \item[Symmetry of limbs] Yeadon averages the measurements for the left and
         right limbs so that the model is symmetric. We provide the user with
         the option of imposing this symmetry, but do not perform the averaging
@@ -378,25 +374,8 @@ used in a more general set of investigations.
         thickness (a circle), Yeadon still employs the formulae for stadium
         solids by setting the thickness to be very small \cite{Yeadon1990f}. We
         instead make an appropriate modification to the formulae for the
-        inertial properties of a stadium solid. TODO.
-    \item[Local frame of upper arm] Yeadon defines the local coordinate frame
-        of the \textbf{A1} segment differently than we do. That is, the default
-        configuration of the arms in our work is that they are rotated $-\pi$
-        radians about an axis perpendicular to a coronal plane that is directed
-        anteriorly. Yeadon, however, defines the local frame of the arm to be
-        coincident with the local frame of the chest segment \textbf{C}. More
-        specifically, he defines the coordinate frame in terms of the unit
-        vectors $\mathbf{a}_1$, $\mathbf{a}_2$$\mathbf{a}_3$. If
-        $\mathbf{\hat{i}}$, $\mathbf{\hat{j}}$, $\mathbf{\hat{k}}$ are the unit
-        vectors for the local $x$, $y$, and $z$ axes of segment \textbf{A1},
-        respectively, then the two coordinate frames are related by
-        $\mathbf{\hat{i}} = -\mathbf{a}_1$, $\mathbf{\hat{j}} = \mathbf{a}_2$,
-        $\mathbf{\hat{k}} = -\mathbf{a}_3$. Rotations are performed in the same
-        order, though, namely elevation, abduction, then rotation.
-    \item[Whole body orientation frame] Yeadon defines a system frame $f$
-        with respect to a non-rotating frame that is defined in terms of the
-        configuration of the model. We do not make use of such a frame; our
-        system frame is the local frame of segment \textbf{P}.
+        inertial properties of a stadium solid.
+        \todo[inline]{TODO}
     \item[Joint center of chest-head segment] We locate the joint center
         between the torso \textbf{T} and the chest-head \textbf{C} at the
         center of level \textbf{Ls3}. This is in accordance with Figure 1 of
@@ -406,10 +385,10 @@ used in a more general set of investigations.
 \end{description}
 
 Yeadon's mathematical model of the human body is developed by representing the
-human body by a number of stadium solids and a semi ellipsoid. The ratio of the
+human body by a number of stadium solids and a semi ellipsoid. The densities of the
 body segment parameters are based on previous cadaver studies. He provides the
-analtyical solutions for the center of mass and inertia of an individual
-stadium solid. The parrlalel axis thereom is then employed to compute the
+analytical solutions for the center of mass and inertia of an individual
+stadium solid. The parallel axis theorem is then employed to compute the
 inertia properties of combinations of segments with the largest subset being
 the entire body.
 
@@ -534,7 +513,8 @@ following:
 
 Figure \ref{fig:femaledefault} shows this Human
 
-TODO show the use of some other methods, for instance averaging and scaling.
+\todo[inline]{show the use of some other methods, for instance averaging and
+scaling.}
 
 how to impose symmetry
 
