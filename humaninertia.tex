@@ -463,76 +463,51 @@ combination in terms of the global fixed frame.
 \section*{Usage}
 \label{sec:usage}
 
-We demonstrate how one may use the \verb+yeadon+ package using the example of
-an ice skater performing a spin. As is commonly taught in high school physics
-classes when discussing the conservation of angular momentum, an ice skater
-extends her arms to spin slowly, and draws them proximally to increase her
-angular velocity. Since the product $I_{zz}\omega$ remains constant and $I_{zz}$
-decreases, then $\omega$ must increase (with the $z$ axis directed vertically).
-We can use this human inertia model to vary a model's configuration to quickly
-observe the effect on $I_{zz}$. Specifically, we want to know the factor by
-which an ice skater's angular velocity may increase when she draws her arms in
-from a directly outward position.
-
-We begin by describing how \verb+yeadon+ is obtained and installed, then
-discuss the two ways that \verb+yeadon+ can be used to approach this problem.
-
-\subsection*{Obtaining and installing the software}
-
-The package, along with its documentation, is distributed through the Python
-Package Index. Accordingly, the package can be downloaded and installed easily
-from the command line on a user's machine using the \verb+pip+ package:
+We begin our description of how one uses \verb+yeadon+ with an example of an
+ice skater performing a spin. As is commonly taught in high school physics, an
+ice skater can change their angular momentum by altering their moment of
+inertia. By what factor can an ice skater increase his angular velocity
+bringing his arms in?
 
 \begin{verbatim}
-$ pip install yeadon
+>>> import yeadon
+>>> pi = 3.14159
+>>> h = yeadon.Human('male1.txt') # load a measurements file.
+>>> h.draw() # creates a 3D rendering of the Human.
+>>> print('arms down: %.2f kg-m^2' % h.inertia[2, 2]) # this gives I_{zz}.
+arms down: 0.55 kg-m^2
+>>> h.set_CFG('CA1adduction', -0.5 * pi) # set a configuration variable.
+>>> h.set_CFG('CB1abduction', 0.5 * pi)
+print('arms out: %.2f kg-m^2' % h.inertia[2, 2])
+arms out: 1.58 kg-m^2
 \end{verbatim}
 
-There are two ways to use the package: through methods of the \verb+Human+
-class, or through an interactive command-line user interface. We cover both.
-
-
-
-\subsection*{The Human class}
+Figure \ref{fig:iceskater} shows a rendering of the subject with his arms
+out. The subject represented by the measurements in \verb+male1.txt+ can
+increase their angular velocity (about the vertical axis) by a factor of 2.9.
+We can also obtain the mass and center of mass of the whole Human, or of
+constituent parts:
 
 \begin{verbatim}
->>> import yeadon as y
->>> h = y.Human('female1.txt')
+>>> h.mass
+>>> h.center_of_mass
 \end{verbatim}
 
-This constructs the \verb+Human+ with the segment dimensions as given in the
-\verb+female1.txt+ input file. This human has the default configuration, in
-which all joint angles are zero. This human can be visualized by executing the
-following:
-
-\todo[inline]{Talk aobut symmetry is on by default.}
+If we have a measurement of the subject's actual mass, we can scale all the
+segmental densities so that \verb+h.mass+ is the same as our
+experimentally-measured mass:
 
 \begin{verbatim}
->>> h.draw()
+>>> h.scale_human_by_mass(60) # in kilograms.
 \end{verbatim}
-\todo{is draw() correct}
 
-Figure \ref{fig:femaledefault} shows this Human
+It is also possible to obtain the combined inertia properties of various
+segments and/or solids. For example, we can obtain the mass, center of mass,
+and inertia tensor of the entire right arm via:
 
-\todo[inline]{show the use of some other methods, for instance averaging and
-scaling.}
-
-how to impose symmetry
-
-Yeadon's second paper in his series \cite{Yeadon1990f} contains a small
-typographical error in the second appendix. The first formula for $I_y^0$, at
-the bottom of page 73, is correct. However, the second formula for $I_y^0$ is
-missing a $Dh^3$ in its second term. Without the $Dh^3$, the units are
-incorrect. This formula can be compared to the formula at the top of the second
-column on page 74, for $I_z^0$.
-
-\subsection*{The interactive command-line user interface}
-
-
--dev for python2.7
--assume unix machine
--dist through pip
--how to install
--two ways to use. three ways?
+\begin{verbatim}
+>>> h.combine_inertia(['B1', 'B2'])
+\end{verbatim}
 
 \todo{rot\_mat is in relation to the previous segment, body fixed}
 
@@ -815,7 +790,7 @@ methods of the Human class, or via the ui or gui modules.
 
 \begin{figure}[!ht]
 \begin{center}
-    \missingfigure{femaledefault}
+    \missingfigure{iceskater}
 %\includegraphics[width=4in]{measurements.eps}
 \end{center}
 \caption{
@@ -823,7 +798,7 @@ methods of the Human class, or via the ui or gui modules.
 should be left justified, as specified by the options to the caption 
 package.
 }
-\label{fig:femaledefault}
+\label{fig:iceskater}
 \end{figure}
 
 \section*{Tables}
