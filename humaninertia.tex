@@ -71,7 +71,7 @@
 % Title must be 150 characters or less
 \begin{flushleft}
 {\Large
-\textbf{Object oriented implementation of Yeadon's human inertial model}
+\textbf{Object oriented implementation the Yeadon human inertial model}
 }
 % Insert Author names, affiliations and corresponding author email.
 \\
@@ -81,7 +81,7 @@ Mont Hubbard$^{3}$
 \\
 \bf{1} Mechanical Engineering, Stanford University, Palo Alto, California, USA
 \\
-\bf{2} Mechanical Engineering, Cleveland State Universit, Cleveland, Ohio, USA
+\bf{2} Mechanical Engineering, Cleveland State University, Cleveland, Ohio, USA
 \\
 \bf{3} Mechanical and Aerospace Engineering, University of California, Davis, California, USA
 \\
@@ -98,40 +98,34 @@ the data and the model including a Python API, text user interface, and a
 graphical user interface. Once the human subject measurement data is collected
 and provided as an input the software can fit into various data processing
 pipelines.
-% Please keep the Author Summary between 150 and 200 words
-% Use first person. PLoS ONE authors please skip this step.
-% Author Summary not valid for PLoS ONE submissions.
-%\section*{Author Summary}
 
 \section*{Introduction}
 For dynamic analyses, it is typical to treat the human body as a collection of
 linked rigid bodies. For accurate simulation and analysis the inertial
 properties (mass, center of mass, and moment of inertia) of the body segments
 must be estimated. Human mass, center of mass, and inertial properties have
-been measured and estimated in a multitude of ways. Each method has its
-advantages and disadvantages. Many methods exist including cadaver measurements
-(\cite{Dempster1955}, \cite{Clauser1969}, \cite{Chandler1975}), photogrammetry,
-ray scanning techniques (\cite{Zatsiorsky1983}, \cite{Zatsiorsky1990}), water
-displacement (\cite{Park1999}), rotating platforms (\cite{Griffiths2005}), and
-geometrical estimation of the body segments (\cite{Yeadon1990c}).
-Bjornstrup \cite{Bjornstrup1995} gives a detailed overview of mostly invasive
-methods up to 1995.
+been measured and estimated in a multitude of ways. Bjornstrup
+\cite{Bjornstrup1995} gives a detailed overview of mostly invasive methods up
+to 1995.  Each method has its advantages and disadvantages. Many methods exist
+including cadaver measurements (\cite{Dempster1955}, \cite{Clauser1969},
+\cite{Chandler1975}), photogrammetry, ray scanning techniques
+(\cite{Zatsiorsky1983}, \cite{Zatsiorsky1990}), water displacement
+(\cite{Park1999}), rotating platforms (\cite{Griffiths2005}), and geometrical
+estimation of the body segments (\cite{Yeadon1990c}).
 
 Yeadon's mathematical method is quite attractive as it requires only a set of
 simple measurements from a human and provides reasonable estimates of the
-individual human's body segment parameters. Furthermore, it is based off of
-simple computations and can easily be programmed to provide a quick estimate of
-body segment parameters. Yeadon himself developed a Fortran program called ISEG
-for his doctoral work \cite{Yeadon1984a} to rapidly compute his inertia model.
-The source code is available through the dissertation under the Creative
-Commons Attribution-NonCommercial-NoDerivs 2.5 license but is less than
-adaptable for inclusion in modern software packages for easy configuration and
-visualization.
+individual human's body segment parameters with simple, straightforward
+computations. Yeadon himself developed a Fortran program called ISEG for his
+doctoral work \cite{Yeadon1984a} to efficiently compute his inertia model. The
+source code is available in the dissertation under the Creative Commons
+Attribution-NonCommercial-NoDerivs 2.5 license but is less than adaptable for
+inclusion in modern software packages for easy configuration and visualization.
 
-We make use of Yeadon's model extensively in our dynamics research and
-developed a modern object oriented program under a permissive license that
-allows for easy inclusion into software packages and includes a graphical user
-interface for ease of end user use.
+We make use of Yeadon's model often in our dynamics research and developed a
+modern object oriented program under a permissive license that allows for easy
+inclusion into other software packages and includes a graphical user interface
+for ease of end user use.
 
 \section*{Yeadon's model}
 
@@ -155,39 +149,37 @@ that we are not concerned with the angular momentum of the model; we are solely
 interested in the model's inertial properties.
 
 \begin{description}
-    \item[Segments]
-        The human is composed of 11 segments. Each of the 4 limbs is composed
-        of 2 segments, and the remainder of the body is composed of 3 segments.
-        Each of these segments are rigid bodies, but have at least one
-        rotational degree of freedom with respect to the segment to which they
-        are attached. The segments are labeled as \textbf{C}, \textbf{A1}, and
-        so forth.
-    \item[Levels]
-        Each segment is defined by a series of parallel transverse cross sections.
-        These cross sections are referred to as levels, both in
-        Yeadon's work and in ours. The model contains a toal of 45 levels.
-        Levels are labeled as \textbf{Ls0}, \textbf{La0}, and so forth.  Each
-        level is in the shape of a \emph{stadium} (see Figure
-        \ref{fig:stadium}). There are a number of exceptions in which the
-        stadium degenerates into a circle. We can define a stadium by any 2 of
-        the following 5 attributes: its perimeter $p$, radius $r$, thickness
-        $t$, width $w$, and depth $d$. The choice of which 2 attributes are
-        used to define a given stadium depends on the stadium's location in the
-        body, as, for example, it is difficult to measure a perimeter about the
-        shoulders (\textbf{Ls4}) so a depth is used instead.
-    \item[Solids]
-        The inertial properties of each segment are computed by viewing each
-        segment as a solid lofted through all the levels in the segment. This
-        defines $N-1$ solids in a segment defined by $N$ levels. The solids are
-        labeled as \textbf{s0}, \textbf{a0}, and so forth. All solids in a
-        segment share the same longitudinal axis. A given solid is
-        defined by its two bounding stadia and the longitudinal distance
-        between them (the solid's height). These stadium-bounded solids are
-        termed \emph{stadium solids}. The only exception is \textbf{s7}, the
-        solid above the ear, which is a semi-ellipsoid. The model contains a
-        total of 40 solids.  Note that in this formulation we start numbering
-        the segments from 0 \footnote{This is to match the Python 0 based
-        indexing patterns}, while Yeadon starts numbering the solids from 1.
+  \item[Segments]
+    The human is composed of 11 segments. Each of the 4 limbs is composed of 2
+    segments, and the remainder of the body is composed of 3 segments.  Each of
+    these segments are rigid bodies, but have at least one rotational degree of
+    freedom with respect to the segments to which they are attached. The
+    segments are labeled as \textbf{C}, \textbf{A1}, and so forth.
+  \item[Levels]
+    Each segment is defined by a series of parallel transverse cross sections.
+    These cross sections are referred to as levels, both in Yeadon's work and
+    in ours. The model contains a toal of 45 levels.  Levels are labeled as
+    \textbf{Ls0}, \textbf{La0}, and so forth.  Each level is in the shape of a
+    \emph{stadium} (see Figure \ref{fig:stadium}). There are a number of
+    exceptions in which the stadium degenerates into a circle. We can define a
+    stadium by any 2 of the following 5 attributes: its perimeter $p$, radius
+    $r$, thickness $t$, width $w$, and depth $d$. The choice of which 2
+    attributes are used to define a given stadium depends on the stadium's
+    location in the body, as, for example, it is difficult to measure a
+    perimeter about the shoulders (\textbf{Ls4}) so a depth is used instead.
+  \item[Solids]
+    The inertial properties of each segment are computed by viewing each
+    segment as a solid lofted through all the levels in the segment. This
+    defines $N-1$ solids in a segment defined by $N$ levels. The solids are
+    labeled as \textbf{s0}, \textbf{a0}, and so forth. All solids in a segment
+    share the same longitudinal axis. A given solid is defined by its two
+    bounding stadia and the longitudinal distance between them (the solid's
+    height). These stadium-bounded solids are termed \emph{stadium solids}. The
+    only exception is \textbf{s7}, the solid above the ear, which is a
+    semi-ellipsoid. The model contains a total of 40 solids. Note that in this
+    formulation we start numbering the segments from 0 , while Yeadon starts
+    numbering the solids from 1~\footnote{This is to match the Python 0 based
+    indexing patterns}.
 \end{description}
 
 A key feature of this inertia model is that it can be personalized to a given
@@ -196,21 +188,23 @@ model is personalized via 95 anthropometric measurements. These measurements
 serve to define each stadium, and to provide the distance between the stadia
 (the heights of the stadium solids).
 
-Much of the utility of the model comes from being able to specify the
+Also, much of the utility of the model comes from being able to specify the
 configuration of the human in which one desires its inertial properties. The
 configuration is specified via 21 joint angles between the various segments,
 all of which are labeled in Figure \ref{fig:config}.
 
-Thus, Yeadon's model is defined via segments, levels, solids. One can
-personalize the model to an individual via measurements, and obtain inertial
-parameters for a desired configuration of the model. The only data that we need
-to provide to the user are the densities of the solids. We use Dempster's
-segmental density values \cite{Dempster1955}, as does Yeadon. The model is then
-mostly complete with the analytical expressions for a stadium solid's (and semiellipsoid's) center of
-mass and moments of inertia, and a way to combine the inertial properties of
-multiple stadium solids. Yeadon provides these formulae in \cite{Yeadon1990f}.
-In the next section, we describe with more detail the measurements required for
-the model, and the way the configuration is defined.
+Thus, Yeadon's model is defined via segments, levels, solids, and configuration
+angles. One can personalize the model to an individual via measurements, and
+obtain inertial parameters for a desired configuration of the model. The only
+additional data that we need to provide to the user are the densities of the
+solids. We use Dempster's segmental density values \cite{Dempster1955} by
+default, as does Yeadon~\footnote{The user has the option to set these to
+alternate values.}. The model is then mostly complete with the analytical
+expressions for a stadium solid's (and semiellipsoid's) center of mass and
+moments of inertia, and a way to combine the inertial properties of multiple
+stadium solids. Yeadon provides these formulae in \cite{Yeadon1990f}.  In the
+next section, we describe with more detail the measurements required for the
+model, and the way the configuration is defined.
 
 \section*{Implementation of Yeadon's model}
 
@@ -229,11 +223,9 @@ the \textbf{Ls1} and \textbf{Ls2} levels. Instead, \textbf{Ls2L} is measured
 from \textbf{Ls0}. To learn the levels from which one measures the various
 lengths, see Table \ref{tab:length}.
 
-% TODO : Is this length table done? YES
-
 Since the densities for the model are provided, we readily provide an estimate
 of the human's total mass. However, if the experimentalist also measures the
-weight of the subject, it can be used to proportionally scale the densities
+mass of the subject, it can be used to proportionally scale the densities
 provided in the model so that the model's mass matches the measured mass of the
 subject.
 
@@ -266,19 +258,24 @@ segment. For each segment, the local $z$-axis is the longitudinal axis of the
 segment. The green arrows each represent a degree of freedom, and indicate the
 direction and sign of the corresponding joint angle via the right-hand rule.
 The configuration variables are named with the names of the two segments at
-the joint, and a physiological description of the joint angle (i.e.
-\verb+K1K2flexion+ is the right knee flexion). The exceptions to this naming
-convention are \verb+somersalt+, \verb+tilt+, and \verb+twist+, which specify
-the orientation of the whole body with respect to the fixed coordinate frame.
-Thus, right hip abduction is positive value of \verb+PK1abduction+, and so
-forth.
+the joint, and a physiological description of the joint angle. Thus,
+\verb+K1K2flexion+ is the right knee flexion and the right hip abduction is the
+positive value of \verb+PK1abduction+, and so forth. The exceptions to this
+naming convention are \verb+somersalt+, \verb+tilt+, and \verb+twist+, which
+specify the orientation of the \textbf{P} segment with respect to the fixed
+coordinate frame.
 
-Most joints have more than one degree of freedom, but only four have the
-maximum number of three rotational degrees of freedom. Since rotations are not
-commutative, we must specify the order in which we perform rotations at
-multi-degree of freedom joints. We provide this information in Table
-\ref{tab:dof}. For these joints, subsequent rotations are relative to the new
-local coordinate frame obtained by preceding rotations at this joint.
+Most joints enable more than one degree of freedom, but only four have all
+three rotational degrees of freedom. Since rotations are not commutative, we
+must specify the order in which we perform rotations at multi-degree of freedom
+joints. Each child segment is rotated relative to its parent segment using
+Euler X-Y or X-Y-Z angles.
+
+We provide this information in Table \ref{tab:dof}. For these joints,
+subsequent rotations are relative to the new local coordinate frame obtained by
+preceding rotations at this joint.
+
+\todo[inline]{Remove dof table as it is unecesary}
 
 The default configuration is for all configuration variables to have a value of
 zero. In the default configuration the local coordinate basis vectors of all
@@ -398,8 +395,8 @@ combinations of the body segments.
 
 We implemented the mathematical inertial model using the Python language.
 Python was chosen due to its ease of use, wide adoption, it's stable
-infrastructure distributing open-source packages, and its strong support for
-scientific software~\cite{SciPy2014}. Our software is distributed as the
+infrastructure for distributing open source software, and its strong support
+for scientific software~\cite{SciPy2014}. Our software is distributed as the
 \verb+yeadon+ package on the Python Package Index at
 \url{http://pypi.python.org/pypi/yeadon/} under the 3 clause BSD
 license~\cite{BSD2014}.
@@ -417,37 +414,39 @@ contains the \verb+Stadium+, \verb+Solid+, \verb+StadiumSolid+, and
 \verb+Human+ constructor constructs all \verb+Stadium+'s, \verb+Solid+'s, and
 \verb+Segment+'s, and ties together these objects appropriately.
 
-The GUI is built using MayaVi which is a high level Python interface to the
-Visualization Tool Kit. We utilized MayaVi's ability to rapidly create cross
-platform graphical interfaces to expose the underlying \verb+yeadon+ classes
-through interactive widgets. The graphical use interface \ref{fig:gui}
-allows the use to load measurement data files, adjust configuration variables,
-view the body's mass center location, visualize the inertia ellipsoid, and view
-the resulting total inertial properties.
+The GUI is built using Mayavi~\cite{Ramachandran2011} which is a high level
+Python interface to the Visualization Tool Kit~\cite{Schroeder2003} and
+lightweight application framework. We utilized Mayavi's ability to rapidly
+create cross platform graphical interfaces to expose the underlying
+\verb+yeadon+ classes through interactive widgets. The graphical user
+interface, Figure \ref{fig:gui}, allows the user to load measurement data
+files, adjust configuration variables interactively, view the human body's mass
+center location, visualize its inertia ellipsoid, and view the resulting
+inertial properties.
 
 It is simple to integrate \verb+yeadon+ into existing Python code. This is
 demonstrated in \ref{sec:advanced}.
+
+\todo[inline]{this ends badly}
 
 \section*{Verification}
 
 \subsection*{Inertial properties}
 \todo[inline]{does this go in the verification?}
 
-We provide inertial properties (mass, center of mass, and moments of inertia)
+The software provides inertial properties (mass, center of mass, and moments of inertia)
 for the whole human, for an individual segment, for an individual solid, or for
 any combination of segments and solids. In the first case of the whole human,
- we provide the center of mass and moments of inertia in the global fixed coordinate frame. This frame has its
- origin at the bottom middle of solid \textbf{s0}, and is aligned with the
-local frame of segment \textbf{P} when \verb+somersalt+, \verb+tilt+, and
-\verb+twist+ are zero.
-In the case of individual segments or solids, we can provide the inertial
-properties in either the local frame of the segment in inquiry, or in the
-global fixed frame. We provide the inertial properties for any other
-combination in terms of the global fixed frame.
-
+we provide the center of mass and moments of inertia in the global fixed
+coordinate frame. This frame has its origin at the bottom middle of solid
+\textbf{s0}, and is aligned with the local frame of segment \textbf{P} when
+\verb+somersalt+, \verb+tilt+, and \verb+twist+ are zero. In the case of
+individual segments or solids, we can provide the inertial properties in either
+the local frame of the segment in inquiry, or in the global fixed frame. We
+provide the inertial properties for any other combination in terms of the
+global fixed frame.
 
 %Yeadon's human inertia model allows one to estimate the inertial properties of a particular individual through a standard and quick process.
-
 
 
 \section*{Usage}
@@ -508,7 +507,7 @@ We originally developed the software as part of an effort to easily compute the
 inertial properties of a human rider seated on a bicycle. When modeling the
 dynamics of the bicycle/rider system, various body segmentizations can be used,
 from fully rigid to full human body model segmentation. Yeadon's model allowed
-us to map the segment inertial propoerties to models which assumed the rider
+us to map the segment inertial properties to models which assumed the rider
 was rigid with respect to the bicycle frame and ones that assumed the rider
 moved in various ways with respect to the bicycle bodies.
 
@@ -775,6 +774,16 @@ from Solid. This diagram does not reveal the entire public interface of
 the classes shown. The user interacts with module through the attributes or
 methods of the Human class, or via the ui or gui modules.
 }
+\label{fig:umldiagram}
+\end{figure}
+
+\begin{figure}[!ht]
+  \begin{center}
+    \includegraphics{figfactory/gui-screenshot.png}
+  \end{center}
+  \caption{
+    {\bf Screenshot of the GUI application.}
+  }
 \label{fig:umldiagram}
 \end{figure}
 
