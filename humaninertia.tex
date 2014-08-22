@@ -36,7 +36,6 @@
 %\usepackage{setspace}
 %\doublespacing
 
-
 % Text layout
 \topmargin 0.0cm
 \oddsidemargin 0.5cm
@@ -55,7 +54,6 @@
 \makeatletter
 \renewcommand{\@biblabel}[1]{\quad#1.}
 \makeatother
-
 
 % Leave date blank
 \date{}
@@ -517,8 +515,6 @@ Combining segments/solids ['B1', 'B2'].
          [ 0.        ,  0.        ,  0.00194811]]))
 \end{verbatim}
 
-\todo{rot\_mat is in relation to the previous segment, body fixed}
-
 All of the methods have rich docstrings which can be accessed via the Python
 \verb+help()+ function. For example the previous method's docstring shows us
 what the three returned values are:
@@ -555,203 +551,87 @@ combined_COM : np.array (3,1)
 combined_inertia : np.matrix (3,3)
     Inertia tensor about the combined_COM, expressed in the global frame.
 \end{verbatim}
-
 Furthermore, online documentation that includes both prose-style documentation
-and the API docstrings is included with the source code and the can also be
-viewed at \url{http://yeadon.readthedocs.org}.
+and the API docstrings is included with the source code and can also be viewed
+at \url{http://yeadon.readthedocs.org}.
 
 \section*{Advanced Example}
 \label{sec:advanced-example}
 
-We originally developed the software as part of an effort to easily compute the
-inertial properties of a human rider seated on a bicycle. When modeling the
-dynamics of the bicycle/rider system, various body segmentizations can be used,
-from fully rigid to full human body model segmentation. Yeadon's model allowed
-us to map the segment inertial properties to models which assumed the rider
-was rigid with respect to the bicycle frame and ones that assumed the rider
-moved in various ways with respect to the bicycle bodies.
-
-\subsection*{Rigid Rider}
-\label{sec:rigid-rider}
+We originally developed this software as part of an effort to easily compute
+the inertial properties of a human rider seated on a bicycle. A common way to
+model the dynamics of a bicycle and rider is to assume that the rider is rigid
+and affixed to the rear frame of the bicycle~\cite{Meijaard2007}. Our
+studies~\cite{Moore2012} included a variety of bicycles and riders, where
+various combinations of the inertial properties of the bicycle rear frame and
+rider where required.
 
 For an advanced example, we will configure the Yeadon model using the Yeadon
-software such that the human will be seated on the bicycle, feet at the bottom
-bracket axis, hands on the handlebars and arms hanging down. The inertia of the
-human will be computed with respect to their center of mass and combined with
-that of the rear frame of the bicycle using the parallel axis thereom to give
-the total inertia of the human rigidly affixed to the bicycle rear frame.
-
-Define the bicycle coordinate system and parameters.
+software such that the human model will be seated on the bicycle, feet at the
+bottom bracket axis, hands on the handlebars and arms hanging down. The inertia
+of the human will be computed with respect to their center of mass and combined
+with that of the rear frame of the bicycle using the parallel axis thereom to
+give the total inertia of the human rigidly affixed to the bicycle rear frame
+in the bicycle's reference frame.
 
 The typical bicycle model is defined within the standard SAE coordinate system
-for vehicles, we use defintion and the parameters in of the benchmark bicycle
+for vehicles, we use definition and the parameters in of the benchmark bicycle
 model, \cite{Meijaard2007}. In addition to the geometrical parameters in the
 benchmark bicycle, the rear frame of the bicycle and the location of the
 handlebars is defined by several geometric and inertial parameters.
-Furthermore, a single measurement of the rider relative to the bicycle frame
-was taken (hunch angle).
+Furthermore, a single measurement of the rider's forward lean angle relative to
+the bicycle frame was taken.
 
-First, the origin of the Yeadon model is located at the top of the seat post.
-Secondly, the sommersault angle is set to the hunch angle. The legs are assumed
-to be symmetric about the saggital plane and the feet are positioned at the
-bottom bracket in the x and z direction. The elevation angles are then set for
-the P(KJ)1 and the J1J2 K1K2 flexion angles can be computed by enforcing that
-the vector from the hip to the foot
+An interactive IPython~\cite{Perez2007} notebook in the supplementary materials
+provides a detailed walk through of the advanced usage example. The following
+only briefly summarizes the steps involved in the computation and how the
+Yeadon software is used.
 
-We locate the hip center (Ls0) at the top of the bicycle seat and the
-somersault joint angle is set such that the torso (P, T, C) aligned by the
-forward lean angle λfl.
+\begin{enumerate}
+  \item The geometric and inertial properties of the bicycle were estimated
+    with an independent method~\cite{Moore2012}. The inertial properties of the
+    rear frame of the bicycle were expressed in the SAE coordinate system
+    described above.
+  \item A subset of the geometry of the bicycle and rider which locates the
+    bicycle rider interface points relative to the bicycle and human along with
+    3D kinematics are used to compute the human's configuration variables which
+    enforce the proper seating position for any given bicycle. The SymPy
+    Mechanics package~\cite{Gede2013} is used for these computations.
+  \item The \verb+Human.inertia_transformed+ method is used to express the
+    human's inertia in the bicycle's reference frame.
+  \item The combined mass and center of mass of the human and the rear frame of
+    the bicycle are computed and the parallel axis thereom is employed to
+    express the inertia of each body about the combined center of mass, where
+    they are then summed to get the combined inertia.
+\end{enumerate}
 
-The basic process for setting the elbow elevation angle is to find the distance
-between the shoulder (La0, Lb0) and the handlebar grip. The handlebar grip
-location is at the point at which the lateral line with length whb2 intersects
-the circle formed by the intersection of the two spheres which are centered at
-the front and rear wheel centers with radii lhbF and lhbR, respectively. The
-elevation angle of the elbow then is defined as the angle at which the distance
-from the shoulder (La0, Lb0) to the knuckle (La6, Lb6) is equal to the distance
-from the shoulder (La0, Lb0) to the handlebar grip. We then assume that the
-shoulder rotation angle is zero and find the shoulder elevation and abduction
-angles which force the vector from the shoulder to the knuckle to equal the
-vector from the shoulder to the handlebar grip.
+The example shows how to set a complex configuration of the Yeadon model and
+extract the geometric and inertial properties about arbitrary reference frames
+and points along with visualizing the configuration. An online view of the
+notebook can be found at
+\url{http://nbviewer.ipython.org/github/chrisdembia/humaninertiapaper/blob/master/src/bicycle_example.ipynb}.
 
-The thigh and knee elevation angles are set such that the center of the heel
-level (Lj6, Lk6) is aligned with the bottom bracket axis and that both the
-thigh abduction and rotation angles are zero. We assume that the foot peg is
-located at the bottom bracket center and is the same lateral distance from the
-sagittal plane as the hip centers. The knee and thigh elevation angles are then
-found in the same fashion as the elbow and shoulder angles, which the lesser
-restriction that the thigh abduction angle is zero.
+\section*{Conclusion}
+We have presented an open source software package that implements a widely used
+inertial model of the human. This package is disseminated and documented and
+available in public repositories under a permissive copyright license. The
+software provides an API for use as a library and also both a text user
+interface and a graphical user interface for interactive high level use as a
+standalone application. The structural design of the software is presented as
+an introduction to the source code which is available in a public repository
+and open for contributions and modifications. Finally, we provide both simple
+and advanced use cases for the API, one in the text of the paper and one in the
+supplementary IPython notebook.
 
-Rotate the sommersault angle such that the human is leaning forward.
-
-Position the origin of the Yeadon model such that it as at the top of the
-biycle seat.
-
-\begin{equation}
-  \bar{r}^{seat/o} = \sqrt{l_{cs}^2 - (r_R - h_{bb})^2} \hat{x} - (l_{st} + l_{sp})
-  \operatorname{cos}\lambda_{st} \hat{z}
-\end{equation}
-
-Rotate the human such that its base coordinate system is aligned with the
-bicycle's coordinate system.
-
-\begin{equation}
-  \bar{r}^{h/o} = a \hat{x} + b \hat{y} + c \hat{z}
-\end{equation}
-
-Now, we will align the legs and then the arms. Only one side as it is a mirror
-solution for the oposite side.
-
-The thighs will be elevated only (i.e. they will stay alighed with the hips)
-and the knees flexed such that the center of the heel level is aligned with the
-bottom bracket axis.
-
-The distance from the top of the seat to the center of the bottom bracket.
-
-The elevation angle and flexion angles can then be solved for with a simple
-non-linear triangle equality. There are two solutions, so the solution in which
-the thigh elevation angle is always positive and the knee flexion is always
-negative will work for most normal bicycle configurations.
-
-The law of cosines gives the thigh elevation angle if the rider's torso was
-aligned with the seat post
-
-\begin{equation}
-	\alpha = \operatorname{arccos}\left(\frac{x^2 + (Lj3 - Lj0)^2 - z^2}{2x(Lj3 -
-	Lj0}\right)
-\end{equation}
-
-The true thigh elevation angle is then computed knowing the seat post angle and
-the rider's forward lean angle.
-
-\begin{equation}
-	\beta = \pi - \lambda_{fl} - \lambda_{sp} + \alpha
-\end{equation}
-
-where $0<\beta<\pi$. The law of sines then gives the knee flexion
-
-\begin{equation}
-	\theta = \operatorname{arcsin}\left(\frac{x}{z} \operatorname{sin}\alpha\right)
-\end{equation}
-
-where \(-\pi<\theta<0\).
-
-The hands can be located on the handlebars by enforcing the vector from the
-shoulder to the hand being equal to the shoulder to the handlebar and adding
-a constraint such that the arm plane is always normal to the ground plane.
-
-The arm is rotated relative to the chest through body fixed 1-2-3 rotations
-(i.e. Euler 1-2-3, X-Y-Z, elevation-abduction-rotation). This is the notation
-for the Euler angles between two different bodies: \({}^C\theta^{A1}_x\),
-\({}^C\theta^{A1}_y\), \({}^C\theta^{A1}_z\).
-
-\begin{equation}
-	{}^CR^{A1} =
-	\begin{bmatrix}
-		c_yc_z & -c_ys_z & s_y\\
-		s_xs_yc_z+s_zc_x & -s_xs_ys_z+c_zc_x & -s_xc_y\\
-		-c_xs_yc_z+s_zs_x & c_xs_ys_z+c_zs_x & c_xc_y
-	\end{bmatrix}
-\end{equation}
-
-where \(c_{xyz}=\operatorname{cos}\left({}^C\theta^{A1}_{xyz}\right)\) and
-\(s_{xyz}=\operatorname{sin}\left({}^C\theta^{A1}_{xyz}\right)\). A vector express in the C
-frame can be express in the A1 frame with
-
-\begin{equation}
-	v_C={}^CR^{A1} v_{A1}
-\end{equation}
-
-The forearm (A2) has a simple rotation with respect to the mid-arm (A1) about
-the body fixed Y axis.
-
-\begin{equation}
-  {}^{A1}R^{A2} =
-  \begin{bmatrix}
-    c_\theta & 0 & s_\theta\\
-    0 & 1 & 0\\
-    -s_\theta & 0 & c_\theta
-  \end{bmatrix}
-\end{equation}
-
-So a the rotation matrix from C to A2 is then
-
-\begin{equation}
-	{}^CR^{A2} = {}^CR^{A1}{}^{A1}R^{A2}
-\end{equation}
-
-To ensure that the hands lie on the handlebars the vector to the end of the
-hand must equate to the vector from the shoulder to the handlebar. There are
-two solutions to this but due to the symmetry of the arm, it doesn't matter.
-We can ensure that
-
-\begin{equation}
-	r^{La6/La0} = r^{h/La0}
-\end{equation}
-
-This constrains three of the four degrees of freedom. To get the last (i.e.
-rotation about the line from the shoulder to the handlebar) we set the axis of
-the elbow joint to be parallel to the ground plane. There are  
-
-\begin{equation}
-  \hat{y}_{A2}\dot\hat{z} = 0
-\end{equation}
-
-The elbow should always be below the shoulder. Equations blank and blank fully
-constrain the system and give a set of 4 non-linear equations.
-
-\begin{verbatim}
-	h = human(measuredtxt, configtxt)
-	h.translate_coord_sys(pos_seat)
-	h.rotate_coord_sys((pi, 0., -pi / 2.0))
-\end{verbatim}
-
-% Do NOT remove this, even if you are not including acknowledgments
 \section*{Acknowledgments}
+We would like to thank M.R. Yeadon for sharing his source code and measurement
+methodologies. It greatly improved the quality of our software.
+
 This material is partially based upon work supported by the National Science
 Foundation under Grant No. 0928339. Any opinions, findings, and conclusions or
 recommendations expressed in this material are those of the author(s) and do
 not necessarily reflect the views of the National Science Foundation.
+
 %\section*{References}
 % The bibtex filename
 \bibliography{humaninertia}
@@ -847,21 +727,33 @@ not necessarily reflect the views of the National Science Foundation.
     \includegraphics[width=6in]{figfactory/gui-screenshot.png}
   \end{center}
   \caption{
-    {\bf Screenshot of the GUI application.}
+    {\bf Screenshot of the GUI application.} A screenshot of the Mayavi GUI
+    application (QT backend) running on Ubuntu 14.04 is shown. The user can
+    supply the path to measurement YAML files to load different subject
+    specific users. The graphics window on the left shows a 3D view of the
+    model. The viewing angle, camera perspective, and other details can be
+    manipulated with a mouse or the from the toolbar above the window. The tabs
+    on the right provide sliders and text inputs for all 21 configuration
+    variables and allow the user to interactively set the configuration. The
+    ``Reset Configuration'' button sets all the configuration variables to
+    zero. The mass center and inertia ellipsoid of the entire body can be
+    toggled with the checkboxes. Finally, the gross mass, center of mass, and
+    inertia tensor are displayed in the bottom right and updated interactively
+    as the configuration is altered.
   }
   \label{fig:gui}
 \end{figure}
 
 \begin{figure}[!ht]
-\begin{center}
+  \begin{center}
     \includegraphics[width=4in]{figfactory/iceskater.png}
-\end{center}
-\caption{
-{\bf TODO Bold the first sentence.}  Rest of figure 2  caption.  Caption 
-should be left justified, as specified by the options to the caption 
-package.
-}
-\label{fig:iceskater}
+  \end{center}
+  \caption{
+    {\bf View of the model with the arms extended.} The ice skater has the
+    highest rotational moment of inertia when their arms are fully extended.
+    This shows the model representation of that pose.
+  }
+  \label{fig:iceskater}
 \end{figure}
 
 \section*{Tables}
