@@ -106,22 +106,22 @@ linked rigid bodies. For accurate simulation and analysis, the inertial
 properties (mass, center of mass, and moment of inertia) of each of the body
 segments must be estimated. Human mass, center of mass, and inertial properties
 have
-been measured and estimated in a number of ways. Bjornstrup
-\cite{Bjornstrup1995} gives a detailed overview of mostly invasive methods up
-to 1995. Many other methods exist, including cadaver measurements
-(\cite{Dempster1955}, \cite{Clauser1969}, \cite{Chandler1975}), photogrammetry,
-ray scanning techniques (\cite{Zatsiorsky1983}, \cite{Zatsiorsky1990}), water
-displacement (\cite{Park1999}), rotating platforms (\cite{Griffiths2005}), and
-geometrical estimation of the body segments (\cite{Yeadon1990c}).
+been measured and estimated in a number of ways.
+Bjornstrup~\cite{Bjornstrup1995} gives a detailed overview of mostly invasive
+methods up to 1995. Many other methods exist, including cadaver measurements
+(~\cite{Dempster1955}, \cite{Clauser1969}, \cite{Chandler1975}), photogrammetry,
+ray scanning techniques (~\cite{Zatsiorsky1983}, \cite{Zatsiorsky1990}), water
+displacement (~\cite{Park1999}), rotating platforms (~\cite{Griffiths2005}), and
+geometrical estimation of the body segments (`\cite{Yeadon1990c}).
 
 Yeadon's mathematical method is quite attractive as it requires only a set of
 simple geometric measurements from a human and provides reasonably accurate
 estimates of the individual human's body segment parameters with simple,
 straightforward computations. Yeadon himself developed a Fortran program called
-ISEG for his doctoral work \cite{Yeadon1984a} to efficiently compute his
+ISEG for his doctoral work, \cite{Yeadon1984a}, to efficiently compute his
 inertia model. The original source code is available in his dissertation but is
-not adaptable for inclusion in modern software packages, is not
-copyrighted under a liberal reuse license~\footnote{Creative Commons
+not adaptable for inclusion in modern software packages, is not copyrighted
+under a liberal reuse license~\footnote{Creative Commons
 Attribution-NonCommercial-NoDerivs 2.5}, and it is not very user friendly.
 
 Because we make use of Yeadon's model often in our research, we developed a
@@ -137,8 +137,8 @@ first paper \cite{Yeadon1990c} describes a method for obtaining joint angles
 from film data, and accordingly delves into how he defines the orientation of
 the whole body and the relative orientation of parts of the body. His second
 paper \cite{Yeadon1990f} describes in detail the geometry of his human model.
-He leaves the description of the model's configuration to his third paper
-\cite{Yeadon1990e}, which also details the analytical calculation of the
+He leaves the description of the model's configuration to his third
+paper \cite{Yeadon1990e}, which also details the analytical calculation of the
 model's angular momentum. The last paper in the series \cite{Yeadon1990d}
 compares the trajectory of an aerial flight between a film recording and a
 computer simulation using the model developed in the first three papers.
@@ -209,7 +209,7 @@ alternate values.}. The model is then completed with the analytical
 expressions for a stadium solid's and semiellipsoid's center of mass and
 moments of inertia, and the parallel axis theorem to combine the inertial
 properties of multiple stadium solids. Yeadon provides these explicit formulae
-in \cite{Yeadon1990f}. In the next section, we describe with more detail the
+in~\cite{Yeadon1990f}. In the next section, we describe with more detail the
 measurements required for the model and the way the configuration is defined.
 
 \section*{Implementation of Yeadon's model}
@@ -308,13 +308,13 @@ $\mathbf{p_J}$ and $\mathbf{p_K}$, in the local coordinate frame of the pelvis
 where $\mathbf{\hat{i}}$ is the unit vector along the $x$-axis of the pelvis,
 $t_{Ls0}$ is the thickness of the stadium at level \textbf{Ls0} and $r_{Ls0}$
 is its radius. This choice is informed by calculations present in the ISEG code
-published in \cite{Yeadon1984a}. The location of the joint center in all other
+published in~\cite{Yeadon1984a}. The location of the joint center in all other
 segments is at the center of the last stadium in the preceding segment.
 
 \subsection*{Departures from Yeadon's work}
 
 There are a few ways in which our implementation of the human inertia model
-differs from that which Yeadon presented in \cite{Yeadon1990c, Yeadon1990f,
+differs from that which Yeadon presented in~\cite{Yeadon1990c, Yeadon1990f,
 Yeadon1990e, Yeadon1990d}. Some of these differences arise from the fact that
 his work was tailored for aerial movement, more specifically for twisting
 somersaults. We expect, however, that our implementation of the model can be
@@ -342,7 +342,7 @@ used in a more general set of investigations.
         and width of the stadium at level \textbf{Ls4}, respectively.
         This issue is not addressed in Yeadon's 1990 papers, and our
         implementation disagrees with the ISEG code found in Yeadon's
-        dissertation (see page 358 line 251) \cite{Yeadon1984a}. The
+        dissertation (see page 358 line 251)~\cite{Yeadon1984a}. The
         justification for doing this is that this is exactly what Yeadon does
         in a more recent version of his code, provided to us in a personal
         communication~\cite{Yeadon2011}.
@@ -356,8 +356,8 @@ used in a more general set of investigations.
         where $r_{Ls0}$ and $w_{Ls0}$ are the radius and width of the
         \textbf{Ls0} stadium, respectively. As with the acromion stadia just
         mentioned above, the justification for this is not found in either
-        Yeadon's 1990 papers or in his dissertation (see page 361 line 403 in
-        \cite{Yeadon1984a}). Again, the justification is that this is what
+        Yeadon's 1990 papers or in his dissertation (see page 361 line 403
+        in~\cite{Yeadon1984a}). Again, the justification is that this is what
         Yeadon does in a more recent version of the code he shared with
         us~\cite{Yeadon2011}.
     \item[Relationships between configuration variables] Yeadon enforced
@@ -371,14 +371,14 @@ used in a more general set of investigations.
     \item[Degenerate stadia] In the case where stadia have essentially zero
         thickness (a circle), the stadium is degenerate and the equations have
         a zero in the denominator. In this scenario, Yeadon still employs the
-        formulae for stadium solids but sets the thickness to be very small
-        \cite{Yeadon1990f}.  Instead, we manipulate Yeadon's equations so that
-        the approximation is not necessary.
+        formulae for stadium solids but sets the thickness to be very
+        small~\cite{Yeadon1990f}.  Instead, we manipulate Yeadon's equations so
+        that the approximation is not necessary.
     \item[Joint center of chest-head segment] We locate the joint center
         between the torso \textbf{T} and the chest-head \textbf{C} at the
         center of level \textbf{Ls3}. This is in accordance with Figure 1 of
         \cite{Yeadon1990e}. However, this is a departure from Yeadon's
-        dissertation \cite{Yeadon1984a}, in which he places the joint center of
+        dissertation~\cite{Yeadon1984a}, in which he places the joint center of
         the chest-head at the midpoint of the shoulder joint centers.
 \end{description}
 
@@ -671,8 +671,7 @@ not necessarily reflect the views of the National Science Foundation.
     personalized via 95 measurements, of which there are 4 types: lengths
     \textbf{L} along the longitudinal axis of the segments, perimeters
     \textbf{p} about the segments, mediolateral widths \textbf{w}, and
-    anteroposterior depths \textbf{d}. Black dots denote joint centers
-    \cite{Yeadon1990c}.
+    anteroposterior depths \textbf{d}. Black dots denote joint centers~\cite{Yeadon1990c}.
   }
   \label{fig:meas}
 \end{figure}
