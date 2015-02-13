@@ -27,7 +27,7 @@ LaTeX:
 
 - hyperref
 - cprotect
-- float
+- minted
 - todonotes
 
 The included `f1000_styles.sty` requires these packages: authblk, babel,
