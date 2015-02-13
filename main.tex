@@ -20,11 +20,8 @@
 % Using this to allow for \verb++ declarations in captions.
 \usepackage{cprotect}
 
-% For code floats.
-\usepackage{float}
-
-\newfloat{listing}{thp}{lop}
-\floatname{listing}{Listing}
+% Superb syntax highlighting.
+\usepackage{minted}
 
 % TODO temporary
 \usepackage{todonotes}
@@ -517,7 +514,7 @@ increase his angular velocity by bringing in his arms? The commands in Listing
 \ref{lis:ice-skate-code} perform this calculation.
 
 \begin{listing*}
-  \begin{verbatim}
+  \begin{minted}[gobble=4]{pycon}
     >>> import yeadon
     >>> pi = 3.14159
     >>> # Load a prepared measurements file.
@@ -533,7 +530,7 @@ increase his angular velocity by bringing in his arms? The commands in Listing
     >>> # Print the updated moment inertia about the global Z axis.
     >>> print('Arms out: {:.2f} kg-m^2'.format(h.inertia[2, 2]))
     Arms out: 1.58 kg-m^2
-  \end{verbatim}
+  \end{minted}
   \caption{Python interpreter session showing how one could compute the spin
     moment of inertia of an ice skater in two configurations.}
   \label{lis:ice-skate-code}
@@ -548,14 +545,14 @@ complex configurations. We can also obtain the mass and center of mass location
 of the whole human with the code presented in Listing \ref{lis:mass-com-code}.
 
 \begin{listing*}
-  \begin{verbatim}
+  \begin{minted}[gobble=4]{pycon}
     >>> h.mass
     58.200488588422544
     >>> h.center_of_mass
     array([[ -9.53791842e-19],
            [  0.00000000e+00],
            [  3.77172308e-02]])
-  \end{verbatim}
+  \end{minted}
   \caption{Python interpreter session demonstrating accessing the attributes
     for mass and center of mass.}
   \label{lis:mass-com-code}
@@ -580,7 +577,7 @@ densities so that \verb+h.mass+ is the same as our experimentally measured
 mass; see Listing \ref{lis:mass-scale-code}:
 
 \begin{listing*}
-  \begin{verbatim}
+  \begin{minted}[gobble=4]{pycon}
     >>> # Print the mass of the left leg.
     >>> h.K1.mass
     8.5047753220376521
@@ -592,7 +589,7 @@ mass; see Listing \ref{lis:mass-scale-code}:
     >>> # A slight increase in the segment mass can be seen.
     >>> h.K1.mass
     8.767736005291324
-  \end{verbatim}
+  \end{minted}
   \caption{Python interpreter session which demonstrates segment density
     scaling.}
   \label{lis:mass-scale-code}
@@ -604,7 +601,7 @@ location, and inertia tensor of the entire right arm via the code in Listing
 \ref{lis:combine-inertia-code}.
 
 \begin{listing*}
-  \begin{verbatim}
+  \begin{minted}[gobble=4]{pycon}
     >>> # Generate the mass, center of mass, and inertia tensor for the right arm.
     >>> h.combine_inertia(['B1', 'B2'])
     Combining segments/solids ['B1', 'B2'].
@@ -615,10 +612,10 @@ location, and inertia tensor of the entire right arm via the code in Listing
      matrix([[ 0.09098096,  0.        ,  0.        ],
              [ 0.        ,  0.09110269,  0.        ],
              [ 0.        ,  0.        ,  0.00194811]]))
-    \end{verbatim}
-    \caption{Python interpreter sessions which demonstrates collecting inertial
-      properties of multiple segments.}
-    \label{lis:combine-inertia-code}
+  \end{minted}
+  \caption{Python interpreter sessions which demonstrates collecting inertial
+    properties of multiple segments.}
+  \label{lis:combine-inertia-code}
 \end{listing*}
 
 All of the methods have rich docstrings accessible via the Python \verb+help()+
@@ -626,7 +623,7 @@ function. For example the previous method's docstring shows the three returned
 values in Listing \ref{lis:docstring}.
 
 \begin{listing*}
-  \begin{verbatim}
+  \begin{minted}[gobble=4]{pycon}
     >>> help(h.combine_inertia)
     Returns the inertia properties of a combination of solids
     and/or segments of the human, using the fixed human frame (or the
@@ -657,7 +654,7 @@ values in Listing \ref{lis:docstring}.
         expressed in the global frame .
     combined_inertia : np.matrix (3,3)
         Inertia tensor about the combined_COM, expressed in the global frame.
-  \end{verbatim}
+  \end{minted}
   \cprotect\caption{An example docstring for a method in the \verb+Human+
     class.}
   \label{lis:docstring}
