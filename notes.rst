@@ -46,7 +46,7 @@ solids comprising a segment have coincident longitudinal axis.
 
 we also use dempster's densities.
 
-intended purpose was aerial movementSs: twisting somersalts on a trampoline.
+intended purpose was aerial movements: twisting somersaults on a trampoline.
 
 Software Design
 ===============
@@ -152,7 +152,7 @@ Departures
 
 yeadon - i
     concerned with using cinematography to back out orientation angles
-        external somersalt, tilt, twist
+        external somersault, tilt, twist
         internal angles as well
 
         we are not concerned with this
@@ -221,7 +221,7 @@ Chris 121228
 
         ah so i'm not sure it makes sense to have the
         translate/rotate/transform functions, since translate is trivial, and
-        rotate can be done by altering the somersalt, twist, etc. though that's
+        rotate can be done by altering the somersault, twist, etc. though that's
         not quite as simple. alternatively, the user can apply their own
         rotation afterwards.
 
