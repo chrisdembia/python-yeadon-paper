@@ -46,7 +46,7 @@ solids comprising a segment have coincident longitudinal axis.
 
 we also use dempster's densities.
 
-intended purpose was aerial movementSs: twisting somersaults on a trampoline.
+intended purpose was aerial movements: twisting somersaults on a trampoline.
 
 Software Design
 ===============
