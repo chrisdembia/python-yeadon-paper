@@ -155,7 +155,7 @@ The model is defined in terms of \emph{segments}, \emph{levels}, and
     \textbf{s7}, the solid above the ear, which is a semi-ellipsoid. The model
     contains a total of 40 solids. Note that in this formulation we begin
     numbering the solids from 0, while Yeadon numbers the solids from 1. This
-    is simply to match  Python's 0-based indexing.
+    is simply to match Python's 0-based indexing.
 \end{description}
 
 \begin{figure}
@@ -408,10 +408,12 @@ general set of investigations.
 
 \section*{Software design}
 
-We implemented the inertia model in the Python language as a package named
-\verb+yeadon+.  Python was chosen due to its ease of use, wide adoption, its
-stable infrastructure for distributing open source software, and its strong
-scientific community (\href{http://www.scipy.org}{SciPy}).
+We implemented the inertia model in the Python programming
+language~\cite{Python2014} as a package named
+\verb+yeadon+.~\cprotect\footnote{\verb+yeadon+ only supports Python 2.7.}
+Python was chosen due to its ease of use, wide adoption, its stable
+infrastructure for distributing open source software, and its strong scientific
+community (\href{http://www.scipy.org}{SciPy}).
 
 The input to \verb+yeadon+ consists of (1) geometric measurements of a subject,
 and (2) joint configuration angles. Using these two inputs, the inertial
@@ -732,6 +734,20 @@ configuration.
 \verb+yeadon+ is licensed under the
 \href{http://opensource.org/licenses/BSD-3-Clause}{3 clause BSD license} which
 permits both non-commercial and commercial use.
+
+\subsection*{Software Versions}
+All of the computations in the paper were executed with the following software
+versions:
+\begin{itemize}
+  \item Python 2.7.9
+  \item IPython 2.3.1
+  \item yeadon 1.2.0
+  \item NumPy 1.9.1
+  \item pyyaml 3.11
+  \item Mayavi 4.3.1
+  \item SciPy 0.15.1
+  \item SymPy 0.7.6
+\end{itemize}
 
 \section*{Conclusion}
 We have presented an open source software package that implements a widely used
