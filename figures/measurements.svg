@@ -27,12 +27,12 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.1335643"
      inkscape:cx="349.8963"
-     inkscape:cy="448.58505"
+     inkscape:cy="425.60114"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1176"
+     inkscape:window-width="1366"
+     inkscape:window-height="744"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -129,7 +129,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1207,7 +1207,7 @@
    style="font-weight:bold"
    id="tspan6173">A2</tspan> left forearm-hand <tspan
    style="font-weight:bold"
-   id="tspan6203">a2-s6</tspan></tspan><tspan
+   id="tspan6203">a2-a6</tspan></tspan><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:FreeSans;-inkscape-font-specification:FreeSans"
          y="719.69092"
          x="47.614101"
