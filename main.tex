@@ -329,14 +329,17 @@ $\mathbf{p_J}$ and $\mathbf{p_K}$, can be expressed in the local coordinate
 frame of the pelvis \textbf{P}:
 
 \begin{align}
-    \mathbf{p_J} &= \frac{1}{2} (t_{Ls0} + r_{Ls0})\hat{\mathbf{i}} \\
-    \mathbf{p_K} &= -\frac{1}{2} (t_{Ls0} + r_{Ls0})\hat{\mathbf{i}},
+    \mathbf{p_J} &=
+        \frac{1}{2} (t_{\textrm{Ls0}} + r_{\textrm{Ls0}})\hat{\mathbf{i}} \\
+    \mathbf{p_K} &=
+        -\frac{1}{2} (t_{\textrm{Ls0}} + r_{\textrm{Ls0}})\hat{\mathbf{i}},
 \end{align}
 where $\hat{\mathbf{i}}$ is a unit vector along the $x$-axis of the pelvis,
-$t_{Ls0}$ is the thickness of the stadium at level \textbf{Ls0} and $r_{Ls0}$
-is its radius. This choice is informed by calculations present in the ISEG code
-published in~\cite{Yeadon1984a}. Joint center locations in all other segments
-are at the center of the last stadium in the preceding segment.
+$t_{\textrm{Ls0}}$ is the thickness of the stadium at level \textbf{Ls0} and
+$r_{\textrm{Ls0}}$ is its radius. This choice is informed by calculations
+present in the ISEG code published in~\cite{Yeadon1984a}. Joint center
+locations in all other segments are at the center of the last stadium in the
+preceding segment.
 
 \subsection*{Departures from Yeadon's work}
 
@@ -360,28 +363,30 @@ general set of investigations.
       implementation, the stadium at the top of \textbf{s4} is determined
       internally by the \textbf{Ls4} stadium by:
       \begin{align}
-        r &= 0.57 r_{Ls4} \\
-        t &= \frac{1}{2}w_{Ls4} - r
+          r_{\textrm{Ls5}} &= 0.57 r_{\textrm{Ls4}} \\
+          t_{\textrm{Ls5}} &= \frac{1}{2}w_{\textrm{Ls4}} - r_{\textrm{Ls5}}
       \end{align}
-      where $r$ and $t$ are the radius and thickness for the top stadium of
-      \textbf{s4}, respectively, and $r_{Ls4}$ and $w_{Ls4}$ are the radius and
-      width of the stadium at level \textbf{Ls4}, respectively.  This issue is
-      not addressed in ~\cite{Yeadon1990c, Yeadon1990f, Yeadon1990e,
-      Yeadon1990d}, and our implementation disagrees with the ISEG code found
-      in ~\cite{Yeadon1984a} (see page 358 line 251). The justification for our
-      choice is to agree with a more recent version of Yeadon's code, provided
-      to us in a personal communication.
+      where $r_{\textrm{Ls5}}$ and $t_{\textrm{Ls5}}$ are the radius and
+      thickness for the top stadium of \textbf{s4}, respectively, and
+      $r_{\textrm{Ls4}}$ and $w_{\textrm{Ls4}}$ are the radius and width of the
+      stadium at level \textbf{Ls4}, respectively.  This issue is not addressed
+      in ~\cite{Yeadon1990c, Yeadon1990f, Yeadon1990e, Yeadon1990d}, and our
+      implementation disagrees with the ISEG code found in ~\cite{Yeadon1984a}
+      (see page 358 line 251).  The justification for our choice is to agree
+      with a more recent version of Yeadon's code, provided to us in a personal
+      communication.
     \item[Hip joint center stadia in the thigh] The experimentalist makes no
       measurements at the \textbf{Lj0} or \textbf{Lk0} stadia, though these
       stadia must be defined to define solids \textbf{j0} and \textbf{k0}. In
-      our implementation, these stadia are circles with the same radius $r$:
+      our implementation, these stadia are circles with the same radius:
       \begin{equation}
-        r = \frac{1}{2}\sqrt{r_{Ls0} w_{Ls0}}
+          r_{\textrm{Lj0}} = r_{\textrm{Lk0}} =
+            \frac{1}{2}\sqrt{r_{\textrm{Ls0}} w_{\textrm{Ls0}}}
       \end{equation}
-      where $r_{Ls0}$ and $w_{Ls0}$ are the radius and width of the
-      \textbf{Ls0} stadium, respectively. As with the acromion stadia mentioned
-      above, the justification is that this has been implemented in the more
-      recent version of the code shared with us.
+      where $r_{\textrm{Ls0}}$ and $w_{\textrm{Ls0}}$ are the radius and width
+      of the \textbf{Ls0} stadium, respectively. As with the acromion stadia
+      mentioned above, the justification is that this has been implemented in
+      the more recent version of the code shared with us.
     \item[Relationships between configuration variables] Yeadon enforced
       relationships between certain configuration variables, such as symmetric
       movement of the legs with respect to the pelvis. We neither assume nor
