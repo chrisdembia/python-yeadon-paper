@@ -1,8 +1,8 @@
 Dear Arnaud Barré,
 
-Thank you very much for lending yoru time and expertise for this review. We are
+Thank you very much for lending your time and expertise for this review. We are
 happy that you have approved the article. We have submitted a second revision
-that addresses you comments.
+that addresses you comments. The responses are below:
 
    However, it would be interesting to have a better comparison of the
    different methods proposed to compute body segment inertial parameters using
@@ -15,13 +15,14 @@ that addresses you comments.
    accuracy, joint range, mass estimation, density scaling, etc.) would be also
    of interest.
 
-We also think that a paper showing the disadvantages and advatanges of these
-various models would be very interesting but we believe that  this topic is out
-of the scope of this paper. To properly address this, would take much more
-space and time to complete. We are leaving these discussions to the othe
-literature and would like to keep the scope of this paper about the specific
-software implementation of one method that has been described and commented on
-elsewhere.
+We also think that a paper showing the disadvantages and advantages of these
+various models would be very interesting but we believe that this undertaking
+is out of the scope of this paper. To properly address this, would take much
+more space and time to complete than we have. We are leaving these discussions
+to other literature and would like to keep the scope of this paper about the
+specific software implementation of one method that has been described, judged,
+and commented on elsewhere. If the reviewer would like to work on this idea
+with us for a future publication, we could certainly discuss possibilities.
 
    The authors modified some parts of the original model, why did they not add
    joint centers for ankles and wrists? This would give a better general
@@ -33,12 +34,13 @@ would allow relatively easy subclassing to implement other models with more
 joints.
 
 Another reason we did not worry much about the ankle and wrist joints, was due
-to our intended application: whole body inertia of a bicyle rider. The inertial
-difference in the whole body if the foot/hand had ankle/wrist joints is very
-small and in our case negligible. It is only important when you are worried
-about those specific segments of the body. Yeadon's model is likely not very
-suitable for just hand or foot models. It was not designed to predict the body
-segment inertia's on a individual basis but to predict whole body inertia.
+to our intended application: whole body inertia of a bicycle rider. The
+inertial difference in the whole body if the foot/hand had ankle/wrist joints
+is very small and in our case negligible. It is only important when you are
+worried about those specific segments of the body. Yeadon's model is likely not
+suitable for only hand or foot models. It was not designed to predict the body
+segment inertia's on a individual basis but to predict whole body inertia. And
+we use it in the same way.
 
    Figure 1: The authors should give the abbreviations of the body parts. It is
    not obvious why all the levels for the torso does not use the P,T,C letters,
