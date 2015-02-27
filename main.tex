@@ -448,10 +448,14 @@ the UML diagram in Figure \ref{fig:umldiagram}.
     UML diagram of Yeadon package. The \verb+Human+ class constructs all
     \verb+Segment+'s, \verb+Solid+'s, and \verb+Stadium+'s, and assembles them
     appropriately. The classes \verb+StadiumSolid+ and \verb+Semiellipsoid+
-    inherit from \verb+Solid+.  This diagram does not reveal the entire public
-    interface of the classes shown. The user interacts with the software
+    inherit from \verb+Solid+.  The user interacts with the software
     through the attributes or methods of the \verb+Human+ class, or via the
-    \verb+ui+ or \verb+gui+ modules.
+    \verb+ui+ or \verb+gui+ modules. This diagram does not reveal the entire
+    public interface of the classes shown. The mass properties
+    \verb+center_of_mass+ and \verb+inertia+ (tensor) are expressed in the
+    global frame; quantities prefixed with \verb+rel+ are expressed in the
+    Segment or Solid frame. The attribute \verb+CFG+ contains the configuration
+    of the Human. See \verb+yeadon+'s documentation for more information.
   }
   \label{fig:umldiagram}
 \end{figure}
