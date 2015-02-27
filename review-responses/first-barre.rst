@@ -17,8 +17,7 @@ that addresses you comments. The responses are below:
 
 We also think that a paper showing the disadvantages and advantages of these
 various models would be very interesting but we believe that this undertaking
-is out of the scope of this paper. To properly address this, would take much
-more space and time to complete than we have. We are leaving these discussions
+is out of the scope of this paper. We are leaving these discussions
 to other literature and would like to keep the scope of this paper about the
 specific software implementation of one method that has been described, judged,
 and commented on elsewhere. If the reviewer would like to work on this idea
@@ -33,14 +32,14 @@ include extra joints. But the object oriented nature of our software design
 would allow relatively easy subclassing to implement other models with more
 joints.
 
-Another reason we did not worry much about the ankle and wrist joints, was due
+Another reason we did not worry much about the ankle and wrist joints was due
 to our intended application: whole body inertia of a bicycle rider. The
-inertial difference in the whole body if the foot/hand had ankle/wrist joints
-is very small and in our case negligible. It is only important when you are
+inertial difference in the whole body if the model had ankle and wrist joints
+is very small and in our case negligible. It is only important when one is
 worried about those specific segments of the body. Yeadon's model is likely not
 suitable for only hand or foot models. It was not designed to predict the body
-segment inertia's on a individual basis but to predict whole body inertia. And
-we use it in the same way.
+segment inertia's on a individual basis but to predict whole body inertia, and
+this is how we use the model.
 
    Figure 1: The authors should give the abbreviations of the body parts. It is
    not obvious why all the levels for the torso does not use the P,T,C letters,
@@ -104,6 +103,8 @@ Fixed here: https://github.com/chrisdembia/python-yeadon-paper/pull/54
 
    Figure 5: How did the authors fix the joint angular range? This seems to be
    empirical but it should be at least mentioned in the manuscript.
+
+TODO   
 
 Sincerely,
 
