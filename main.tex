@@ -344,6 +344,13 @@ defines the origin of the model (and of level \textbf{Ls0}) as the midpoint of
 the two hip joint centers.  Joint center locations in all other segments are at
 the center of the last stadium in the preceding segment.
 
+The model does not contain joints at the wrist or ankle, which is consistent
+with Yeadon's model as described in~\cite{Yeadon1990e}. Since these joints have
+a small effect on the inertial properties of the whole body, the exclusion of
+these joints should be fine for many use cases. However, the modular structure
+of the software allows one to easily modify the software to create these
+joints, if necessary.
+
 \subsection*{Departures from Yeadon's work}
 
 There are a few ways in which our implementation of the human inertia model
