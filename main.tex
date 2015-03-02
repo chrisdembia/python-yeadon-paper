@@ -327,8 +327,8 @@ model; this information is not in his original papers. The location of the
 joint centers of segments \textbf{A1} and \textbf{B1} are at the most distal
 points of level \textbf{Ls4} on the respective sides of the body. Joint center
 locations for segments \textbf{J1} and \textbf{K1}, respectively denoted as
-$\mathbf{p_J}$ and $\mathbf{p_K}$, can be expressed in the local coordinate
-frame of the pelvis \textbf{P}:
+$\mathbf{p_J}$ and $\mathbf{p_K}$, lie within level \textbf{Ls0} and can be
+expressed in the local coordinate frame of the pelvis \textbf{P}:
 
 \begin{align}
     \mathbf{p_J} &=
@@ -339,9 +339,10 @@ frame of the pelvis \textbf{P}:
 where $\hat{\mathbf{i}}$ is a unit vector along the $x$-axis of the pelvis,
 $t_{\textrm{Ls0}}$ is the thickness of the stadium at level \textbf{Ls0} and
 $r_{\textrm{Ls0}}$ is its radius. This choice is informed by calculations
-present in the ISEG code published in~\cite{Yeadon1984a}. Joint center
-locations in all other segments are at the center of the last stadium in the
-preceding segment.
+present in the ISEG code published in~\cite{Yeadon1984a}; in fact, Yeadon
+defines the origin of the model (and of level \textbf{Ls0}) as the midpoint of
+the two hip joint centers.  Joint center locations in all other segments are at
+the center of the last stadium in the preceding segment.
 
 \subsection*{Departures from Yeadon's work}
 
