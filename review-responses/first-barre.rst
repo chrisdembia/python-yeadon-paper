@@ -50,7 +50,7 @@ this is how we use the model.
    distinguished for clarity. Thus, this would help to better understand the
    departures proposed (like in Acromion stadia).
 
-TODO
+Partially fixed here: https://github.com/chrisdembia/python-yeadon-paper/pull/64
 
    Figure 1: In the legend "segments, label, solids", the segment A2 is defined
    between a2 and s6. I assume it is a6 and not s6.
@@ -104,7 +104,7 @@ Fixed here: https://github.com/chrisdembia/python-yeadon-paper/pull/54
    Figure 5: How did the authors fix the joint angular range? This seems to be
    empirical but it should be at least mentioned in the manuscript.
 
-TODO   
+Fixed here: https://github.com/chrisdembia/python-yeadon-paper/pull/62
 
 Sincerely,
 
