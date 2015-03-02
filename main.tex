@@ -282,10 +282,12 @@ This depth is in fact the width of a stadium that is rotated through 90
 degrees. Other necessary information about exceptions in the measurement scheme
 is contained in the notes of Figure \ref{fig:meas}.
 
-Since the densities for the model are provided, we can readily estimate the
+Since the densities for the model are provided, one can readily estimate the
 human's total mass. However, if the experimentalist measures the mass of the
 subject, that mass can be used to proportionally scale all densities in the
-model so that the model's total mass matches the subject's measured mass.
+model so that the model's total mass matches the subject's measured mass. Be
+aware that scaling the densities by the total mass is not a guarantee that
+error in all the inertial estimates are reduced.
 
 \subsection*{Configuration}
 
@@ -329,14 +331,17 @@ $\mathbf{p_J}$ and $\mathbf{p_K}$, lie within level \textbf{Ls0} and can be
 expressed in the local coordinate frame of the pelvis \textbf{P}:
 
 \begin{align}
-    \mathbf{p_J} &= \frac{1}{2} (t_{Ls0} + r_{Ls0})\hat{\mathbf{i}} \\
-    \mathbf{p_K} &= -\frac{1}{2} (t_{Ls0} + r_{Ls0})\hat{\mathbf{i}},
+    \mathbf{p_J} &=
+        \frac{1}{2} (t_{\textrm{Ls0}} + r_{\textrm{Ls0}})\hat{\mathbf{i}} \\
+    \mathbf{p_K} &=
+        -\frac{1}{2} (t_{\textrm{Ls0}} + r_{\textrm{Ls0}})\hat{\mathbf{i}},
 \end{align}
 where $\hat{\mathbf{i}}$ is a unit vector along the $x$-axis of the pelvis,
-$t_{Ls0}$ is the thickness of the stadium at level \textbf{Ls0} and $r_{Ls0}$
-is its radius. This choice is informed by calculations present in the ISEG code
-published in~\cite{Yeadon1984a}. Joint center locations in all other segments
-are at the center of the last stadium in the preceding segment.
+$t_{\textrm{Ls0}}$ is the thickness of the stadium at level \textbf{Ls0} and
+$r_{\textrm{Ls0}}$ is its radius. This choice is informed by calculations
+present in the ISEG code published in~\cite{Yeadon1984a}. Joint center
+locations in all other segments are at the center of the last stadium in the
+preceding segment.
 
 \subsection*{Departures from Yeadon's work}
 
@@ -360,28 +365,30 @@ general set of investigations.
       implementation, the stadium at the top of \textbf{s4} is determined
       internally by the \textbf{Ls4} stadium by:
       \begin{align}
-        r &= 0.57 r_{Ls4} \\
-        t &= \frac{1}{2}w_{Ls4} - r
+          r_{\textrm{Ls5}} &= 0.57 r_{\textrm{Ls4}} \\
+          t_{\textrm{Ls5}} &= \frac{1}{2}w_{\textrm{Ls4}} - r_{\textrm{Ls5}}
       \end{align}
-      where $r$ and $t$ are the radius and thickness for the top stadium of
-      \textbf{s4}, respectively, and $r_{Ls4}$ and $w_{Ls4}$ are the radius and
-      width of the stadium at level \textbf{Ls4}, respectively.  This issue is
-      not addressed in ~\cite{Yeadon1990c, Yeadon1990f, Yeadon1990e,
-      Yeadon1990d}, and our implementation disagrees with the ISEG code found
-      in ~\cite{Yeadon1984a} (see page 358 line 251). The justification for our
-      choice is to agree with a more recent version of Yeadon's code, provided
-      to us in a personal communication.
+      where $r_{\textrm{Ls5}}$ and $t_{\textrm{Ls5}}$ are the radius and
+      thickness for the top stadium of \textbf{s4}, respectively, and
+      $r_{\textrm{Ls4}}$ and $w_{\textrm{Ls4}}$ are the radius and width of the
+      stadium at level \textbf{Ls4}, respectively.  This issue is not addressed
+      in ~\cite{Yeadon1990c, Yeadon1990f, Yeadon1990e, Yeadon1990d}, and our
+      implementation disagrees with the ISEG code found in ~\cite{Yeadon1984a}
+      (see page 358 line 251).  The justification for our choice is to agree
+      with a more recent version of Yeadon's code, provided to us in a personal
+      communication.
     \item[Hip joint center stadia in the thigh] The experimentalist makes no
       measurements at the \textbf{Lj0} or \textbf{Lk0} stadia, though these
       stadia must be defined to define solids \textbf{j0} and \textbf{k0}. In
-      our implementation, these stadia are circles with the same radius $r$:
+      our implementation, these stadia are circles with the same radius:
       \begin{equation}
-        r = \frac{1}{2}\sqrt{r_{Ls0} w_{Ls0}}
+          r_{\textrm{Lj0}} = r_{\textrm{Lk0}} =
+            \frac{1}{2}\sqrt{r_{\textrm{Ls0}} w_{\textrm{Ls0}}}
       \end{equation}
-      where $r_{Ls0}$ and $w_{Ls0}$ are the radius and width of the
-      \textbf{Ls0} stadium, respectively. As with the acromion stadia mentioned
-      above, the justification is that this has been implemented in the more
-      recent version of the code shared with us.
+      where $r_{\textrm{Ls0}}$ and $w_{\textrm{Ls0}}$ are the radius and width
+      of the \textbf{Ls0} stadium, respectively. As with the acromion stadia
+      mentioned above, the justification is that this has been implemented in
+      the more recent version of the code shared with us.
     \item[Relationships between configuration variables] Yeadon enforced
       relationships between certain configuration variables, such as symmetric
       movement of the legs with respect to the pelvis. We neither assume nor
@@ -443,10 +450,14 @@ the UML diagram in Figure \ref{fig:umldiagram}.
     UML diagram of Yeadon package. The \verb+Human+ class constructs all
     \verb+Segment+'s, \verb+Solid+'s, and \verb+Stadium+'s, and assembles them
     appropriately. The classes \verb+StadiumSolid+ and \verb+Semiellipsoid+
-    inherit from \verb+Solid+.  This diagram does not reveal the entire public
-    interface of the classes shown. The user interacts with the software
+    inherit from \verb+Solid+.  The user interacts with the software
     through the attributes or methods of the \verb+Human+ class, or via the
-    \verb+ui+ or \verb+gui+ modules.
+    \verb+ui+ or \verb+gui+ modules. This diagram does not reveal the entire
+    public interface of the classes shown. The mass properties
+    \verb+center_of_mass+ and \verb+inertia+ (tensor) are expressed in the
+    global frame; quantities prefixed with \verb+rel+ are expressed in the
+    Segment or Solid frame. The attribute \verb+CFG+ contains the configuration
+    of the Human. See \verb+yeadon+'s documentation for more information.
   }
   \label{fig:umldiagram}
 \end{figure}
@@ -473,12 +484,15 @@ inertial properties.
     model. The viewing angle, camera perspective, and other details can be
     manipulated with a mouse or from the toolbar above the window. Tabs on the
     right provide sliders and text inputs for all 21 configuration variables
-    and allow the user to interactively set the configuration. The ``Reset
-    Configuration'' button sets all the configuration variables to zero. The
-    mass center and inertia ellipsoid for the entire body can be toggled with
-    the checkboxes. Finally, the whole-body mass, center of mass coordinates,
-    and inertia tensor are displayed in the bottom right and are updated
-    interactively as the configuration is altered.
+    and allow the user to interactively set the configuration. 
+    The configuration limits attempt to prevent unphysiological configurations 
+    and do not necessarily reflect the range of motion of the subject.
+    The ``Reset Configuration'' button sets all
+    the configuration variables to zero. The mass center and inertia ellipsoid
+    for the entire body can be toggled with the checkboxes. Finally, the
+    whole-body mass, center of mass coordinates, and inertia tensor are
+    displayed in the bottom right and are updated interactively as the
+    configuration is altered.
   }
   \label{fig:gui}
 \end{figure*}
