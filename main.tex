@@ -403,14 +403,15 @@ general set of investigations.
       circle. This scenario is not discussed by Yeadon.
     \item[Degenerate stadia] In the case where a stadium has zero thickness (a
       circle), the stadium is degenerate and some equations have a zero in the
-      denominator. In this scenario, Yeadon still employs the formulae for
-      stadium solids but sets the thickness to be very
-      small~\cite{Yeadon1990f}.  Instead, we manipulate the equations so that
-      the approximation is not necessary. In the case that only one of the
-      stadia for a solid has zero thickness, the divide-by-zero issue is
-      removed by computing the mass properties for the stadium solid in which
-      the two stadia are swapped. However, this manipulation does not work if
-      both stadia have zero thickness; for this case, we refer you to the code.
+      denominator; however, the resulting shape is still valid. In this
+      scenario, Yeadon still employs the formulae for stadium solids but sets
+      the thickness to be very small~\cite{Yeadon1990f}.  Instead, we
+      manipulate the equations so that the approximation is not necessary. In
+      the case that only one of the stadia for a solid has zero thickness, the
+      divide-by-zero issue is removed by computing the mass properties for the
+      stadium solid in which the two stadia are swapped. However, this
+      manipulation does not work if both stadia have zero thickness; for this
+      case, we refer you to the code.
     \item[Joint center of chest-head segment] We locate the joint center
       between the torso \textbf{T} and the chest-head \textbf{C} at the center
       of level \textbf{Ls3}. This is in accordance with Figure 1 of
