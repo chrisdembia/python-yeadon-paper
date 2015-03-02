@@ -92,7 +92,7 @@ Fixed here: https://github.com/chrisdembia/python-yeadon-paper/pull/55
 
    "Degenerate Stadia": What are the manipulations? Please detail.
 
-TODO
+Fixed here: https://github.com/chrisdembia/python-yeadon-paper/pull/66
 
    "Software design": Please add a reference for "Python" as this is the only
    one tool that does not have one (compared to Mayavi or VTK). The authors
