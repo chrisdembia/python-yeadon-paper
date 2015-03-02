@@ -9,9 +9,13 @@ review:
    rel_center_of_mass and rel_inertia are defined relative to.
 
 We have updated the text to clarify what these methods names mean and how we
-define the word "relative". Also note that the docstrings for these methods
-explain that these produce the inertial properties relative to the segment's
-local coordinate system. For example see:
+define the word "relative", see:
+
+https://github.com/chrisdembia/python-yeadon-paper/pull/61
+
+Also note that the docstrings for these methods explain that these produce the
+inertial properties relative to the segment's local coordinate system. For
+example see:
 
 http://yeadon.readthedocs.org/en/latest/segment.html#yeadon.segment.Segment.rel_inertia
 
