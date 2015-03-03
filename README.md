@@ -1,8 +1,7 @@
 This repository contains the source for the paper:
 
 Dembia, C., Moore, J. K., Hubbard, M. "An object oriented implementation of the
-Yeadon human inertial model", 2014, DOI:
-[10.12688/f1000research.5292.1](http://dx.doi.org/10.12688/f1000research.5292.1).
+Yeadon human inertial model", 2014.
 
 The paper is published at F1000Research:
 
